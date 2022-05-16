@@ -1,0 +1,11 @@
+.burger-ingredients {
+    grid-area: ingredients;
+    justify-self: end;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.burger-ingredients__nav {
+    display: flex;
+}

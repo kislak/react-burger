@@ -1,3 +1,33 @@
 .app-header{
     margin: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    grid-area: header;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-items: center;
+}
+.nav-item {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.link {
+    color: #8585AD;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+.link__active {
+    color: #F2F2F3;
 }
