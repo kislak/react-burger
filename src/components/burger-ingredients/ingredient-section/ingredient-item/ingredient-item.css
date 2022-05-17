@@ -1,3 +1,19 @@
 .ingredient-item {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.ingredient-item__name {
+    min-height: 48px;
+}
+
+.ingredient-item__price-section {
+    display: flex;
+    justify-items: center;
+    align-items: center;
 }
 

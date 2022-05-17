@@ -3,3 +3,11 @@
     flex-direction: column;
 }
 
+.ingredient-section__items {
+    margin: 24px 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 32px 24px;
+    align-items: baseline;
+    text-align: center;
+}
