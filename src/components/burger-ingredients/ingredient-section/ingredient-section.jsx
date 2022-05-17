@@ -2,9 +2,9 @@ import React from 'react';
 import './ingredient-section.css';
 import IngredientItem from "./ingredient-item/ingredient-item";
 
-function IngredientSection({title, items}) {
+function IngredientSection({title, items, sectionName}) {
     return (
-        <section className="ingredient-section mt-10">
+        <section id={sectionName} className="ingredient-section mt-10">
             <h2 className="text text_type_main-medium">{title}</h2>
             <div className="ingredient-section__items">
                 {items.map(item => {

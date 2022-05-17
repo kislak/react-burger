@@ -7,9 +7,8 @@ import data from "../../utils/data"
 
 function BurgerIngredients() {
     const [current, setCurrent] = React.useState('bun')
-
     React.useEffect(() => {
-        document.querySelector(`#${current}Ref`).scrollIntoView({
+        document.getElementById(current).scrollIntoView({
             behavior: 'smooth'
         });
     },[current])
@@ -24,12 +23,9 @@ function BurgerIngredients() {
             </nav>
 
             <div className="burger-ingredient__sections custom-scroll">
-                <a id="bunRef"></a>
-                <IngredientSection title="Булки" items={data.filter(i => i.type === "bun")} />
-                <a id="sauceRef"></a>
-                <IngredientSection title="Соусы" items={data.filter(i => i.type === "sauce")} />
-                <a id="mainRef"></a>
-                <IngredientSection title="Начинки" items={data.filter(i => i.type === "main")} />
+                <IngredientSection title="Булки" items={data.filter(i => i.type === "bun")} sectionName="bun" />
+                <IngredientSection title="Соусы" items={data.filter(i => i.type === "sauce")} sectionName="sauce" />
+                <IngredientSection title="Начинки" items={data.filter(i => i.type === "main")} sectionName="main" />
             </div>
         </section>
     )
