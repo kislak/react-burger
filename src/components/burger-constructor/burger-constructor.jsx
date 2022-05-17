@@ -1,6 +1,6 @@
 import React from 'react';
 import './burger-constructor.css';
-import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {ConstructorElement, DragIcon, Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import data from "../../utils/data"
 
 let top_item = data[0]
@@ -9,7 +9,7 @@ let bottom_item = data[data.length - 1]
 
 function BurgerConstructor() {
     return (
-        <section className="burger-constructor mt-25" >
+        <section className="burger-constructor mt-15" >
             <div className="burger-constructor__item ml-6">
                 <ConstructorElement
                     type="top"
@@ -40,6 +40,18 @@ function BurgerConstructor() {
                 price={bottom_item.price}
                 thumbnail={bottom_item.image_mobile}
             />
+            </div>
+
+            <div className="burger-constructor__total">
+                <div className="burger-constructor__value m-10">
+                    <span className="text text_type_digits-medium m-2">
+                        610
+                    </span>
+                    <CurrencyIcon/>
+                </div>
+                <Button type="primary" size="medium">
+                    Оформить заказ
+                </Button>
             </div>
         </section>
     )

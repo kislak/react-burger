@@ -15,7 +15,7 @@ function BurgerIngredients() {
 
     return (
         <section className="burger-ingredients">
-            <h1 className="mt-10 text text_type_main-large">Соберите бургер</h1>
+            <h1 className="text text_type_main-large">Соберите бургер</h1>
             <nav className="burger-ingredients__nav">
                 <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>Булки</Tab>
                 <Tab value="sauce" active={current === 'sauce'} onClick={setCurrent}>Соусы</Tab>
