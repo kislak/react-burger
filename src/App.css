@@ -6,6 +6,6 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 40px;
   max-height: 100vh;
-  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-y: hidden;
   height: 100vh;
 }
