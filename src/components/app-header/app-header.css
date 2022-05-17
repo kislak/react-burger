@@ -9,7 +9,6 @@
 
 .nav {
     display: flex;
-    flex-wrap: wrap;
     justify-items: center;
     align-items: center;
 }

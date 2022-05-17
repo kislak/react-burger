@@ -1,11 +1,17 @@
 .burger-ingredients {
     grid-area: ingredients;
     justify-self: end;
-    width: 600px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
+    min-height: min-content;
+    overflow: auto;
 }
 
 .burger-ingredients__nav {
     display: flex;
+}
+
+.burger-ingredient__sections {
+    overflow-y: scroll;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
-import './burger-ingredients.css';
 import IngredientSection from "./ingredient-section/ingredient-section";
+import './burger-ingredients.css';
+
 import data from "../../utils/data"
 
 function BurgerIngredients() {
@@ -22,9 +23,11 @@ function BurgerIngredients() {
                 </Tab>
             </nav>
 
-            <IngredientSection title="Булки" items={data.filter(i => i.type === "bun")}/>
-            <IngredientSection title="Соусы" items={data.filter(i => i.type === "sauce")} />
-            <IngredientSection title="Начинки" items={data.filter(i => i.type === "main")} />
+            <div className="burger-ingredient__sections custom-scroll">
+                <IngredientSection title="Булки" items={data.filter(i => i.type === "bun")}/>
+                <IngredientSection title="Соусы" items={data.filter(i => i.type === "sauce")} />
+                <IngredientSection title="Начинки" items={data.filter(i => i.type === "main")} />
+            </div>
         </section>
     )
 }
