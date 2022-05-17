@@ -1,6 +1,8 @@
 import React from 'react';
 import './ingredient-section.css';
 import IngredientItem from "./ingredient-item/ingredient-item";
+import PropTypes from "prop-types";
+import BurgerItemType from "../../../prop-types/burger-item-type";
 
 function IngredientSection({title, items, sectionName}) {
     return (
@@ -14,5 +16,11 @@ function IngredientSection({title, items, sectionName}) {
         </section>
     )
 }
+
+IngredientSection.propTypes = {
+    title: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)),
+    sectionName: PropTypes.string
+};
 
 export default IngredientSection;
