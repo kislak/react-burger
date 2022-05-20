@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-let BurgerItemType = {
+const BurgerItemType = {
     _id: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.oneOf(['bun', 'main', 'sauce']),

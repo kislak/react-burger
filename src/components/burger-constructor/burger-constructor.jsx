@@ -4,21 +4,21 @@ import {ConstructorElement, DragIcon, Button, CurrencyIcon} from "@ya.praktikum/
 import PropTypes from "prop-types";
 import BurgerItemType from "../../prop-types/burger-item-type";
 
-function BurgerConstructor(props) {
+function BurgerConstructor({topItem, midItems}) {
     return (
         <section className="burger-constructor mt-15" >
             <div className="burger-constructor__item ml-6">
                 <ConstructorElement
                     type="top"
                     isLocked={true}
-                    text={props.topItem.name}
-                    price={props.topItem.price}
-                    thumbnail={props.topItem.image_mobile}
+                    text={`${topItem.name}(верх)`}
+                    price={topItem.price}
+                    thumbnail={topItem.image_mobile}
                 />
             </div>
 
             <ul className="burger-constructor__middle custom-scroll">
-            {props.midItems.map(midItem => {
+            {midItems.map(midItem => {
                 return <li className="burger-constructor__item" key={`mid-item-${midItem._id}`}>
                     <DragIcon/>
                     <ConstructorElement
@@ -33,9 +33,11 @@ function BurgerConstructor(props) {
                 <ConstructorElement
                 type="bottom"
                 isLocked={true}
-                text={props.bottomItem.name}
-                price={props.bottomItem.price}
-                thumbnail={props.bottomItem.image_mobile}
+                text={topItem.name}
+                  text={`${topItem.name}(низ)`}
+
+              price={topItem.price}
+                thumbnail={topItem.image_mobile}
             />
             </div>
 

@@ -13,9 +13,9 @@ function BurgerIngredients(props) {
         });
     },[current])
 
-    let bun = props.items.filter(i => i.type === "main")
-    let sauce = props.items.filter(i => i.type === "main")
-    let main = props.items.filter(i => i.type === "main")
+    const bun = props.items.filter(i => i.type === "bun")
+    const sauce = props.items.filter(i => i.type === "sauce")
+    const main = props.items.filter(i => i.type === "main")
 
     return (
         <section className="burger-ingredients">
