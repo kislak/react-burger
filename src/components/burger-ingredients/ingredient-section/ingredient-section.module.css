@@ -1,9 +1,10 @@
-.ingredient-section {
+.section {
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
 }
 
-.ingredient-section__items {
+.items {
     margin: 24px 16px;
     display: grid;
     grid-template-columns: 1fr 1fr;

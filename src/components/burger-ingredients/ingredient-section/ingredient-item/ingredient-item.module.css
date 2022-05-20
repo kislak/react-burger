@@ -1,4 +1,4 @@
-.ingredient-item {
+.item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,11 +6,11 @@
     position: relative;
 }
 
-.ingredient-item__name {
+.name {
     min-height: 48px;
 }
 
-.ingredient-item__price-section {
+.price {
     display: flex;
     justify-items: center;
     align-items: center;

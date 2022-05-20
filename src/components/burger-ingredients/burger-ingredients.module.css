@@ -1,4 +1,4 @@
-.burger-ingredients {
+.ingredients {
     grid-area: ingredients;
     justify-self: end;
     max-width: 600px;
@@ -8,10 +8,10 @@
     overflow: auto;
 }
 
-.burger-ingredients__nav {
+.nav {
     display: flex;
 }
 
-.burger-ingredient__sections {
+.sections {
     overflow-y: scroll;
 }
