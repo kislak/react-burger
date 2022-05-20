@@ -7,11 +7,16 @@ import styles from './burger-ingredients.module.css';
 
 function BurgerIngredients({items}) {
     const [current, setCurrent] = React.useState('bun')
-    React.useEffect(() => {
-        document.getElementById(current).scrollIntoView({
-            behavior: 'smooth'
-        });
-    },[current])
+    const bunRef = React.useRef(null);
+    const sauceRef = React.useRef(null);
+    const mainRef = React.useRef(null);
+
+    const clickHandler = (value) => {
+      setCurrent(value)
+      value === 'bun' && bunRef.current.scrollIntoView({behavior: 'smooth'})
+      value === 'sauce' && sauceRef.current.scrollIntoView({behavior: 'smooth'})
+      value === 'main' && mainRef.current.scrollIntoView({behavior: 'smooth'})
+    }
 
     const bun = items.filter(i => i.type === "bun")
     const sauce = items.filter(i => i.type === "sauce")
@@ -21,14 +26,17 @@ function BurgerIngredients({items}) {
         <section className={styles.ingredients}>
             <h1 className="text text_type_main-large">Соберите бургер</h1>
             <nav className={styles.nav}>
-                <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>Булки</Tab>
-                <Tab value="sauce" active={current === 'sauce'} onClick={setCurrent}>Соусы</Tab>
-                <Tab value="main" active={current === 'main'} onClick={setCurrent}>Начинки</Tab>
+                <Tab value="bun" active={current === 'bun'} onClick={clickHandler}>Булки</Tab>
+                <Tab value="sauce" active={current === 'sauce'} onClick={clickHandler}>Соусы</Tab>
+                <Tab value="main" active={current === 'main'} onClick={clickHandler}>Начинки</Tab>
             </nav>
 
             <div className={`${styles.sections} custom-scroll`}>
+                <span ref={bunRef} />
                 <IngredientSection title="Булки" items={bun} sectionName="bun" />
-                <IngredientSection title="Соусы" items={sauce} sectionName="sauce" />
+                <span ref={sauceRef} />
+                <IngredientSection title="Соусы" items={sauce} sectionName="sauce"  />
+                <span ref={mainRef} />
                 <IngredientSection title="Начинки" items={main} sectionName="main" />
             </div>
         </section>
