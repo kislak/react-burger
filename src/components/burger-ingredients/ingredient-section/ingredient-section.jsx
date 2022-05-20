@@ -18,9 +18,9 @@ function IngredientSection({title, items, sectionName}) {
 }
 
 IngredientSection.propTypes = {
-    title: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)),
-    sectionName: PropTypes.string
+    title: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
+    sectionName: PropTypes.string.isRequired
 };
 
 export default IngredientSection;

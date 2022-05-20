@@ -59,7 +59,6 @@ function BurgerConstructor({topItem, midItems}) {
 BurgerConstructor.propTypes = {
     topItem: PropTypes.shape(BurgerItemType),
     midItems: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)),
-    bottomItem: PropTypes.shape(BurgerItemType)
 };
 
 export default BurgerConstructor;

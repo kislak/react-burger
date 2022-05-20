@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import BurgerItemType from "../../prop-types/burger-item-type";
 import styles from './burger-ingredients.module.css';
 
-function BurgerIngredients(props) {
+function BurgerIngredients({items}) {
     const [current, setCurrent] = React.useState('bun')
     React.useEffect(() => {
         document.getElementById(current).scrollIntoView({
@@ -13,9 +13,9 @@ function BurgerIngredients(props) {
         });
     },[current])
 
-    const bun = props.items.filter(i => i.type === "bun")
-    const sauce = props.items.filter(i => i.type === "sauce")
-    const main = props.items.filter(i => i.type === "main")
+    const bun = items.filter(i => i.type === "bun")
+    const sauce = items.filter(i => i.type === "sauce")
+    const main = items.filter(i => i.type === "main")
 
     return (
         <section className={styles.ingredients}>
@@ -36,7 +36,7 @@ function BurgerIngredients(props) {
 }
 
 BurgerIngredients.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)),
+    items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
 };
 
 export default BurgerIngredients;
