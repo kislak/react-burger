@@ -25,11 +25,11 @@ function BurgerIngredients({items}) {
     return (
         <section className={styles.ingredients}>
             <h1 className="text text_type_main-large">Соберите бургер</h1>
-            <nav className={styles.nav}>
+            <section className={styles.nav}>
                 <Tab value="bun" active={current === 'bun'} onClick={clickHandler}>Булки</Tab>
                 <Tab value="sauce" active={current === 'sauce'} onClick={clickHandler}>Соусы</Tab>
                 <Tab value="main" active={current === 'main'} onClick={clickHandler}>Начинки</Tab>
-            </nav>
+            </section>
 
             <div className={`${styles.sections} custom-scroll`}>
                 <span ref={bunRef} />
