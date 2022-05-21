@@ -1,13 +1,13 @@
 import React from 'react';
-import './burger-constructor.css';
 import {ConstructorElement, DragIcon, Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import BurgerItemType from "../../prop-types/burger-item-type";
+import styles from './burger-constructor.module.css';
 
 function BurgerConstructor({topItem, midItems}) {
     return (
-        <section className="burger-constructor mt-15" >
-            <div className="burger-constructor__item ml-6">
+        <section className={`${styles.constructor} mt-15`} >
+            <div className={`${styles.constructor} ml-6`}>
                 <ConstructorElement
                     type="top"
                     isLocked={true}
@@ -17,9 +17,9 @@ function BurgerConstructor({topItem, midItems}) {
                 />
             </div>
 
-            <ul className="burger-constructor__middle custom-scroll">
+            <ul className={`${styles.middle} custom-scroll`}>
             {midItems.map(midItem => {
-                return <li className="burger-constructor__item" key={`mid-item-${midItem._id}`}>
+                return <li className={styles.item} key={`mid-item-${midItem._id}`}>
                     <DragIcon/>
                     <ConstructorElement
                         text={midItem.name}
@@ -29,7 +29,7 @@ function BurgerConstructor({topItem, midItems}) {
                 </li>
             }) }
             </ul>
-            <div className="burger-constructor__item ml-6">
+            <div className={`${styles.item} ml-6`}>
                 <ConstructorElement
                 type="bottom"
                 isLocked={true}
@@ -41,8 +41,8 @@ function BurgerConstructor({topItem, midItems}) {
             />
             </div>
 
-            <div className="burger-constructor__total">
-                <div className="burger-constructor__value m-10">
+            <div className={styles.total}>
+                <div className="m-10">
                     <span className="text text_type_digits-medium m-2">
                         610
                     </span>

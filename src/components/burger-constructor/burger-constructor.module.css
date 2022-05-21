@@ -1,4 +1,4 @@
-.burger-constructor {
+.constructor {
     grid-area: constructor;
     max-width: 600px;
     display: flex;
@@ -7,7 +7,7 @@
     min-height: min-content;
 }
 
-.burger-constructor__middle {
+.middle {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -17,13 +17,12 @@
     margin: 0;
 }
 
-.burger-constructor__item {
+.item {
     display: flex;
     align-items: center;
-
 }
 
-.burger-constructor__total {
+.total {
     display: flex;
     align-items: center;
     justify-content: flex-end;
