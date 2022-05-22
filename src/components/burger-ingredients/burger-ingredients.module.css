@@ -1,0 +1,17 @@
+.ingredients {
+    grid-area: ingredients;
+    justify-self: end;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
+    overflow: auto;
+}
+
+.nav {
+    display: flex;
+}
+
+.sections {
+    overflow-y: scroll;
+}
