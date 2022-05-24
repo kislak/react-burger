@@ -1,0 +1,22 @@
+.modal {
+    min-width: 720px;
+    min-height: 720px;
+    background: black;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header {
+    display: flex;
+    align-self: stretch;
+    justify-content: space-between;
+}
+
+.closeButton {
+    background: black;
+    cursor: pointer;
+    border: none;
+}
