@@ -3,7 +3,6 @@
   overflow: hidden;
   height: 0;
   opacity: 0;
-  transition: height 0ms 350ms, opacity 350ms 0ms ease-out;
 
   align-items: center;
   justify-content: center;
@@ -21,5 +20,5 @@
   height: 100%;
   opacity: 1;
   width: 100%;
-  transition: height 0ms 0ms, opacity 350ms 0ms ease-in;
+  transition: height 0ms 0ms, opacity 150ms 0ms ease-in;
 }

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import BurgerItemType from "../../prop-types/burger-item-type";
 import styles from './burger-ingredients.module.css';
 
-function BurgerIngredients({items}) {
+function BurgerIngredients({items, setCurrentIngredient}) {
     const [current, setCurrent] = React.useState('bun')
     const bunRef = React.useRef(null);
     const sauceRef = React.useRef(null);
@@ -33,11 +33,26 @@ function BurgerIngredients({items}) {
 
             <div className={`${styles.sections} custom-scroll`}>
                 <span ref={bunRef} />
-                <IngredientSection title="Булки" items={bun} sectionName="bun" />
+                <IngredientSection
+                    title="Булки"
+                    items={bun}
+                    sectionName="bun"
+                    setCurrentIngredient={setCurrentIngredient}
+                />
                 <span ref={sauceRef} />
-                <IngredientSection title="Соусы" items={sauce} sectionName="sauce"  />
+                <IngredientSection
+                    title="Соусы"
+                    items={sauce}
+                    sectionName="sauce"
+                    setCurrentIngredient={setCurrentIngredient}
+                />
                 <span ref={mainRef} />
-                <IngredientSection title="Начинки" items={main} sectionName="main" />
+                <IngredientSection
+                    title="Начинки"
+                    items={main}
+                    sectionName="main"
+                    setCurrentIngredient={setCurrentIngredient}
+                />
             </div>
         </section>
     )

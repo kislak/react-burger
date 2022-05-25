@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import BurgerItemType from "../../../../prop-types/burger-item-type";
 import styles from './ingredient-item.module.css';
 
-function IngredientItem({item}) {
+function IngredientItem({item, setCurrentIngredient}) {
     return (
-        <section className={styles.item}>
+        <section className={styles.item} onClick={() => setCurrentIngredient(item)}>
             <Counter count={1} size="default" />
             <img src={item.image} />
             <div className={styles.price}>

@@ -10,7 +10,7 @@ import api from "../../utils/api"
 
 function App() {
     const [data, setData] = useState(null);
-    const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false);
+    const [currentIngredient, setCurrentIngredient] = useState(null)
     const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false);
 
     useEffect(() => {
@@ -26,7 +26,10 @@ function App() {
             <AppHeader />
             {data &&
                 <>
-                    <BurgerIngredients items={data} />
+                    <BurgerIngredients
+                        items={data}
+                        setCurrentIngredient={setCurrentIngredient}
+                    />
                     <BurgerConstructor
                         topItem={data[0]}
                         midItems={data.slice(1, -1)}
@@ -37,10 +40,9 @@ function App() {
 
             <InPortal id="ingredient-details-root">
                 <IngredientDetails
-                    isOpen={isIngredientDetailsOpen}
-                    setClose={() => setIngredientDetailsOpen(false)}
+                    currentIngredient={currentIngredient}
+                    setClose={() => setCurrentIngredient(null)}
                 >
-                    <div>Ingredient Details</div>
                 </IngredientDetails>
             </InPortal>
 
@@ -49,7 +51,6 @@ function App() {
                     isOpen={isOrderDetailsOpen}
                     setClose={() => setOrderDetailsOpen(false)}
                 >
-                    <div>Order Details</div>
                 </OrderDetails>
             </InPortal>
         </div>
