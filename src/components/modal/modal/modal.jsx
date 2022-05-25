@@ -12,7 +12,7 @@ function Modal(
         setClose
     })
 {
-g    const escFunction = useCallback((e) => {
+    const escFunction = useCallback((e) => {
         (e.key === "Escape") && setClose()
     }, []);
 
