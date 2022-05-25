@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import BurgerItemType from "../../prop-types/burger-item-type";
 import styles from './burger-constructor.module.css';
 
-function BurgerConstructor({topItem, midItems}) {
+function BurgerConstructor({topItem, midItems, setOrderDetailsOpen}) {
     return (
         <section className={`${styles.constructor} mt-15`} >
             <div className={`${styles.constructor} ml-6`}>
@@ -48,7 +48,7 @@ function BurgerConstructor({topItem, midItems}) {
                     </span>
                     <CurrencyIcon/>
                 </div>
-                <Button type="primary" size="medium">
+                <Button type="primary" size="medium" onClick={() => { setOrderDetailsOpen(true) }}>
                     Оформить заказ
                 </Button>
             </div>

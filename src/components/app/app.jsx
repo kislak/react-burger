@@ -3,38 +3,57 @@ import styles from './app.module.css';
 import AppHeader from "../app-header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-
-// import data from "../../utils/data"
+import IngredientDetails from "../modal/ingredient-details/ingredient-details";
+import OrderDetails from "../modal/order-details/order-details";
+import InPortal from "../inPortal/in-portal"
 import api from "../../utils/api"
-import Modal from "../modal/modal";
 
 function App() {
-  const [data, setData] = useState(null);
+    const [data, setData] = useState(null);
+    const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false);
+    const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false);
 
-  useEffect(() => {
-      api.getIngredients().then((response) => {
-          setData(response.data)
-      }).catch((err) => {
-          console.log(err);
-      })
-  },[])
+    useEffect(() => {
+        api.getIngredients().then((response) => {
+            setData(response.data)
+        }).catch((err) => {
+            console.log(err);
+        })
+    },[])
 
-  return (
-      <div className={ styles.app }>
-          <AppHeader />
+    return (
+        <div className={ styles.app }>
+            <AppHeader />
+            {data &&
+                <>
+                    <BurgerIngredients items={data} />
+                    <BurgerConstructor
+                        topItem={data[0]}
+                        midItems={data.slice(1, -1)}
+                        setOrderDetailsOpen={setOrderDetailsOpen}
+                    />
+                </>
+            }
 
-          <Modal isOpen={true}>
-             <div>content</div>
-          </Modal>
+            <InPortal id="ingredient-details-root">
+                <IngredientDetails
+                    isOpen={isIngredientDetailsOpen}
+                    setClose={() => setIngredientDetailsOpen(false)}
+                >
+                    <div>Ingredient Details</div>
+                </IngredientDetails>
+            </InPortal>
 
-          {data &&
-              <>
-                  <BurgerIngredients items={data}/>
-                  <BurgerConstructor topItem={data[0]} midItems={data.slice(1, -1)} />
-              </>
-          }
-      </div>
-  );
+            <InPortal id="order-details-root">
+                <OrderDetails
+                    isOpen={isOrderDetailsOpen}
+                    setClose={() => setOrderDetailsOpen(false)}
+                >
+                    <div>Order Details</div>
+                </OrderDetails>
+            </InPortal>
+        </div>
+    );
 }
 
 export default App;

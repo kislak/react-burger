@@ -1,25 +1,31 @@
 import {CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import ModalOverlay from "./modal-overlay/modal-overlay";
+import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from './modal.module.css';
 
-function Modal(props) {
+function Modal(
+    {
+        children,
+        title,
+        isOpen,
+        setClose
+    }
+) {
     return (
-        <ModalOverlay isOpen={props.isOpen}>
-            <section className={styles.modal}>
+        <ModalOverlay isOpen={isOpen} setClose={setClose}>
+            <section className={styles.modal} onClick={(e) => { e.stopPropagation()}}>
                 <section className={styles.header}>
                     <h2 className="text text_type_main-large">
-                        title
-                        {props.title}
+                        {title}
                     </h2>
                     <button
                         className={styles.closeButton}
                         type="button"
-                        onClick={props.onClose}>
+                        onClick={setClose}>
                         <CloseIcon />
                     </button>
                 </section>
                 <section className={styles.content}>
-                  {props.children}
+                  {children}
                 </section>
             </section>
         </ModalOverlay>

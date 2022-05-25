@@ -1,9 +1,17 @@
 import styles from './modal-overlay.module.css';
 
-function ModalOverlay(props) {
+function ModalOverlay(
+    {
+        children,
+        isOpen,
+        setClose
+    }) {
     return (
-        <div className={`${styles.modalOverlay} ${!!props.isOpen && styles.opened}`}>
-            {props.children}
+        <div
+            className={`${styles.modalOverlay} ${isOpen && styles.opened}`}
+            onClick={() => { setClose() }}
+        >
+            {children}
         </div>
     )
 }
