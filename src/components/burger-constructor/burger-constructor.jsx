@@ -59,6 +59,7 @@ function BurgerConstructor({topItem, midItems, setOrderDetailsOpen}) {
 BurgerConstructor.propTypes = {
     topItem: PropTypes.shape(BurgerItemType),
     midItems: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)),
+    setOrderDetailsOpen: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;

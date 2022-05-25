@@ -38,8 +38,8 @@ function App() {
                 </>
             }
 
-            <InPortal id="ingredient-details-root">
-                <IngredientDetails
+          <InPortal id="ingredient-details-root">
+              <IngredientDetails
                     currentIngredient={currentIngredient}
                     setClose={() => setCurrentIngredient(null)}
                 >

@@ -1,5 +1,6 @@
 import Modal from "../modal/modal";
 import styles from './order-details.module.css';
+import PropTypes from "prop-types";
 
 function OrderDetails(
     {
@@ -30,5 +31,11 @@ function OrderDetails(
         </section>
     </Modal>
 }
+
+
+OrderDetails.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    setClose: PropTypes.func.isRequired
+};
 
 export default OrderDetails;

@@ -24,7 +24,8 @@ function IngredientSection({title, items, sectionName, setCurrentIngredient}) {
 IngredientSection.propTypes = {
     title: PropTypes.string.isRequired,
     items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
-    sectionName: PropTypes.string.isRequired
+    sectionName: PropTypes.string.isRequired,
+    setCurrentIngredient: PropTypes.func.isRequired
 };
 
 export default IngredientSection;

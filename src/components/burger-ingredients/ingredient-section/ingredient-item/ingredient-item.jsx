@@ -24,7 +24,8 @@ function IngredientItem({item, setCurrentIngredient}) {
 
 
 IngredientItem.propTypes = {
-    item: PropTypes.shape(BurgerItemType)
+    item: PropTypes.shape(BurgerItemType),
+    setCurrentIngredient: PropTypes.func.isRequired
 };
 
 export default IngredientItem;

@@ -60,6 +60,7 @@ function BurgerIngredients({items, setCurrentIngredient}) {
 
 BurgerIngredients.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
+    setCurrentIngredient: PropTypes.func.isRequired
 };
 
 export default BurgerIngredients;

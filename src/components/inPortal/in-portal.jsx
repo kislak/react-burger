@@ -2,8 +2,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from "prop-types";
 
-export default function InPortal({ id, children }) {
+function InPortal({ id, children }) {
     const [hasMounted, setHasMounted] = React.useState(false);
     React.useEffect(() => {
         setHasMounted(true);
@@ -16,3 +17,10 @@ export default function InPortal({ id, children }) {
         document.querySelector(`#${id}`)
     );
 }
+
+InPortal.propTypes = {
+    id: PropTypes.string.isRequired,
+    children: PropTypes.element.isRequired
+};
+
+export default InPortal;
