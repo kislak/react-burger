@@ -13,24 +13,23 @@ function IngredientDetails({currentIngredient, setClose}) {
                      </p>
 
                      <table border="0" cellSpacing="20" cellPadding="0" className="text text_color_inactive mt-8">
-                         <tr className="text_type_main-small">
-                             <td>Калории,ккал</td>
-                             <td>Белки, г</td>
-                             <td>Жиры, г</td>
-                             <td>Углеводы, г</td>
-                         </tr>
-                         <tr className="text text_type_digits-default" >
-                             <td >{currentIngredient.calories}</td>
-                             <td>{currentIngredient.proteins}</td>
-                             <td>{currentIngredient.fat}</td>
-                             <td>{currentIngredient.carbohydrates}</td>
-                         </tr>
+                         <thead>
+                             <tr className="text_type_main-small">
+                                 <td>Калории,ккал</td>
+                                 <td>Белки, г</td>
+                                 <td>Жиры, г</td>
+                                 <td>Углеводы, г</td>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr className="text text_type_digits-default" >
+                                 <td >{currentIngredient.calories}</td>
+                                 <td>{currentIngredient.proteins}</td>
+                                 <td>{currentIngredient.fat}</td>
+                                 <td>{currentIngredient.carbohydrates}</td>
+                             </tr>
+                         </tbody>
                      </table>
-
-                    <div>{
-                        console.log(currentIngredient) &&
-                        currentIngredient.name
-                    }</div>
                  </section>
              }
         </Modal>
