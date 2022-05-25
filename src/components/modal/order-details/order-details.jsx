@@ -1,6 +1,7 @@
 import Modal from "../modal/modal";
 import styles from './order-details.module.css';
 import PropTypes from "prop-types";
+import check from "../../../images/check.svg"
 
 function OrderDetails(
     {
@@ -20,7 +21,7 @@ function OrderDetails(
                 Идентификатор заказа
             </p>
             <div className="mt-15">
-                <img src="/check.svg" alt="check"/>
+                <img src={check} alt="check"/>
             </div>
             <p className="text text_type_main-default mt-15">
                 Ваш заказ начали готовить
