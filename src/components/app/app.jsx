@@ -7,7 +7,6 @@ import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 import OrderDetails from "../modal/order-details/order-details";
 import api from "../../utils/api";
 import Modal from "../modal/modal/modal";
-import ModalOverlay from "../modal/modal-overlay/modal-overlay";
 
 function App() {
   const [data, setData] = useState(null);
@@ -42,21 +41,21 @@ function App() {
         </>
       )}
 
-      <Modal id="modal">
-        <ModalOverlay
-          isOpen={currentIngredient ? true : false}
-          setClose={() => setCurrentIngredient(null)}
-          title="Детали ингредиента"
-        >
+      <Modal
+        id="modal"
+        isOpen={currentIngredient ? true : false}
+        setClose={() => setCurrentIngredient(null)}
+        title="Детали ингредиента"
+      >
           <IngredientDetails currentIngredient={currentIngredient} />
-        </ModalOverlay>
+      </Modal>
 
-        <ModalOverlay
-          isOpen={isOrderDetailsOpen}
-          setClose={() => setOrderDetailsOpen(false)}
-        >
-          <OrderDetails />
-        </ModalOverlay>
+      <Modal
+        id="modal"
+        isOpen={isOrderDetailsOpen}
+        setClose={() => setOrderDetailsOpen(false)}
+      >
+        <OrderDetails />
       </Modal>
     </div>
   );

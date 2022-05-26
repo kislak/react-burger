@@ -11,6 +11,9 @@ https://habr.com/ru/company/yandex/blog/464071/
 https://habr.com/ru/post/662549/
 https://habr.com/ru/post/663792/
 
+inPortal
+https://www.joshwcomeau.com/snippets/react-components/in-portal/
+
 ```bash
 prettier --write .
 ```
