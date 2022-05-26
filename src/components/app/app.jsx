@@ -38,21 +38,19 @@ function App() {
                 </>
             }
 
-          <InPortal id="ingredient-details-root">
+          <InPortal id="modal">
               <IngredientDetails
                     currentIngredient={currentIngredient}
                     setClose={() => setCurrentIngredient(null)}
                 >
                 </IngredientDetails>
-            </InPortal>
 
-            <InPortal id="order-details-root">
-                <OrderDetails
-                    isOpen={isOrderDetailsOpen}
-                    setClose={() => setOrderDetailsOpen(false)}
-                >
-                </OrderDetails>
-            </InPortal>
+              <OrderDetails
+                  isOpen={isOrderDetailsOpen}
+                  setClose={() => setOrderDetailsOpen(false)}
+              >
+              </OrderDetails>
+          </InPortal>
         </div>
     );
 }
