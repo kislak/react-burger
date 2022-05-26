@@ -1,18 +1,18 @@
 .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  cursor: pointer;
 }
 
 .name {
-    min-height: 48px;
+  min-height: 48px;
 }
 
 .price {
-    display: flex;
-    justify-items: center;
-    align-items: center;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
-

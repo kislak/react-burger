@@ -1,29 +1,29 @@
 .constructor {
-    grid-area: constructor;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    min-height: min-content;
+  grid-area: constructor;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: min-content;
 }
 
 .middle {
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .total {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
