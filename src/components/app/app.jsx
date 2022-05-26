@@ -32,7 +32,7 @@ function App() {
                     />
                     <BurgerConstructor
                         topItem={data[0]}
-                        midItems={data.slice(1, -1)}
+                        midItems={data.filter(i => i.type !== "bun")}
                         setOrderDetailsOpen={setOrderDetailsOpen}
                     />
                 </>
