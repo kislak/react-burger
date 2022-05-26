@@ -47,7 +47,7 @@ function App() {
         setClose={() => setCurrentIngredient(null)}
         title="Детали ингредиента"
       >
-          <IngredientDetails currentIngredient={currentIngredient} />
+        <IngredientDetails currentIngredient={currentIngredient} />
       </Modal>
 
       <Modal
