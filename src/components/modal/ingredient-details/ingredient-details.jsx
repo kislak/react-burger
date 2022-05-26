@@ -1,16 +1,10 @@
-import Modal from "../modal/modal";
 import styles from "./ingredient-details.module.css";
 import PropTypes from "prop-types";
 import BurgerItemType from "../../../prop-types/burger-item-type";
 
-function IngredientDetails({ currentIngredient, setClose }) {
+function IngredientDetails({ currentIngredient }) {
   return (
-    <Modal
-      isOpen={currentIngredient ? true : false}
-      setClose={setClose}
-      title="Детали ингредиента"
-    >
-      {currentIngredient && (
+      currentIngredient && (
         <section className={styles.details}>
           <img src={currentIngredient.image_large} className="mt-8" />
           <p className="mt-4 text text_type_main-medium">
@@ -41,14 +35,12 @@ function IngredientDetails({ currentIngredient, setClose }) {
             </tbody>
           </table>
         </section>
-      )}
-    </Modal>
+      )
   );
 }
 
 IngredientDetails.propTypes = {
   currentIngredient: PropTypes.shape(BurgerItemType),
-  setClose: PropTypes.func.isRequired,
 };
 
 export default IngredientDetails;

@@ -5,8 +5,9 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 import OrderDetails from "../modal/order-details/order-details";
-import InPortal from "../inPortal/in-portal";
 import api from "../../utils/api";
+import Modal from "../modal/modal/modal";
+import ModalOverlay from "../modal/modal-overlay/modal-overlay";
 
 function App() {
   const [data, setData] = useState(null);
@@ -41,17 +42,22 @@ function App() {
         </>
       )}
 
-      <InPortal id="modal">
-        <IngredientDetails
-          currentIngredient={currentIngredient}
+      <Modal id="modal">
+        <ModalOverlay
+          isOpen={currentIngredient ? true : false}
           setClose={() => setCurrentIngredient(null)}
-        ></IngredientDetails>
+          title="Детали ингредиента"
+        >
+          <IngredientDetails currentIngredient={currentIngredient}></IngredientDetails>
+        </ModalOverlay>
 
-        <OrderDetails
+        <ModalOverlay
           isOpen={isOrderDetailsOpen}
           setClose={() => setOrderDetailsOpen(false)}
-        ></OrderDetails>
-      </InPortal>
+        >
+          <OrderDetails />
+        </ModalOverlay>
+      </Modal>
     </div>
   );
 }
