@@ -1,8 +1,8 @@
 .app {
   display: grid;
   grid-template-areas:
-            "header header"
-            "ingredients constructor";
+    "header header"
+    "ingredients constructor";
   grid-template-columns: 1fr 1fr;
   grid-gap: 40px;
   overflow-y: hidden;

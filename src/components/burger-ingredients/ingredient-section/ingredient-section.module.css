@@ -1,14 +1,14 @@
 .section {
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 .items {
-    margin: 24px 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 32px 24px;
-    align-items: baseline;
-    text-align: center;
+  margin: 24px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 32px 24px;
+  align-items: baseline;
+  text-align: center;
 }
