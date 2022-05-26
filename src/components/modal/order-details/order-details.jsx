@@ -1,5 +1,4 @@
 import styles from "./order-details.module.css";
-// import PropTypes from "prop-types";
 import check from "../../../images/check.svg";
 
 function OrderDetails() {
@@ -20,9 +19,4 @@ function OrderDetails() {
   );
 }
 
-// OrderDetails.propTypes = {
-//   isOpen: PropTypes.bool.isRequired,
-//   setClose: PropTypes.func.isRequired,
-// };
-//
 export default OrderDetails;
