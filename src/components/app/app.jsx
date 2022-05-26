@@ -48,7 +48,9 @@ function App() {
           setClose={() => setCurrentIngredient(null)}
           title="Детали ингредиента"
         >
-          <IngredientDetails currentIngredient={currentIngredient}></IngredientDetails>
+          <IngredientDetails
+            currentIngredient={currentIngredient}
+          ></IngredientDetails>
         </ModalOverlay>
 
         <ModalOverlay
