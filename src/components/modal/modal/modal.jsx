@@ -33,7 +33,7 @@ function Modal(
                 className={styles.modal}
                 onClick={(e) => { e.stopPropagation()}}
             >
-                <section className={styles.header}>
+                <article className={styles.header}>
                     <h2 className="text text_type_main-large">
                         {title}
                     </h2>
@@ -43,10 +43,10 @@ function Modal(
                         onClick={setClose}>
                         <CloseIcon />
                     </button>
-                </section>
-                <section className={styles.content}>
+                </article>
+                <article className={styles.content}>
                   {children}
-                </section>
+                </article>
             </section>
         </ModalOverlay>
     )
