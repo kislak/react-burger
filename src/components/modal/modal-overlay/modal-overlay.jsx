@@ -28,7 +28,7 @@ function ModalOverlay({ children, isOpen, title, setClose }) {
           e.stopPropagation();
         }}
       >
-        <header className={styles.header}>
+        <div className={styles.header}>
           <h2 className="text text_type_main-large">{title}</h2>
           <button
             className={styles.closeButton}
@@ -37,7 +37,7 @@ function ModalOverlay({ children, isOpen, title, setClose }) {
           >
             <CloseIcon />
           </button>
-        </header>
+        </div>
         <article className={styles.content}>{children}</article>
       </section>
     </div>
