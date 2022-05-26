@@ -23,7 +23,7 @@ function ModalOverlay({ children, isOpen, title, setClose }) {
       }}
     >
       <section
-        className={styles.modal}
+        className={styles.main}
         onClick={(e) => {
           e.stopPropagation();
         }}

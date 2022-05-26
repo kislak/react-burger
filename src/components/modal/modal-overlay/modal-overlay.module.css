@@ -23,7 +23,7 @@
   transition: height 0ms 0ms, opacity 150ms 0ms ease-in;
 }
 
-.modal {
+.main {
   min-width: 720px;
   min-height: 540px;
   padding: 40px;
