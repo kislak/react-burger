@@ -99,7 +99,10 @@ function App() {
         <Modal
           id="modal"
           isOpen={isOrderDetailsOpen}
-          setClose={() => setOrderDetailsOpen(false)}
+          setClose={() => {
+            setOrderDetailsOpen(false);
+            initRandomOrder();
+          }}
         >
           <OrderDetails />
         </Modal>
