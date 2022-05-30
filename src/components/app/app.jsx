@@ -33,15 +33,19 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!data.length) {
-      return;
-    }
-    setTopItem(data[0]);
-    const midItems = data.filter(
-      (i) => i.type !== "bun" && Math.random() > 0.7
-    );
-    setMidItems(midItems);
+    data.length && initRandomOrder();
   }, [data]);
+
+  const initRandomOrder = () => {
+    const bulki = data.filter((i) => i.type === "bun");
+    const bulka = bulki[Math.floor(Math.random() * bulki.length)];
+    const midItems = data.filter(
+      (i) => i.type !== "bun" && Math.random() > 0.8
+    );
+
+    setTopItem(bulka);
+    setMidItems(midItems);
+  };
 
   const submitOrder = () => {
     const ingredients = [topItem._id, topItem._id].concat(
