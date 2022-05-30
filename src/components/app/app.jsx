@@ -7,11 +7,19 @@ import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 import OrderDetails from "../modal/order-details/order-details";
 import api from "../../utils/api";
 import Modal from "../modal/modal/modal";
+import BurgerConstructorContext from "../../services/burger-constructor-context";
 
 function App() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [currentIngredient, setCurrentIngredient] = useState(null);
   const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false);
+  const [topItem, setTopItem] = useState({
+    name: "",
+    price: 0,
+    image_mobile: "",
+  });
+  const [midItems, setMidItems] = useState([]);
+  const [orderNumber, setOrderNumber] = useState(null);
 
   useEffect(() => {
     api
@@ -24,40 +32,75 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if (!data.length) {
+      return;
+    }
+    setTopItem(data[0]);
+    const midItems = data.filter(
+      (i) => i.type !== "bun" && Math.random() > 0.7
+    );
+    setMidItems(midItems);
+  }, [data]);
+
+  const submitOrder = () => {
+    const ingredients = [topItem._id, topItem._id].concat(
+      midItems.map((i) => {
+        return i._id;
+      })
+    );
+    api
+      .submitOrder(ingredients)
+      .then((response) => {
+        setOrderNumber(response.order.number);
+        setOrderDetailsOpen(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div className={styles.app}>
-      <AppHeader />
-      {data && (
-        <>
-          <BurgerIngredients
-            items={data}
-            setCurrentIngredient={setCurrentIngredient}
-          />
-          <BurgerConstructor
-            topItem={data[0]}
-            midItems={data.filter((i) => i.type !== "bun")}
-            setOrderDetailsOpen={setOrderDetailsOpen}
-          />
-        </>
-      )}
+    <BurgerConstructorContext.Provider
+      value={{
+        topItem: topItem,
+        setTopItem: setTopItem,
+        midItems: midItems,
+        setMidItems: setMidItems,
+        orderNumber: orderNumber,
+        submitOrder: submitOrder,
+      }}
+    >
+      <div className={styles.app}>
+        <AppHeader />
+        {data && (
+          <>
+            <BurgerIngredients
+              items={data}
+              setCurrentIngredient={setCurrentIngredient}
+            />
+            <BurgerConstructor />
+          </>
+        )}
 
-      <Modal
-        id="modal"
-        isOpen={currentIngredient ? true : false}
-        setClose={() => setCurrentIngredient(null)}
-        title="Детали ингредиента"
-      >
-        <IngredientDetails currentIngredient={currentIngredient} />
-      </Modal>
+        <Modal
+          id="modal"
+          isOpen={currentIngredient ? true : false}
+          setClose={() => setCurrentIngredient(null)}
+          title="Детали ингредиента"
+        >
+          <IngredientDetails currentIngredient={currentIngredient} />
+        </Modal>
 
-      <Modal
-        id="modal"
-        isOpen={isOrderDetailsOpen}
-        setClose={() => setOrderDetailsOpen(false)}
-      >
-        <OrderDetails />
-      </Modal>
-    </div>
+        <Modal
+          id="modal"
+          isOpen={isOrderDetailsOpen}
+          setClose={() => setOrderDetailsOpen(false)}
+        >
+          <OrderDetails />
+        </Modal>
+      </div>
+    </BurgerConstructorContext.Provider>
   );
 }
 

@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ConstructorElement,
   DragIcon,
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
-import BurgerItemType from "../../prop-types/burger-item-type";
-import styles from "./burger-constructor.module.css";
 
-function BurgerConstructor({ topItem, midItems, setOrderDetailsOpen }) {
+import styles from "./burger-constructor.module.css";
+import BurgerConstructorContext from "../../services/burger-constructor-context";
+
+function BurgerConstructor() {
+  const { topItem, midItems, submitOrder } = React.useContext(
+    BurgerConstructorContext
+  );
+  const [total, setTotal] = React.useState(0);
+
+  useEffect(() => {
+    const initialValue = topItem ? topItem.price * 2 : 0;
+    const newTotal = midItems.reduce((acc, cur) => {
+      return acc + cur.price;
+    }, initialValue);
+    setTotal(newTotal);
+  }, [topItem, midItems]);
+
   return (
     <section className={`${styles.constructor} mt-15`}>
       <div className={`${styles.constructor} ml-6`}>
@@ -40,7 +53,6 @@ function BurgerConstructor({ topItem, midItems, setOrderDetailsOpen }) {
         <ConstructorElement
           type="bottom"
           isLocked={true}
-          text={topItem.name}
           text={`${topItem.name}(низ)`}
           price={topItem.price}
           thumbnail={topItem.image_mobile}
@@ -49,27 +61,15 @@ function BurgerConstructor({ topItem, midItems, setOrderDetailsOpen }) {
 
       <div className={styles.total}>
         <div className="m-10">
-          <span className="text text_type_digits-medium m-2">610</span>
+          <span className="text text_type_digits-medium m-2">{total}</span>
           <CurrencyIcon />
         </div>
-        <Button
-          type="primary"
-          size="medium"
-          onClick={() => {
-            setOrderDetailsOpen(true);
-          }}
-        >
+        <Button type="primary" size="medium" onClick={submitOrder}>
           Оформить заказ
         </Button>
       </div>
     </section>
   );
 }
-
-BurgerConstructor.propTypes = {
-  topItem: PropTypes.shape(BurgerItemType),
-  midItems: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)),
-  setOrderDetailsOpen: PropTypes.func.isRequired,
-};
 
 export default BurgerConstructor;
