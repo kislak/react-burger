@@ -9,11 +9,7 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 
 function Modal({ id, title, isOpen, setClose, children }) {
   return ReactDOM.createPortal(
-    <ModalOverlay
-      isOpen={isOpen}
-      setClose={setClose}
-      title="Детали ингредиента"
-    >
+    <ModalOverlay isOpen={isOpen} setClose={setClose}>
       <section
         className={styles.main}
         onClick={(e) => {
