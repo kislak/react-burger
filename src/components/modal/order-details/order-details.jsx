@@ -1,10 +1,10 @@
 import styles from "./order-details.module.css";
 import check from "../../../images/check.svg";
-import BurgerConstructorContext from "../../../services/burger-constructor-context";
+import BurgerContext from "../../../services/burger-context";
 import React from "react";
 
 function OrderDetails() {
-  const { orderNumber } = React.useContext(BurgerConstructorContext);
+  const { orderNumber } = React.useContext(BurgerContext);
 
   return (
     <section className={styles.content}>

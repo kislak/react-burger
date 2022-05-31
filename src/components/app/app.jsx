@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
 import AppHeader from "../app-header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
@@ -7,7 +7,7 @@ import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 import OrderDetails from "../modal/order-details/order-details";
 import api from "../../utils/api";
 import Modal from "../modal/modal/modal";
-import BurgerConstructorContext from "../../services/burger-constructor-context";
+import BurgerContext from "../../services/burger-context";
 
 function App() {
   const [data, setData] = useState([]);
@@ -65,7 +65,7 @@ function App() {
   };
 
   return (
-    <BurgerConstructorContext.Provider
+    <BurgerContext.Provider
       value={{
         topItem: topItem,
         setTopItem: setTopItem,
@@ -109,7 +109,7 @@ function App() {
           <OrderDetails />
         </Modal>
       </div>
-    </BurgerConstructorContext.Provider>
+    </BurgerContext.Provider>
   );
 }
 

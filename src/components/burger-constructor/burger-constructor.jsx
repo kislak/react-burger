@@ -7,12 +7,10 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import styles from "./burger-constructor.module.css";
-import BurgerConstructorContext from "../../services/burger-constructor-context";
+import BurgerContext from "../../services/burger-context";
 
 function BurgerConstructor() {
-  const { topItem, midItems, submitOrder } = React.useContext(
-    BurgerConstructorContext
-  );
+  const { topItem, midItems, submitOrder } = React.useContext(BurgerContext);
   const [total, setTotal] = React.useState(0);
 
   useEffect(() => {
