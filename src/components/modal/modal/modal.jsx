@@ -8,13 +8,6 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 
 function Modal({ id, title, isOpen, setClose, children }) {
-  const [hasMounted, setHasMounted] = React.useState(false);
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
-  if (!hasMounted) {
-    return null;
-  }
   return ReactDOM.createPortal(
     <ModalOverlay
       isOpen={isOpen}

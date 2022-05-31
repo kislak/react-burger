@@ -12,7 +12,7 @@ function ModalOverlay({ children, isOpen, setClose }) {
     return () => {
       document.removeEventListener("keydown", escFunction, false);
     };
-  }, []);
+  }, [escFunction]);
 
   return (
     <div
