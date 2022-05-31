@@ -91,7 +91,6 @@ function App() {
           id="modal"
           isOpen={currentIngredient ? true : false}
           setClose={() => {
-            console.log(1)
             setCurrentIngredient(null)
           }}
           title="Детали ингредиента"
@@ -103,8 +102,8 @@ function App() {
           id="modal"
           isOpen={isOrderDetailsOpen}
           setClose={() => {
-            console.log(2)
             setOrderDetailsOpen(false);
+            initRandomOrder();
           }}
         >
           <OrderDetails />
