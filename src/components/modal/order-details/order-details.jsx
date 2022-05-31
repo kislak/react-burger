@@ -1,10 +1,14 @@
 import styles from "./order-details.module.css";
 import check from "../../../images/check.svg";
+import BurgerContext from "../../../services/burger-context";
+import React from "react";
 
 function OrderDetails() {
+  const { orderNumber } = React.useContext(BurgerContext);
+
   return (
     <section className={styles.content}>
-      <h2 className="text text_type_digits-large mt-8">034536</h2>
+      <h2 className="text text_type_digits-large mt-8">{orderNumber}</h2>
       <p className="text text_type_main-medium mt-8">Идентификатор заказа</p>
       <div className="mt-15">
         <img src={check} alt="check" />

@@ -13,6 +13,16 @@ class Api {
     }).then((res) => this._getResponseData(res));
   }
 
+  submitOrder(ingredients) {
+    return fetch(`${this._baseUrl}/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ingredients: ingredients }),
+    }).then((res) => this._getResponseData(res));
+  }
+
   _getResponseData(res) {
     if (res.ok) {
       return res.json();
