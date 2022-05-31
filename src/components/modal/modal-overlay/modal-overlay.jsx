@@ -3,9 +3,12 @@ import PropTypes from "prop-types";
 import { useEffect, useCallback } from "react";
 
 function ModalOverlay({ children, isOpen, setClose }) {
-  const escFunction = useCallback((e) => {
-    e.key === "Escape" && setClose();
-  }, [setClose]);
+  const escFunction = useCallback(
+    (e) => {
+      e.key === "Escape" && setClose();
+    },
+    [setClose]
+  );
 
   useEffect(() => {
     if (isOpen) {

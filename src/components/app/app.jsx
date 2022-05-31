@@ -91,7 +91,7 @@ function App() {
           id="modal"
           isOpen={currentIngredient ? true : false}
           setClose={() => {
-            setCurrentIngredient(null)
+            setCurrentIngredient(null);
           }}
           title="Детали ингредиента"
         >
