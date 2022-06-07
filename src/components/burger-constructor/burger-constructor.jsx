@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ConstructorElement,
   DragIcon,
@@ -7,17 +7,23 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import styles from "./burger-constructor.module.css";
-import BurgerContext from "../../services/burger-context";
+import {useSelector, useDispatch} from "react-redux";
+import {allItemsSelector, midItemsSelector, topItemSelector} from "../../services/burger-constructor/selectors";
+import {submitOrder} from "../../services/order/actions";
 
 function BurgerConstructor() {
-  const { topItem, midItems, submitOrder } = React.useContext(BurgerContext);
-  const [total, setTotal] = React.useState(0);
+  const [total, setTotal] = useState(0);
+  const dispatch = useDispatch()
+  const topItem = useSelector(topItemSelector)
+  const midItems = useSelector(midItemsSelector)
+  const allItems = useSelector(allItemsSelector)
+
+  const clickHandler = () => { dispatch(submitOrder(topItem, midItems)) }
 
   useEffect(() => {
-    const initialValue = topItem ? topItem.price * 2 : 0;
-    const newTotal = midItems.reduce((acc, cur) => {
-      return acc + cur.price;
-    }, initialValue);
+    // const initialValue = topItem ? topItem.price * 2 : 0;
+    // const newTotal = midItems.reduce((acc, cur) => {return acc + cur.price;}, initialValue);
+    const newTotal =  allItems.reduce((acc, cur) => {return acc + cur.price;}, 0);
     setTotal(newTotal);
   }, [topItem, midItems]);
 
@@ -36,7 +42,7 @@ function BurgerConstructor() {
       <ul className={`${styles.middle} custom-scroll`}>
         {midItems.map((midItem) => {
           return (
-            <li className={styles.item} key={`mid-item-${midItem._id}`}>
+            <li className={styles.item} key={`mid-item-${Math.random()}`}>
               <DragIcon />
               <ConstructorElement
                 text={midItem.name}
@@ -62,7 +68,7 @@ function BurgerConstructor() {
           <span className="text text_type_digits-medium m-2">{total}</span>
           <CurrencyIcon />
         </div>
-        <Button type="primary" size="medium" onClick={submitOrder}>
+        <Button type="primary" size="medium" onClick={clickHandler}>
           Оформить заказ
         </Button>
       </div>

@@ -1,10 +1,11 @@
 import styles from "./order-details.module.css";
 import check from "../../../images/check.svg";
-import BurgerContext from "../../../services/burger-context";
 import React from "react";
+import {useSelector} from "react-redux";
+import {orderNumberSelector} from "../../../services/order/selectors";
 
 function OrderDetails() {
-  const { orderNumber } = React.useContext(BurgerContext);
+  const orderNumber = useSelector(orderNumberSelector)
 
   return (
     <section className={styles.content}>

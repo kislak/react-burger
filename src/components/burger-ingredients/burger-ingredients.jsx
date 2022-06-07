@@ -1,8 +1,6 @@
 import React from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientSection from "./ingredient-section/ingredient-section";
-import PropTypes from "prop-types";
-import BurgerItemType from "../../prop-types/burger-item-type";
 import styles from "./burger-ingredients.module.css";
 import {useSelector} from "react-redux";
 import {
