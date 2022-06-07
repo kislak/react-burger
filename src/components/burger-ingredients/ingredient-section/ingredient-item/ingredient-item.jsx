@@ -6,10 +6,13 @@ import {
 import PropTypes from "prop-types";
 import BurgerItemType from "../../../../prop-types/burger-item-type";
 import styles from "./ingredient-item.module.css";
+import {useDispatch} from "react-redux";
+import {setCurrentIngredient} from "../../../../services/current-ingredient/actions";
 
-function IngredientItem({ item, setCurrentIngredient }) {
+function IngredientItem({ item }) {
+  const dispatch = useDispatch()
   return (
-    <section className={styles.item} onClick={() => setCurrentIngredient(item)}>
+    <section className={styles.item} onClick={() => dispatch(setCurrentIngredient(item))}>
       <Counter count={1} size="default" />
       <img src={item.image} />
       <div className={styles.price}>
@@ -25,7 +28,6 @@ function IngredientItem({ item, setCurrentIngredient }) {
 
 IngredientItem.propTypes = {
   item: PropTypes.shape(BurgerItemType),
-  setCurrentIngredient: PropTypes.func.isRequired,
 };
 
 export default IngredientItem;

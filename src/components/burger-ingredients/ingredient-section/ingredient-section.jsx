@@ -3,12 +3,12 @@ import IngredientItem from "./ingredient-item/ingredient-item";
 import PropTypes from "prop-types";
 import BurgerItemType from "../../../prop-types/burger-item-type";
 import styles from "./ingredient-section.module.css";
+import {setCurrentIngredient} from "../../../services/current-ingredient/actions";
 
 function IngredientSection({
   title,
   items,
   sectionName,
-  setCurrentIngredient,
 }) {
   return (
     <section id={sectionName} className={styles.section}>
@@ -19,7 +19,6 @@ function IngredientSection({
             <IngredientItem
               key={item._id}
               item={item}
-              setCurrentIngredient={setCurrentIngredient}
             />
           );
         })}
@@ -32,7 +31,6 @@ IngredientSection.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
   sectionName: PropTypes.string.isRequired,
-  setCurrentIngredient: PropTypes.func.isRequired,
 };
 
 export default IngredientSection;

@@ -6,12 +6,19 @@ import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 import OrderDetails from "../modal/order-details/order-details";
 import api from "../../utils/api";
+import {useDispatch, useSelector} from "react-redux";
+
 import Modal from "../modal/modal/modal";
 import BurgerContext from "../../services/burger-context";
+import { getIngredients } from "../../services/ingredients/actions";
+import { ingredientsSelector } from "../../services/ingredients/selectors";
+import {currentIngredientSelector} from "../../services/current-ingredient/selectors";
+import {setCurrentIngredient} from "../../services/current-ingredient/actions";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [currentIngredient, setCurrentIngredient] = useState(null);
+  // const [data, setData] = useState([]);
+  // const [currentIngredient, setCurrentIngredient] = useState(null);
+
   const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false);
   const [topItem, setTopItem] = useState({
     name: "",
@@ -21,16 +28,14 @@ function App() {
   const [midItems, setMidItems] = useState([]);
   const [orderNumber, setOrderNumber] = useState(null);
 
+  const dispatch = useDispatch();
+  const data = useSelector(ingredientsSelector)
+  const currentIngredient = useSelector(currentIngredientSelector)
+
+
   useEffect(() => {
-    api
-      .getIngredients()
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    dispatch(getIngredients())
+  }, [dispatch]);
 
   useEffect(() => {
     data.length && initRandomOrder();
@@ -79,10 +84,7 @@ function App() {
         <AppHeader />
         {data && (
           <>
-            <BurgerIngredients
-              items={data}
-              setCurrentIngredient={setCurrentIngredient}
-            />
+            <BurgerIngredients/>
             <BurgerConstructor />
           </>
         )}
@@ -90,12 +92,10 @@ function App() {
         <Modal
           id="modal"
           isOpen={currentIngredient ? true : false}
-          setClose={() => {
-            setCurrentIngredient(null);
-          }}
+          setClose={() => {dispatch(setCurrentIngredient(null));}}
           title="Детали ингредиента"
         >
-          <IngredientDetails currentIngredient={currentIngredient} />
+          <IngredientDetails />
         </Modal>
 
         <Modal
