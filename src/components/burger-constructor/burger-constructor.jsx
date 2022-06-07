@@ -10,22 +10,20 @@ import styles from "./burger-constructor.module.css";
 import {useSelector, useDispatch} from "react-redux";
 import {allItemsSelector, midItemsSelector, topItemSelector} from "../../services/burger-constructor/selectors";
 import {submitOrder} from "../../services/order/actions";
+import {deleteMiddleItem} from "../../services/burger-constructor/actions";
 
 function BurgerConstructor() {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch()
+
   const topItem = useSelector(topItemSelector)
   const midItems = useSelector(midItemsSelector)
   const allItems = useSelector(allItemsSelector)
 
-  const clickHandler = () => { dispatch(submitOrder(topItem, midItems)) }
-
   useEffect(() => {
-    // const initialValue = topItem ? topItem.price * 2 : 0;
-    // const newTotal = midItems.reduce((acc, cur) => {return acc + cur.price;}, initialValue);
     const newTotal =  allItems.reduce((acc, cur) => {return acc + cur.price;}, 0);
     setTotal(newTotal);
-  }, [topItem, midItems]);
+  }, [allItems]);
 
   return (
     <section className={`${styles.constructor} mt-15`}>
@@ -40,7 +38,7 @@ function BurgerConstructor() {
       </div>
 
       <ul className={`${styles.middle} custom-scroll`}>
-        {midItems.map((midItem) => {
+        {midItems.map((midItem, index) => {
           return (
             <li className={styles.item} key={`mid-item-${Math.random()}`}>
               <DragIcon />
@@ -48,6 +46,7 @@ function BurgerConstructor() {
                 text={midItem.name}
                 price={midItem.price}
                 thumbnail={midItem.image_mobile}
+                handleClose={()=> { dispatch(deleteMiddleItem(index)) }}
               />
             </li>
           );
@@ -68,7 +67,7 @@ function BurgerConstructor() {
           <span className="text text_type_digits-medium m-2">{total}</span>
           <CurrencyIcon />
         </div>
-        <Button type="primary" size="medium" onClick={clickHandler}>
+        <Button type="primary" size="medium" onClick={() => { dispatch(submitOrder(topItem, midItems)) }}>
           Оформить заказ
         </Button>
       </div>

@@ -1,5 +1,6 @@
 export const SET_TOP_ITEM = "SET_TOP_ITEM"
 export const ADD_MIDDLE_ITEM = "ADD_MIDDLE_ITEM"
+export const DELETE_MIDDLE_ITEM = "DELETE_MIDDLE_ITEM"
 
 export const setTopItem = (item) => (dispatch) => {
   dispatch({
@@ -12,5 +13,12 @@ export const addMiddleItem = (item) => (dispatch) => {
   dispatch({
     type: ADD_MIDDLE_ITEM,
     payload: item
+  })
+}
+
+export const deleteMiddleItem = (index) => (dispatch) => {
+  dispatch({
+    type: DELETE_MIDDLE_ITEM,
+    payload: index
   })
 }

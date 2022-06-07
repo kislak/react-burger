@@ -1,4 +1,4 @@
-import {SET_TOP_ITEM, ADD_MIDDLE_ITEM} from "./actions";
+import {SET_TOP_ITEM, ADD_MIDDLE_ITEM, DELETE_MIDDLE_ITEM} from "./actions";
 
 const initialState = {
   topItem: {
@@ -20,6 +20,14 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         midItems: [...state.midItems, action.payload]
+      };
+    case DELETE_MIDDLE_ITEM:
+      const midItems = state.midItems
+      midItems.splice(action.payload, 1)
+
+      return {
+        ...state,
+        midItems: midItems
       };
     default:
       return state
