@@ -15,6 +15,8 @@ import {setCurrentIngredient} from "../../services/current-ingredient/actions";
 import {setTopItem, addMiddleItem} from "../../services/burger-constructor/actions";
 import {openOrderDetails} from "../../services/order/actions";
 import {orderDetailsOpenSelector, orderNumberSelector} from "../../services/order/selectors";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,10 +41,10 @@ function App() {
       <div className={styles.app}>
         <AppHeader />
         {data && (
-          <>
+          <DndProvider backend={HTML5Backend}>
             <BurgerIngredients/>
             <BurgerConstructor />
-          </>
+          </DndProvider>
         )}
 
         <Modal

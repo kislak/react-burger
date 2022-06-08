@@ -10,7 +10,9 @@ import styles from "./burger-constructor.module.css";
 import {useSelector, useDispatch} from "react-redux";
 import {allItemsSelector, midItemsSelector, topItemSelector} from "../../services/burger-constructor/selectors";
 import {submitOrder} from "../../services/order/actions";
-import {deleteMiddleItem} from "../../services/burger-constructor/actions";
+import {useDrop} from "react-dnd";
+import {setTopItem, addMiddleItem} from "../../services/burger-constructor/actions";
+import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
 
 function BurgerConstructor() {
   const [total, setTotal] = useState(0);
@@ -25,8 +27,21 @@ function BurgerConstructor() {
     setTotal(newTotal);
   }, [allItems]);
 
+  const [, dropRef] = useDrop({
+    accept: "addIngredient",
+    drop(item) {
+      if (item.type === 'bun') {
+         dispatch(setTopItem(item))
+      }
+      else {
+        dispatch(addMiddleItem(item))
+      }
+    },
+  });
+
+
   return (
-    <section className={`${styles.constructor} mt-15`}>
+    <section className={`${styles.constructor} mt-15`} ref={dropRef} >
       <div className={`${styles.constructor} ml-6`}>
         <ConstructorElement
           type="top"
@@ -37,19 +52,9 @@ function BurgerConstructor() {
         />
       </div>
 
-      <ul className={`${styles.middle} custom-scroll`}>
+      <ul className={`${styles.middle} custom-scroll`} >
         {midItems.map((midItem, index) => {
-          return (
-            <li className={styles.item} key={`mid-item-${Math.random()}`}>
-              <DragIcon />
-              <ConstructorElement
-                text={midItem.name}
-                price={midItem.price}
-                thumbnail={midItem.image_mobile}
-                handleClose={()=> { dispatch(deleteMiddleItem(index)) }}
-              />
-            </li>
-          );
+          return (<BurgerConstructorItem midItem={midItem} index={index} key={`mid-item-${Math.random()}`} />);
         })}
       </ul>
       <div className={`${styles.item} ml-6`}>
