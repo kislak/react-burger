@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   ConstructorElement,
-  DragIcon,
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -38,7 +37,6 @@ function BurgerConstructor() {
       }
     },
   });
-
 
   return (
     <section className={`${styles.constructor} mt-15`} ref={dropRef} >
