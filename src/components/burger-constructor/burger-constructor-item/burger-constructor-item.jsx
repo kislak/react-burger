@@ -4,7 +4,7 @@ import {deleteMiddleItem, insertBefore, insertAfter} from "../../../services/bur
 import React from "react";
 import {useDrag, useDrop} from "react-dnd";
 import {useDispatch} from "react-redux";
-
+import mergeRefs from "react-merge-refs";
 
 function BurgerConstructorItem({midItem, index}) {
   const dispatch = useDispatch()
@@ -35,34 +35,27 @@ function BurgerConstructorItem({midItem, index}) {
 
   return (
     <>
-        {!isDragging && (
-          <li
-            className={styles.item}
-            ref={dropSortRef}
-            style={{
-              borderTop: isHoverTop ? '3px solid rgba(255, 255, 200, 0.8)' : '3px solid rgba(255, 255, 255, 0)',
-              borderBottom: isHoverBottom ? '3px solid rgba(255, 255, 200, 0.8)' : '3px solid rgba(255, 255, 255, 0)'
+      {!isDragging && (
+        <li
+          className={styles.item}
+          ref={mergeRefs([dragSortRef, dropSortRef])}
+          style={{
+            borderTop: isHoverTop ? '3px solid rgba(255, 255, 200, 0.8)' : '3px solid rgba(255, 255, 255, 0)',
+            borderBottom: isHoverBottom ? '3px solid rgba(255, 255, 200, 0.8)' : '3px solid rgba(255, 255, 255, 0)',
+            visibility: isDragging ? 'hidden' : 'inherit'
+          }}
+        >
+          <DragIcon/>
+          <ConstructorElement
+            text={midItem.name}
+            price={midItem.price}
+            thumbnail={midItem.image_mobile}
+            handleClose={() => {
+              dispatch(deleteMiddleItem(index))
             }}
-          >
-            <div
-              className={styles.item}
-              ref={dragSortRef}
-              style={{ visibility: isDragging ? 'hidden' : 'inherit'}}
-            >
-              <DragIcon/>
-              <ConstructorElement
-                text={midItem.name}
-                price={midItem.price}
-                thumbnail={midItem.image_mobile}
-                handleClose={() => {
-                  dispatch(deleteMiddleItem(index))
-                }}
-              />
-
-            </div>
-
-          </li>
-        )}
+          />
+        </li>
+      )}
     </>
   )
 }
