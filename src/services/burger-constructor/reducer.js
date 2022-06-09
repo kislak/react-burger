@@ -27,7 +27,7 @@ export const reducer = (state = initialState, action) => {
     case ADD_MIDDLE_ITEM:
       return {
         ...state,
-        midItems: [...state.midItems, action.payload],
+        midItems: [action.payload, ...state.midItems],
       };
     case DELETE_MIDDLE_ITEM:
       midItems.splice(action.payload, 1);

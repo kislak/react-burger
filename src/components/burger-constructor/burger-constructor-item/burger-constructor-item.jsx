@@ -50,11 +50,11 @@ function BurgerConstructorItem({ midItem, index }) {
       ref={mergeRefs([dragSortRef, dropSortRef])}
       style={{
         borderTop: isHoverTop
-          ? "5px dotted rgba(255, 255, 200, 0.8)"
-          : "5px rgba(255, 255, 255, 0)",
+          ? "20px dotted rgba(128, 26, 179)"
+          : "20px rgba(128, 26, 179, 0)",
         borderBottom: isHoverBottom
-          ? "5px dotted rgba(255, 255, 200, 0.8)"
-          : "5px rgba(255, 255, 255, 0)",
+          ? "20px dashed rgba(128, 26, 179)"
+          : "20px rgba(128, 26, 179, 0)",
         visibility: isDragging ? "hidden" : "inherit",
       }}
     >
