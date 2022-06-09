@@ -17,10 +17,7 @@ import {
   addMiddleItem,
 } from "../../services/burger-constructor/actions";
 import { openOrderDetails } from "../../services/order/actions";
-import {
-  orderDetailsOpenSelector,
-  orderNumberSelector,
-} from "../../services/order/selectors";
+import { orderDetailsOpenSelector } from "../../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
@@ -42,6 +39,7 @@ function App() {
     const bun = buns[Math.floor(Math.random() * buns.length)];
 
     dispatch(setTopItem(bun));
+
     data
       .filter((i) => i.type !== "bun" && Math.random() > 0.8)
       .map((i) => {

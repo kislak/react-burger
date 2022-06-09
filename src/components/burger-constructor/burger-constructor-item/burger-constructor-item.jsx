@@ -1,4 +1,6 @@
 import styles from "./burger-constructor-item.module.css";
+import PropTypes from "prop-types";
+import BurgerItemType from "../../../prop-types/burger-item-type";
 import {
   ConstructorElement,
   DragIcon,
@@ -70,5 +72,10 @@ function BurgerConstructorItem({ midItem, index }) {
     </li>
   );
 }
+
+BurgerConstructorItem.propTypes = {
+  midItem: PropTypes.shape(BurgerItemType).isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 export default BurgerConstructorItem;

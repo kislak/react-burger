@@ -25,7 +25,6 @@ function BurgerIngredients() {
   const scrollHandler = (e) => {
     const bunRefRec = bunRef.current.getBoundingClientRect();
     const sauceRefRec = sauceRef.current.getBoundingClientRect();
-    // const mainRefRec = mainRef.current.getBoundingClientRect();
 
     if (bunRefRec.height - 400 + bunRefRec.top > 0) {
       setCurrent("bun");
