@@ -1,11 +1,11 @@
 import styles from "./order-details.module.css";
 import check from "../../../images/check.svg";
 import React from "react";
-import {useSelector} from "react-redux";
-import {orderNumberSelector} from "../../../services/order/selectors";
+import { useSelector } from "react-redux";
+import { orderNumberSelector } from "../../../services/order/selectors";
 
 function OrderDetails() {
-  const orderNumber = useSelector(orderNumberSelector)
+  const orderNumber = useSelector(orderNumberSelector);
 
   return (
     <section className={styles.content}>
