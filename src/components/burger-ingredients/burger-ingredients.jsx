@@ -21,15 +21,30 @@ function BurgerIngredients() {
     value === "sauce" && sauceRef.current.scrollIntoView({ behavior: "smooth" });
     value === "main" && mainRef.current.scrollIntoView({ behavior: "smooth" });
   };
+  const scrollHandler = (e) => {
+    const bunRefRec = bunRef.current.getBoundingClientRect();
+    const sauceRefRec = sauceRef.current.getBoundingClientRect();
+    // const mainRefRec = mainRef.current.getBoundingClientRect();
+
+    if (bunRefRec.height - 400 + bunRefRec.top > 0 ) {
+      setCurrent('bun');
+      return;
+    }
+    if (sauceRefRec.height - 400  + sauceRefRec.top > 0) {
+      setCurrent('sauce');
+      return;
+    }
+    setCurrent('main');
+  }
 
   const bun = useSelector(ingredientsBun)
   const sauce = useSelector(ingredientsSauce)
   const main = useSelector(ingredientsMain)
 
   return (
-    <section className={styles.ingredients}>
+    <section className={styles.ingredients} >
       <h1 className="text text_type_main-large">Соберите бургер</h1>
-      <section className={styles.nav}>
+      <section className={styles.nav} >
         <Tab value="bun" active={current === "bun"} onClick={clickHandler}>
           Булки
         </Tab>
@@ -41,25 +56,29 @@ function BurgerIngredients() {
         </Tab>
       </section>
 
-      <div className={`${styles.sections} custom-scroll`}>
-        <span ref={bunRef} />
-        <IngredientSection
-          title="Булки"
-          items={bun}
-          sectionName="bun"
-        />
-        <span ref={sauceRef} />
+      <div className={`${styles.sections} custom-scroll`} onScroll={scrollHandler}>
+        <span ref={bunRef} >
+          <IngredientSection
+            title="Булки"
+            items={bun}
+            sectionName="bun"
+          />
+        </span>
+
+        <span ref={sauceRef} >
         <IngredientSection
           title="Соусы"
           items={sauce}
           sectionName="sauce"
         />
-        <span ref={mainRef} />
+          </span>
+        <span ref={mainRef} >
         <IngredientSection
           title="Начинки"
           items={main}
           sectionName="main"
         />
+          </span>
       </div>
     </section>
   );

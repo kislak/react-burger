@@ -34,29 +34,25 @@ function BurgerConstructorItem({midItem, index}) {
   });
 
   return (
-    <>
-      {!isDragging && (
-        <li
-          className={styles.item}
-          ref={mergeRefs([dragSortRef, dropSortRef])}
-          style={{
-            borderTop: isHoverTop ? '3px solid rgba(255, 255, 200, 0.8)' : '3px solid rgba(255, 255, 255, 0)',
-            borderBottom: isHoverBottom ? '3px solid rgba(255, 255, 200, 0.8)' : '3px solid rgba(255, 255, 255, 0)',
-            visibility: isDragging ? 'hidden' : 'inherit'
-          }}
-        >
-          <DragIcon/>
-          <ConstructorElement
-            text={midItem.name}
-            price={midItem.price}
-            thumbnail={midItem.image_mobile}
-            handleClose={() => {
-              dispatch(deleteMiddleItem(index))
-            }}
-          />
-        </li>
-      )}
-    </>
+    <li
+      className={styles.item}
+      ref={mergeRefs([dragSortRef, dropSortRef])}
+      style={{
+        borderTop: isHoverTop ? '5px dotted rgba(255, 255, 200, 0.8)' : '5px rgba(255, 255, 255, 0)',
+        borderBottom: isHoverBottom ? '5px dotted rgba(255, 255, 200, 0.8)' : '5px rgba(255, 255, 255, 0)',
+        visibility: isDragging ? 'hidden' : 'inherit'
+      }}
+    >
+      <DragIcon/>
+      <ConstructorElement
+        text={midItem.name}
+        price={midItem.price}
+        thumbnail={midItem.image_mobile}
+        handleClose={() => {
+          dispatch(deleteMiddleItem(index))
+        }}
+      />
+    </li>
   )
 }
 
