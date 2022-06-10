@@ -30,23 +30,7 @@ function App() {
   useEffect(() => {
     dispatch(getIngredients());
   }, [dispatch]);
-  useEffect(() => {
-    data.length && initRandomBun();
-  }, [data]);
-
-  const initRandomBun = () => {
-    const buns = data.filter((i) => i.type === "bun");
-    const bun = buns[Math.floor(Math.random() * buns.length)];
-
-    dispatch(setTopItem(bun));
-
-    data
-      .filter((i) => i.type !== "bun" && Math.random() > 0.8)
-      .map((i) => {
-        dispatch(addMiddleItem(i));
-      });
-  };
-
+  
   return (
     <div className={styles.app}>
       <AppHeader />

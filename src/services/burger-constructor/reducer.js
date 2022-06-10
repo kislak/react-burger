@@ -6,13 +6,14 @@ import {
   INSERT_AFTER,
 } from "./actions";
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import check from "../../images/check.svg";
 
 const initialState = {
   topItem: {
     name: "",
     price: 0,
-    image_mobile: "",
+    image_mobile: check,
   },
   midItems: [],
 };
@@ -27,8 +28,8 @@ export const reducer = (state = initialState, action) => {
         topItem: action.payload,
       };
     case ADD_MIDDLE_ITEM:
-      const item = Object.assign({}, action.payload)
-      item.uuid = uuidv4()
+      const item = Object.assign({}, action.payload);
+      item.uuid = uuidv4();
       return {
         ...state,
         midItems: [item, ...state.midItems],
@@ -40,10 +41,14 @@ export const reducer = (state = initialState, action) => {
         midItems: midItems,
       };
     case INSERT_BEFORE:
-      const index = midItems.findIndex(item => item.uuid === action.payload.uuid)
-      const indexToInsertBefore = midItems.findIndex(item => item.uuid === action.payload.insertBeforeUuid)
+      const index = midItems.findIndex(
+        (item) => item.uuid === action.payload.uuid
+      );
+      const indexToInsertBefore = midItems.findIndex(
+        (item) => item.uuid === action.payload.insertBeforeUuid
+      );
 
-      const itemToInsertBefore = midItems.splice(index, 1)[0]
+      const itemToInsertBefore = midItems.splice(index, 1)[0];
       midItems.splice(indexToInsertBefore, 0, itemToInsertBefore);
 
       return {
@@ -51,9 +56,13 @@ export const reducer = (state = initialState, action) => {
         midItems: midItems,
       };
     case INSERT_AFTER:
-      const currentIndex = midItems.findIndex(item => item.uuid === action.payload.uuid)
-      const indexToInsertAfter = midItems.findIndex(item => item.uuid === action.payload.insertAfterUuid)
-      const itemToInsertAfter = midItems.splice(currentIndex, 1)[0]
+      const currentIndex = midItems.findIndex(
+        (item) => item.uuid === action.payload.uuid
+      );
+      const indexToInsertAfter = midItems.findIndex(
+        (item) => item.uuid === action.payload.insertAfterUuid
+      );
+      const itemToInsertAfter = midItems.splice(currentIndex, 1)[0];
       midItems.splice(indexToInsertAfter, 0, itemToInsertAfter);
 
       return {

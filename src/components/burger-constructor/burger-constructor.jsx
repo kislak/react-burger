@@ -46,6 +46,8 @@ function BurgerConstructor() {
     },
   });
 
+  console.log(topItem);
+
   return (
     <section className={`${styles.constructor} mt-15`} ref={dropRef}>
       <div className={`${styles.constructor} ml-6`}>
@@ -57,6 +59,13 @@ function BurgerConstructor() {
           thumbnail={topItem.image_mobile}
         />
       </div>
+      {!topItem.name && (
+        <div
+          className={`${styles.constructor} m-15 text text_type_main-medium`}
+        >
+          Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
+        </div>
+      )}
 
       <ul className={`${styles.middle} custom-scroll`}>
         {midItems.map((midItem, index) => {
@@ -69,7 +78,7 @@ function BurgerConstructor() {
           );
         })}
       </ul>
-      <div className={`${styles.item} ml-6`}>
+      <div className={`${styles.constructor} ml-6`}>
         <ConstructorElement
           type="bottom"
           isLocked={true}
@@ -82,17 +91,19 @@ function BurgerConstructor() {
       <div className={styles.total}>
         <div className="m-10">
           <span className="text text_type_digits-medium m-2">{total}</span>
-          <CurrencyIcon />
+          <CurrencyIcon type="primary" />
         </div>
-        <Button
-          type="primary"
-          size="medium"
-          onClick={() => {
-            dispatch(submitOrder(topItem, midItems));
-          }}
-        >
-          Оформить заказ
-        </Button>
+        {topItem.name && (
+          <Button
+            type="primary"
+            size="medium"
+            onClick={() => {
+              dispatch(submitOrder(topItem, midItems));
+            }}
+          >
+            Оформить заказ
+          </Button>
+        )}
       </div>
     </section>
   );
