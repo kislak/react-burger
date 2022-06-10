@@ -25,15 +25,15 @@ export const deleteMiddleItem = (index) => (dispatch) => {
   });
 };
 
-export const insertBefore = (item, index, beforeIndex) => (dispatch) => {
+export const insertBefore = (uuid, insertBeforeUuid) => (dispatch) => {
   dispatch({
     type: INSERT_BEFORE,
-    payload: { item: item, index: index, beforeIndex: beforeIndex },
+    payload: { uuid: uuid, insertBeforeUuid: insertBeforeUuid },
   });
 };
-export const insertAfter = (item, index, afterIndex) => (dispatch) => {
+export const insertAfter = (uuid, insertAfterUuid) => (dispatch) => {
   dispatch({
     type: INSERT_AFTER,
-    payload: { item: item, index: index, afterIndex: afterIndex },
+    payload: { uuid: uuid, insertAfterUuid: insertAfterUuid },
   });
 };

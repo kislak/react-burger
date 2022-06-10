@@ -21,7 +21,7 @@ function BurgerConstructorItem({ midItem, index }) {
   const [{ isDragging }, dragSortRef] = useDrag(
     () => ({
       type: "sortIngredient",
-      item: { midItem: midItem, index: index },
+      item: { midItem: midItem },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
@@ -33,9 +33,9 @@ function BurgerConstructorItem({ midItem, index }) {
     accept: "sortIngredient",
     drop(item, monitor) {
       if (monitor.getDifferenceFromInitialOffset().y < 0) {
-        dispatch(insertBefore(item.midItem, item.index, index));
+        dispatch(insertBefore(item.midItem.uuid, midItem.uuid));
       } else {
-        dispatch(insertAfter(item.midItem, item.index, index));
+        dispatch(insertAfter(item.midItem.uuid, midItem.uuid));
       }
     },
     collect: (monitor) => ({

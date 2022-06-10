@@ -27,7 +27,7 @@ export const reducer = (state = initialState, action) => {
         topItem: action.payload,
       };
     case ADD_MIDDLE_ITEM:
-      const item = action.payload
+      const item = Object.assign({}, action.payload)
       item.uuid = uuidv4()
       return {
         ...state,
@@ -40,29 +40,26 @@ export const reducer = (state = initialState, action) => {
         midItems: midItems,
       };
     case INSERT_BEFORE:
-      const index = action.payload.index;
-      const before = action.payload.beforeIndex;
-      if (index + 1 > before) {
-        midItems.splice(index, 1);
-        midItems.splice(before, 0, action.payload.item);
-        return {
-          ...state,
-          midItems: midItems,
-        };
-      }
-      return state;
+      const index = midItems.findIndex(item => item.uuid === action.payload.uuid)
+      const indexToInsertBefore = midItems.findIndex(item => item.uuid === action.payload.insertBeforeUuid)
+
+      const itemToInsertBefore = midItems.splice(index, 1)[0]
+      midItems.splice(indexToInsertBefore, 0, itemToInsertBefore);
+
+      return {
+        ...state,
+        midItems: midItems,
+      };
     case INSERT_AFTER:
-      const currentIndex = action.payload.index;
-      const after = action.payload.afterIndex;
-      if (currentIndex - 1 < after) {
-        midItems.splice(after + 1, 0, action.payload.item);
-        midItems.splice(currentIndex, 1);
-        return {
-          ...state,
-          midItems: midItems,
-        };
-      }
-      return state;
+      const currentIndex = midItems.findIndex(item => item.uuid === action.payload.uuid)
+      const indexToInsertAfter = midItems.findIndex(item => item.uuid === action.payload.insertAfterUuid)
+      const itemToInsertAfter = midItems.splice(currentIndex, 1)[0]
+      midItems.splice(indexToInsertAfter, 0, itemToInsertAfter);
+
+      return {
+        ...state,
+        midItems: midItems,
+      };
     default:
       return state;
   }
