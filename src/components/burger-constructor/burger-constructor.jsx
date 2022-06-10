@@ -64,7 +64,7 @@ function BurgerConstructor() {
             <BurgerConstructorItem
               midItem={midItem}
               index={index}
-              key={`mid-item-${Math.random()}`}
+              key={midItem.uuid}
             />
           );
         })}
