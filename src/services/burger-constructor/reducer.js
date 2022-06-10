@@ -4,6 +4,7 @@ import {
   DELETE_MIDDLE_ITEM,
   INSERT_BEFORE,
   INSERT_AFTER,
+  RESET_CONSTRUCTOR,
 } from "./actions";
 
 import { v4 as uuidv4 } from "uuid";
@@ -69,6 +70,8 @@ export const reducer = (state = initialState, action) => {
         ...state,
         midItems: midItems,
       };
+    case RESET_CONSTRUCTOR:
+      return initialState;
     default:
       return state;
   }

@@ -3,37 +3,66 @@ export const ADD_MIDDLE_ITEM = "ADD_MIDDLE_ITEM";
 export const DELETE_MIDDLE_ITEM = "DELETE_MIDDLE_ITEM";
 export const INSERT_BEFORE = "INSERT_BEFORE";
 export const INSERT_AFTER = "INSERT_AFTER";
+export const RESET_CONSTRUCTOR = "RESET_CONSTRUCTOR";
+
+const setTopItemAction = (payload) => {
+  return {
+    type: SET_TOP_ITEM,
+    payload: payload,
+  };
+};
+
+const addMiddleItemAction = (playload) => {
+  return {
+    type: ADD_MIDDLE_ITEM,
+    payload: playload,
+  };
+};
+
+const deleteMiddleItemAction = (payload) => {
+  return {
+    type: DELETE_MIDDLE_ITEM,
+    payload: payload,
+  };
+};
+
+const insertBeforeAction = (payload) => {
+  return {
+    type: INSERT_BEFORE,
+    payload: payload,
+  };
+};
+
+const insertAfterAction = (payload) => {
+  return {
+    type: INSERT_AFTER,
+    payload: payload,
+  };
+};
+
+export const resetOrderConstructorAction = () => {
+  return {
+    type: RESET_CONSTRUCTOR,
+  };
+};
 
 export const setTopItem = (item) => (dispatch) => {
-  dispatch({
-    type: SET_TOP_ITEM,
-    payload: item,
-  });
+  dispatch(setTopItemAction(item));
 };
 
 export const addMiddleItem = (item) => (dispatch) => {
-  dispatch({
-    type: ADD_MIDDLE_ITEM,
-    payload: item,
-  });
+  dispatch(addMiddleItemAction(item));
 };
 
 export const deleteMiddleItem = (index) => (dispatch) => {
-  dispatch({
-    type: DELETE_MIDDLE_ITEM,
-    payload: index,
-  });
+  dispatch(deleteMiddleItemAction(index));
 };
 
 export const insertBefore = (uuid, insertBeforeUuid) => (dispatch) => {
-  dispatch({
-    type: INSERT_BEFORE,
-    payload: { uuid: uuid, insertBeforeUuid: insertBeforeUuid },
-  });
+  dispatch(
+    insertBeforeAction({ uuid: uuid, insertBeforeUuid: insertBeforeUuid })
+  );
 };
 export const insertAfter = (uuid, insertAfterUuid) => (dispatch) => {
-  dispatch({
-    type: INSERT_AFTER,
-    payload: { uuid: uuid, insertAfterUuid: insertAfterUuid },
-  });
+  dispatch(insertAfterAction({ uuid: uuid, insertAfterUuid: insertAfterUuid }));
 };

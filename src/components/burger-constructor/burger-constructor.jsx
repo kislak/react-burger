@@ -46,8 +46,6 @@ function BurgerConstructor() {
     },
   });
 
-  console.log(topItem);
-
   return (
     <section className={`${styles.constructor} mt-15`} ref={dropRef}>
       <div className={`${styles.constructor} ml-6`}>

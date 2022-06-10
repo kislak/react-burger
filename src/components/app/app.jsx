@@ -16,7 +16,7 @@ import {
   setTopItem,
   addMiddleItem,
 } from "../../services/burger-constructor/actions";
-import { openOrderDetails } from "../../services/order/actions";
+import { openOrderDetailsAction } from "../../services/order/actions";
 import { orderDetailsOpenSelector } from "../../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     dispatch(getIngredients());
   }, [dispatch]);
-  
+
   return (
     <div className={styles.app}>
       <AppHeader />
@@ -56,7 +56,7 @@ function App() {
         id="modal"
         isOpen={isOrderDetailsOpen}
         setClose={() => {
-          dispatch(openOrderDetails(false));
+          dispatch(openOrderDetailsAction(false));
         }}
       >
         <OrderDetails />

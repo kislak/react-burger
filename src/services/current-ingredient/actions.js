@@ -1,8 +1,12 @@
 export const SET_CURRENT = "SET_CURRENT";
 
-export const setCurrentIngredient = (item) => (dispatch) => {
-  dispatch({
+const setCurrentAction = (payload) => {
+  return {
     type: SET_CURRENT,
-    payload: item,
-  });
+    payload: payload,
+  };
+};
+
+export const setCurrentIngredient = (item) => (dispatch) => {
+  dispatch(setCurrentAction(item));
 };
