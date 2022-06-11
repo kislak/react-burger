@@ -42,9 +42,7 @@ function BurgerConstructor() {
       if (item.type === "bun") {
         dispatch(setTopItem(item));
       } else {
-        const midItem = Object.assign({}, item);
-        midItem.uuid = uuidv4();
-        dispatch(addMiddleItem(midItem));
+        dispatch(addMiddleItem(item));
       }
     },
   });

@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from "uuid";
+
 export const SET_TOP_ITEM = "SET_TOP_ITEM";
 export const ADD_MIDDLE_ITEM = "ADD_MIDDLE_ITEM";
 export const DELETE_MIDDLE_ITEM = "DELETE_MIDDLE_ITEM";
@@ -13,9 +15,12 @@ const setTopItemAction = (payload) => {
 };
 
 const addMiddleItemAction = (playload) => {
+  const midItem = Object.assign({}, playload);
+  midItem.uuid = uuidv4();
+
   return {
     type: ADD_MIDDLE_ITEM,
-    payload: playload,
+    payload: midItem,
   };
 };
 
