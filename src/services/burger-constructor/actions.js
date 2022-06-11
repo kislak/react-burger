@@ -1,4 +1,4 @@
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 export const SET_TOP_ITEM = "SET_TOP_ITEM";
 export const ADD_MIDDLE_ITEM = "ADD_MIDDLE_ITEM";
