@@ -7,7 +7,6 @@ import {
   RESET_CONSTRUCTOR,
 } from "./actions";
 
-import { v4 as uuidv4 } from "uuid";
 import check from "../../images/check.svg";
 
 const initialState = {
@@ -29,11 +28,9 @@ export const reducer = (state = initialState, action) => {
         topItem: action.payload,
       };
     case ADD_MIDDLE_ITEM:
-      const item = Object.assign({}, action.payload);
-      item.uuid = uuidv4();
       return {
         ...state,
-        midItems: [item, ...state.midItems],
+        midItems: [action.payload, ...state.midItems],
       };
     case DELETE_MIDDLE_ITEM:
       midItems.splice(action.payload, 1);

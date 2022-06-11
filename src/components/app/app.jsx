@@ -12,10 +12,6 @@ import { getIngredients } from "../../services/ingredients/actions";
 import { ingredientsSelector } from "../../services/ingredients/selectors";
 import { currentIngredientSelector } from "../../services/current-ingredient/selectors";
 import { setCurrentIngredient } from "../../services/current-ingredient/actions";
-import {
-  setTopItem,
-  addMiddleItem,
-} from "../../services/burger-constructor/actions";
 import { openOrderDetailsAction } from "../../services/order/actions";
 import { orderDetailsOpenSelector } from "../../services/order/selectors";
 import { DndProvider } from "react-dnd";

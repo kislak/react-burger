@@ -19,6 +19,7 @@ import {
   addMiddleItem,
 } from "../../services/burger-constructor/actions";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
+import {v4 as uuidv4} from "uuid";
 
 function BurgerConstructor() {
   const [total, setTotal] = useState(0);
@@ -41,7 +42,9 @@ function BurgerConstructor() {
       if (item.type === "bun") {
         dispatch(setTopItem(item));
       } else {
-        dispatch(addMiddleItem(item));
+        const midItem = Object.assign({}, item);
+        midItem.uuid = uuidv4();
+        dispatch(addMiddleItem(midItem));
       }
     },
   });
