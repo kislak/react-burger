@@ -1,28 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ConstructorElement,
-  DragIcon,
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import styles from "./burger-constructor.module.css";
-import BurgerContext from "../../services/burger-context";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  allItemsSelector,
+  midItemsSelector,
+  topItemSelector,
+} from "../../services/burger-constructor/selectors";
+import { submitOrder } from "../../services/order/actions";
+import { useDrop } from "react-dnd";
+import {
+  setTopItem,
+  addMiddleItem,
+} from "../../services/burger-constructor/actions";
+import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
+import { v4 as uuidv4 } from "uuid";
 
 function BurgerConstructor() {
-  const { topItem, midItems, submitOrder } = React.useContext(BurgerContext);
-  const [total, setTotal] = React.useState(0);
+  const [total, setTotal] = useState(0);
+  const dispatch = useDispatch();
+
+  const topItem = useSelector(topItemSelector);
+  const midItems = useSelector(midItemsSelector);
+  const allItems = useSelector(allItemsSelector);
 
   useEffect(() => {
-    const initialValue = topItem ? topItem.price * 2 : 0;
-    const newTotal = midItems.reduce((acc, cur) => {
+    const newTotal = allItems.reduce((acc, cur) => {
       return acc + cur.price;
-    }, initialValue);
+    }, 0);
     setTotal(newTotal);
-  }, [topItem, midItems]);
+  }, [allItems]);
+
+  const [, dropRef] = useDrop({
+    accept: "addIngredient",
+    drop(item) {
+      if (item.type === "bun") {
+        dispatch(setTopItem(item));
+      } else {
+        dispatch(addMiddleItem(item));
+      }
+    },
+  });
 
   return (
-    <section className={`${styles.constructor} mt-15`}>
+    <section className={`${styles.constructor} mt-15`} ref={dropRef}>
       <div className={`${styles.constructor} ml-6`}>
         <ConstructorElement
           type="top"
@@ -32,22 +58,26 @@ function BurgerConstructor() {
           thumbnail={topItem.image_mobile}
         />
       </div>
+      {!topItem.name && (
+        <div
+          className={`${styles.constructor} m-15 text text_type_main-medium`}
+        >
+          Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
+        </div>
+      )}
 
       <ul className={`${styles.middle} custom-scroll`}>
-        {midItems.map((midItem) => {
+        {midItems.map((midItem, index) => {
           return (
-            <li className={styles.item} key={`mid-item-${midItem._id}`}>
-              <DragIcon />
-              <ConstructorElement
-                text={midItem.name}
-                price={midItem.price}
-                thumbnail={midItem.image_mobile}
-              />
-            </li>
+            <BurgerConstructorItem
+              midItem={midItem}
+              index={index}
+              key={midItem.uuid}
+            />
           );
         })}
       </ul>
-      <div className={`${styles.item} ml-6`}>
+      <div className={`${styles.constructor} ml-6`}>
         <ConstructorElement
           type="bottom"
           isLocked={true}
@@ -60,11 +90,19 @@ function BurgerConstructor() {
       <div className={styles.total}>
         <div className="m-10">
           <span className="text text_type_digits-medium m-2">{total}</span>
-          <CurrencyIcon />
+          <CurrencyIcon type="primary" />
         </div>
-        <Button type="primary" size="medium" onClick={submitOrder}>
-          Оформить заказ
-        </Button>
+        {topItem.name && (
+          <Button
+            type="primary"
+            size="medium"
+            onClick={() => {
+              dispatch(submitOrder(topItem, midItems));
+            }}
+          >
+            Оформить заказ
+          </Button>
+        )}
       </div>
     </section>
   );

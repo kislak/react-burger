@@ -1,8 +1,9 @@
 import styles from "./ingredient-details.module.css";
-import PropTypes from "prop-types";
-import BurgerItemType from "../../../prop-types/burger-item-type";
+import { useSelector } from "react-redux";
+import { currentIngredientSelector } from "../../../services/current-ingredient/selectors";
 
-function IngredientDetails({ currentIngredient }) {
+function IngredientDetails() {
+  const currentIngredient = useSelector(currentIngredientSelector);
   return (
     currentIngredient && (
       <section className={styles.details}>
@@ -38,9 +39,5 @@ function IngredientDetails({ currentIngredient }) {
     )
   );
 }
-
-IngredientDetails.propTypes = {
-  currentIngredient: PropTypes.shape(BurgerItemType),
-};
 
 export default IngredientDetails;

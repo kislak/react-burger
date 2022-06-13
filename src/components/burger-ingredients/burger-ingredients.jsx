@@ -1,11 +1,15 @@
 import React from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientSection from "./ingredient-section/ingredient-section";
-import PropTypes from "prop-types";
-import BurgerItemType from "../../prop-types/burger-item-type";
 import styles from "./burger-ingredients.module.css";
+import { useSelector } from "react-redux";
+import {
+  ingredientsBun,
+  ingredientsMain,
+  ingredientsSauce,
+} from "../../services/ingredients/selectors";
 
-function BurgerIngredients({ items, setCurrentIngredient }) {
+function BurgerIngredients() {
   const [current, setCurrent] = React.useState("bun");
   const bunRef = React.useRef(null);
   const sauceRef = React.useRef(null);
@@ -18,10 +22,24 @@ function BurgerIngredients({ items, setCurrentIngredient }) {
       sauceRef.current.scrollIntoView({ behavior: "smooth" });
     value === "main" && mainRef.current.scrollIntoView({ behavior: "smooth" });
   };
+  const scrollHandler = (e) => {
+    const bunRefRec = bunRef.current.getBoundingClientRect();
+    const sauceRefRec = sauceRef.current.getBoundingClientRect();
 
-  const bun = items.filter((i) => i.type === "bun");
-  const sauce = items.filter((i) => i.type === "sauce");
-  const main = items.filter((i) => i.type === "main");
+    if (bunRefRec.height - 400 + bunRefRec.top > 0) {
+      setCurrent("bun");
+      return;
+    }
+    if (sauceRefRec.height - 400 + sauceRefRec.top > 0) {
+      setCurrent("sauce");
+      return;
+    }
+    setCurrent("main");
+  };
+
+  const bun = useSelector(ingredientsBun);
+  const sauce = useSelector(ingredientsSauce);
+  const main = useSelector(ingredientsMain);
 
   return (
     <section className={styles.ingredients}>
@@ -38,36 +56,23 @@ function BurgerIngredients({ items, setCurrentIngredient }) {
         </Tab>
       </section>
 
-      <div className={`${styles.sections} custom-scroll`}>
-        <span ref={bunRef} />
-        <IngredientSection
-          title="Булки"
-          items={bun}
-          sectionName="bun"
-          setCurrentIngredient={setCurrentIngredient}
-        />
-        <span ref={sauceRef} />
-        <IngredientSection
-          title="Соусы"
-          items={sauce}
-          sectionName="sauce"
-          setCurrentIngredient={setCurrentIngredient}
-        />
-        <span ref={mainRef} />
-        <IngredientSection
-          title="Начинки"
-          items={main}
-          sectionName="main"
-          setCurrentIngredient={setCurrentIngredient}
-        />
+      <div
+        className={`${styles.sections} custom-scroll`}
+        onScroll={scrollHandler}
+      >
+        <span ref={bunRef}>
+          <IngredientSection title="Булки" items={bun} sectionName="bun" />
+        </span>
+
+        <span ref={sauceRef}>
+          <IngredientSection title="Соусы" items={sauce} sectionName="sauce" />
+        </span>
+        <span ref={mainRef}>
+          <IngredientSection title="Начинки" items={main} sectionName="main" />
+        </span>
       </div>
     </section>
   );
 }
-
-BurgerIngredients.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape(BurgerItemType)).isRequired,
-  setCurrentIngredient: PropTypes.func.isRequired,
-};
 
 export default BurgerIngredients;
