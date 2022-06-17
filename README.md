@@ -27,3 +27,9 @@ prettier --write .
 [ReactDND](https://react-dnd.github.io/react-dnd/about)
 
 [redux toolkit](https://redux-toolkit.js.org/tutorials/overview)
+
+## sprint 3
+
+[specs](https://practicum.yandex.ru/learn/react/courses/36f94820-19c9-4dfb-beed-5c4858c587e2/sprints/22212/topics/f4914b23-ab6f-4362-aae4-e78a72093099/lessons/fdc72800-02ce-438c-8c16-effed1aa8268/)
+[figma](https://www.figma.com/file/zFGN2O5xktHl9VmoOieq5E/React-_-%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8_external_link)
+
