@@ -18,14 +18,12 @@ https://www.joshwcomeau.com/snippets/react-components/in-portal/
 prettier --write .
 ```
 
-
 ## sprint 2
 
 [react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)
 
-[uuid](https://www.npmjs.com/package/uuid/) 
+[uuid](https://www.npmjs.com/package/uuid/)
 
 [ReactDND](https://react-dnd.github.io/react-dnd/about)
 
 [redux toolkit](https://redux-toolkit.js.org/tutorials/overview)
-
