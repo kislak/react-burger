@@ -1,64 +1,49 @@
-import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
 import AppHeader from "../app-header/app-header";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import IngredientDetails from "../modal/ingredient-details/ingredient-details";
-import OrderDetails from "../modal/order-details/order-details";
-import { useDispatch, useSelector } from "react-redux";
-
-import Modal from "../modal/modal/modal";
-import { getIngredients } from "../../services/ingredients/actions";
-import { ingredientsSelector } from "../../services/ingredients/selectors";
-import { currentIngredientSelector } from "../../services/current-ingredient/selectors";
-import { setCurrentIngredient } from "../../services/current-ingredient/actions";
-import { openOrderDetailsAction } from "../../services/order/actions";
-import { orderDetailsOpenSelector } from "../../services/order/selectors";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import Main from "../pages/main";
+import Register from "../pages/register";
+import Login from "../pages/login";
+import ProtectedRouteNotAuthOnly from "../ProtectedRouteNotAuthOnly";
+import ProtectedRoute from "../ProtectedRoute";
+import Profile from "../pages/profile";
+import PasswordForgot from "../pages/password-forgot";
+import NotFound from "../pages/not-found";
+import Ingredient from "../pages/ingredinent";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 function App() {
-  const dispatch = useDispatch();
-  const data = useSelector(ingredientsSelector);
-  const currentIngredient = useSelector(currentIngredientSelector);
-  const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
-
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
   return (
     <div className={styles.app}>
       <AppHeader />
-      {data && (
-        <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </DndProvider>
-      )}
+      <Switch>
+        <ProtectedRouteNotAuthOnly path="/register" exact>
+          <Register />
+        </ProtectedRouteNotAuthOnly>
+        <ProtectedRouteNotAuthOnly path="/login" exact>
+          <Login />
+        </ProtectedRouteNotAuthOnly>
+        <ProtectedRouteNotAuthOnly path="/forgot-password" exact>
+          <PasswordForgot />
+        </ProtectedRouteNotAuthOnly>
 
-      <Modal
-        id="modal"
-        isOpen={currentIngredient ? true : false}
-        setClose={() => {
-          dispatch(setCurrentIngredient(null));
-        }}
-        title="Детали ингредиента"
-      >
-        <IngredientDetails />
-      </Modal>
+        <Route path="/" exact>
+          <Main />
+        </Route>
 
-      <Modal
-        id="modal"
-        isOpen={isOrderDetailsOpen}
-        setClose={() => {
-          dispatch(openOrderDetailsAction(false));
-        }}
-      >
-        <OrderDetails />
-      </Modal>
+        <Route path="/ingredients/:id" exact>
+          <Ingredient />
+        </Route>
+
+        <ProtectedRoute path="/profile">
+          <Profile />
+        </ProtectedRoute>
+
+        <Route path="/">
+          <NotFound />
+        </Route>
+      </Switch>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
