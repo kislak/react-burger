@@ -1,9 +1,9 @@
-import { SET_USER_NAME, SET_USER_EMAIL, SET_USER_PASSWORD } from "./actions";
+import {SET_USER_NAME, SET_USER_EMAIL, SET_USER_ACCESS_TOKEN} from "./actions";
 
 const initialState = {
-  name: null,
-  email: null,
-  password: null,
+  name: '',
+  email: '',
+  accessToken: null,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -18,10 +18,10 @@ export const reducer = (state = initialState, action) => {
         ...state,
         email: action.payload,
       };
-    case SET_USER_PASSWORD:
+    case SET_USER_ACCESS_TOKEN:
       return {
         ...state,
-        password: action.payload,
+        accessToken: action.payload,
       };
     default:
       return state;

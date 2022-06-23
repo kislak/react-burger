@@ -1,1 +1,8 @@
-export const user = (store) => store.userStore.name;
+export const accessTokenSelector = (store) => store.userStore.accessToken;
+
+export const userSelector = (store) => {
+  return {
+    name: store.userStore.name,
+    email: store.userStore.email
+  }
+}

@@ -21,6 +21,12 @@ function AppHeader() {
     exact: true,
   });
 
+  const matchOrderHistory = useRouteMatch({
+    path: "/profile/orders",
+    strict: true,
+    exact: true,
+  });
+
   return (
     <header className={`${styles.header} m-4`}>
       <nav className={styles.nav__left}>
@@ -34,12 +40,17 @@ function AppHeader() {
           <span className="ml-2 text text_type_main-default">Конструктор</span>
         </NavLink>
 
-        <a href="#" className={`${styles.link} m-2 p-5`}>
-          <ListIcon type="secondary" />
+        <NavLink
+          to="/profile/orders"
+          className={`${styles.link} m-2 p-5`}
+          activeClassName={`${styles.link__active} m-2 p-5`}
+        >
+          <ListIcon type={matchOrderHistory ? "primary" : "secondary"} />
           <span className="ml-2 text text_type_main-default">
             Лента Заказов
           </span>
-        </a>
+        </NavLink>
+
       </nav>
       <Logo />
       <div className="nav nav__right">

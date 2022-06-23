@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import {loginUser} from "../../services/user/actions";
+import {useDispatch} from "react-redux";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(loginUser(email, password, () => {
+      history.push("/");
+    }));
     console.log("вход", email, password);
   };
 

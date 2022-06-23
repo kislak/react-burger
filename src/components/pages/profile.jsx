@@ -1,10 +1,12 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import styles from "./pages.module.css";
 import {
-  Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import {useDispatch, useSelector} from "react-redux";
+import {accessTokenSelector, userSelector} from "../../services/user/selectors";
+import {getUser} from "../../services/user/actions";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -13,10 +15,22 @@ function Profile() {
   const [nameEditable, setNameEditable] = useState(false);
   const [emailEditable, setEmailEditable] = useState(false);
   const [passwordEditable, setPasswordEditable] = useState(false);
+  const user = useSelector(userSelector);
+  const token = useSelector(accessTokenSelector)
+  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
-    console.log("регистрация", name, email, password);
+    console.log("Profile", name, email, password);
   };
+
+  useEffect(() => {
+    token && dispatch(getUser(token))
+  }, [token])
+
+  useEffect(() => {
+    setName(user.name)
+    setEmail(user.email)
+  }, [user])
 
   return (
     <section className={styles.section}>
