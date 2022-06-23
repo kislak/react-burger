@@ -1,0 +1,30 @@
+.section {
+  display: flex;
+  grid-area: other;
+  justify-self: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+}
+
+.input {
+  margin-top: 24px;
+}
+
+.link {
+  color: #4C4CFF;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}

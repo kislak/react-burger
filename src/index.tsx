@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(
 const store = configureStore({ ingredientsStore: { ingredients: [] } });
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
+  <BrowserRouter>
+    <React.StrictMode>
+      <Provider store={store}>
         <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+      </Provider>
+    </React.StrictMode>
+  </BrowserRouter>
 );
