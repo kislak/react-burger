@@ -9,9 +9,9 @@ function Login() {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const submitHandler = (e) => {
-    e.preventDefault()
-    console.log('вход', email, password)
-  }
+    e.preventDefault();
+    console.log("вход", email, password);
+  };
 
   return (
     <section className={styles.section}>
@@ -40,28 +40,21 @@ function Login() {
           />
         </div>
         <div className="mt-6">
-          <Button
-            type="primary"
-            size="small"
-          >
+          <Button type="primary" size="small">
             Войти
           </Button>
         </div>
         <div className="mt-20 text text_type_main-default">
-          <span className="m-2 text_color_inactive">Вы — новый пользователь?</span>
-          <Link
-            to="/register"
-            className={styles.link}
-          >
+          <span className="m-2 text_color_inactive">
+            Вы — новый пользователь?
+          </span>
+          <Link to="/register" className={styles.link}>
             Зарегистрироваться
           </Link>
         </div>
         <div className="mt-4 text text_type_main-default">
           <span className="m-2 text_color_inactive">Забыли пароль? </span>
-          <Link
-            to="/forgot-password"
-            className={styles.link}
-          >
+          <Link to="/forgot-password" className={styles.link}>
             Восстановить пароль
           </Link>
         </div>
