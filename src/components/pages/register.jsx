@@ -3,15 +3,20 @@ import { Link } from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import {createUser} from "../../services/user/actions";
+import { useDispatch } from "react-redux";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("регистрация", name, email, password);
+    console.log("регистрация", email, password, name);
+    dispatch(createUser(email, password, name))
   };
 
   return (

@@ -7,6 +7,7 @@ import ProtectedRouteNotAuthOnly from "../ProtectedRouteNotAuthOnly";
 import ProtectedRoute from "../ProtectedRoute";
 import Profile from "../pages/profile";
 import PasswordForgot from "../pages/password-forgot";
+import PasswordReset from "../pages/password-reset"
 import NotFound from "../pages/not-found";
 import Ingredient from "../pages/ingredinent";
 import { Route, Switch, withRouter } from "react-router-dom";
@@ -25,6 +26,10 @@ function App() {
         <ProtectedRouteNotAuthOnly path="/forgot-password" exact>
           <PasswordForgot />
         </ProtectedRouteNotAuthOnly>
+        <ProtectedRouteNotAuthOnly path="/reset-password" exact>
+          <PasswordReset />
+        </ProtectedRouteNotAuthOnly>
+
 
         <Route path="/" exact>
           <Main />
@@ -34,9 +39,10 @@ function App() {
           <Ingredient />
         </Route>
 
-        <ProtectedRoute path="/profile">
+        {/*ProtectedRoute*/}
+        <Route path="/profile">
           <Profile />
-        </ProtectedRoute>
+        </Route>
 
         <Route path="/">
           <NotFound />

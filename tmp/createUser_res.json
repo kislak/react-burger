@@ -1,0 +1,9 @@
+{
+    "success": true,
+    "user": {
+        "email": "kislak7@gmail.com",
+        "name": "serge"
+    },
+    "accessToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjRhZjZhNDJkMzRhMDAxYzI2ZWY4OSIsImlhdCI6MTY1NjAwODU1NCwiZXhwIjoxNjU2MDA5NzU0fQ.y1g7eewqgFRKInBEWGuTTjdV4cZG3SuE-5hI-DITmiU",
+    "refreshToken": "2c57e0a5096faeb4854711c8b906fc1cc2fbeed7de89e6fc650577aefd2e98ffe143b4d7448e9a53"
+}

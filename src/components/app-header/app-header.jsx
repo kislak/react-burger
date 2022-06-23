@@ -6,15 +6,34 @@ import {
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./app-header.module.css";
+import { NavLink, useRouteMatch } from "react-router-dom";
 
 function AppHeader() {
+  const matchHome = useRouteMatch({
+    path: '/',
+    strict: true,
+    exact: true
+  });
+
+  const matchProfile = useRouteMatch({
+    path: '/profile',
+    strict: true,
+    exact: true
+  });
+
   return (
     <header className={`${styles.header} m-4`}>
       <nav className={styles.nav__left}>
-        <a href="#" className={`${styles.link__active} m-2 p-5`}>
-          <BurgerIcon type="primary" />
+        <NavLink
+          to="/"
+          className={`${styles.link} m-2 p-5`}
+          activeClassName={`${styles.link__active} m-2 p-5`}
+          exact
+        >
+          <BurgerIcon type={matchHome ? "primary" : "secondary"} />
           <span className="ml-2 text text_type_main-default">Конструктор</span>
-        </a>
+        </NavLink>
+
         <a href="#" className={`${styles.link} m-2 p-5`}>
           <ListIcon type="secondary" />
           <span className="ml-2 text text_type_main-default">
@@ -24,12 +43,17 @@ function AppHeader() {
       </nav>
       <Logo />
       <div className="nav nav__right">
-        <a href="#" className={`${styles.link} m-2 p-5`}>
-          <ProfileIcon type="secondary" />
+        <NavLink
+          to="/profile"
+          className={`${styles.link} m-2 p-5`}
+          activeClassName={`${styles.link__active} m-2 p-5`}
+          exact
+        >
+          <ProfileIcon type={matchProfile ? "primary" : "secondary"} />
           <span className="ml-2 text text_type_main-default">
             Личный кабинет
           </span>
-        </a>
+        </NavLink>
       </div>
     </header>
   );
