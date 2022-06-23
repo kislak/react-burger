@@ -7,7 +7,7 @@ import ProtectedRouteNotAuthOnly from "../ProtectedRouteNotAuthOnly";
 import ProtectedRoute from "../ProtectedRoute";
 import Profile from "../pages/profile";
 import PasswordForgot from "../pages/password-forgot";
-import PasswordReset from "../pages/password-reset"
+import PasswordReset from "../pages/password-reset";
 import NotFound from "../pages/not-found";
 import Ingredient from "../pages/ingredinent";
 import { Route, Switch, withRouter } from "react-router-dom";
@@ -29,7 +29,6 @@ function App() {
         <ProtectedRouteNotAuthOnly path="/reset-password" exact>
           <PasswordReset />
         </ProtectedRouteNotAuthOnly>
-
 
         <Route path="/" exact>
           <Main />

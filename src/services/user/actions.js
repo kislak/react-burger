@@ -29,7 +29,7 @@ export const createUser = (email, password, name) => (dispatch) => {
   api
     .register(email, password, name)
     .then((response) => {
-      console.log(response)
+      console.log(response);
       dispatch(setUserEmailAction(email));
       dispatch(setUserPassword(password));
       dispatch(setUserNameAction(name));

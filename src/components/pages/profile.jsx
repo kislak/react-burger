@@ -1,8 +1,10 @@
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./pages.module.css";
-import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-
+import {
+  Button,
+  Input,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -19,21 +21,29 @@ function Profile() {
   return (
     <section className={styles.section}>
       <nav className={styles.profile__nav}>
-        <Link to="/profile" className={`${styles.profile__link_active} text text_type_main-medium` }>
+        <Link
+          to="/profile"
+          className={`${styles.profile__link_active} text text_type_main-medium`}
+        >
           Профиль
         </Link>
-        <Link to="#" className={`${styles.profile__link} text text_type_main-medium text_color_inactive` }>
+        <Link
+          to="#"
+          className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
+        >
           История заказов
         </Link>
-        <Link to="/logout" className={`${styles.profile__link} text text_type_main-medium text_color_inactive` }>
+        <Link
+          to="/logout"
+          className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
+        >
           Выход
         </Link>
-        <p className={`${styles.profile__text} text text_color_inactive mt-20` }>
-          В этом разделе вы можете
-          изменить свои персональные данные
+        <p className={`${styles.profile__text} text text_color_inactive mt-20`}>
+          В этом разделе вы можете изменить свои персональные данные
         </p>
       </nav>
-      <section >
+      <section>
         <form className={styles.form} onSubmit={submitHandler}>
           <div className={styles.input}>
             <Input
@@ -43,7 +53,7 @@ function Profile() {
               icon={nameEditable ? "CheckMarkIcon" : "EditIcon"}
               onIconClick={() => {
                 setNameEditable(!nameEditable);
-                submitHandler()
+                submitHandler();
               }}
               disabled={!nameEditable}
               onChange={(e) => setName(e.target.value)}
@@ -59,7 +69,7 @@ function Profile() {
               icon={emailEditable ? "CheckMarkIcon" : "EditIcon"}
               onIconClick={() => {
                 setEmailEditable(!emailEditable);
-                submitHandler()
+                submitHandler();
               }}
               disabled={!emailEditable}
               onChange={(e) => setEmail(e.target.value)}
@@ -74,7 +84,7 @@ function Profile() {
               icon={passwordEditable ? "CheckMarkIcon" : "EditIcon"}
               onIconClick={() => {
                 setPasswordEditable(!passwordEditable);
-                submitHandler()
+                submitHandler();
               }}
               value={password}
               disabled={!passwordEditable}
@@ -85,7 +95,7 @@ function Profile() {
         </form>
       </section>
     </section>
-  )
+  );
 }
 
 export default Profile;

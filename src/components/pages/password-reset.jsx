@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import {Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import {passwordResetSubmit} from "../../services/password/actions";
+import { passwordResetSubmit } from "../../services/password/actions";
 import { useDispatch } from "react-redux";
 
 function PasswordReset() {
@@ -15,9 +15,11 @@ function PasswordReset() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(passwordResetSubmit(password, token, () => {
-      history.push('/login');
-    }))
+    dispatch(
+      passwordResetSubmit(password, token, () => {
+        history.push("/login");
+      })
+    );
     console.log("PasswordReset", password, token);
   };
 

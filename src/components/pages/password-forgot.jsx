@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {sendPasswordResetEmail} from "../../services/password/actions";
+import { sendPasswordResetEmail } from "../../services/password/actions";
 
 function PasswordForgot() {
   const [email, setEmail] = useState("");
@@ -15,9 +15,11 @@ function PasswordForgot() {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("PasswordForgot", email);
-    dispatch(sendPasswordResetEmail(email, () => {
-      history.push('/reset-password');
-    }))
+    dispatch(
+      sendPasswordResetEmail(email, () => {
+        history.push("/reset-password");
+      })
+    );
   };
 
   return (

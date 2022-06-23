@@ -10,15 +10,15 @@ import { NavLink, useRouteMatch } from "react-router-dom";
 
 function AppHeader() {
   const matchHome = useRouteMatch({
-    path: '/',
+    path: "/",
     strict: true,
-    exact: true
+    exact: true,
   });
 
   const matchProfile = useRouteMatch({
-    path: '/profile',
+    path: "/profile",
     strict: true,
-    exact: true
+    exact: true,
   });
 
   return (
