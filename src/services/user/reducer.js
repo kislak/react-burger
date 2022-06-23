@@ -1,8 +1,12 @@
-import {SET_USER_NAME, SET_USER_EMAIL, SET_USER_ACCESS_TOKEN} from "./actions";
+import {
+  SET_USER_NAME,
+  SET_USER_EMAIL,
+  SET_USER_ACCESS_TOKEN,
+} from "./actions";
 
 const initialState = {
-  name: '',
-  email: '',
+  name: "",
+  email: "",
   accessToken: null,
 };
 

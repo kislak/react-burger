@@ -12,16 +12,16 @@ import NotFound from "../pages/not-found";
 import Ingredient from "../pages/ingredinent";
 import { Route, Switch, withRouter } from "react-router-dom";
 import OrderHistory from "../pages/order-history";
-import {refreshToken} from "../../services/user/actions";
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
+import { refreshToken } from "../../services/user/actions";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshToken())
-  },[])
+    dispatch(refreshToken());
+  }, []);
   return (
     <div className={styles.app}>
       <AppHeader />
@@ -51,7 +51,7 @@ function App() {
         <Route path="/profile" exact>
           <Profile />
         </Route>
-        <Route path="/profile/orders" >
+        <Route path="/profile/orders">
           <OrderHistory />
         </Route>
         <Route path="/">

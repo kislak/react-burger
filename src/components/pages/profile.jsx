@@ -1,12 +1,13 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./pages.module.css";
+import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  Input,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
-import {accessTokenSelector, userSelector} from "../../services/user/selectors";
-import {getUser} from "../../services/user/actions";
+  accessTokenSelector,
+  userSelector,
+} from "../../services/user/selectors";
+import { getUser } from "../../services/user/actions";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -16,7 +17,7 @@ function Profile() {
   const [emailEditable, setEmailEditable] = useState(false);
   const [passwordEditable, setPasswordEditable] = useState(false);
   const user = useSelector(userSelector);
-  const token = useSelector(accessTokenSelector)
+  const token = useSelector(accessTokenSelector);
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -24,13 +25,13 @@ function Profile() {
   };
 
   useEffect(() => {
-    token && dispatch(getUser(token))
-  }, [token])
+    token && dispatch(getUser(token));
+  }, [token]);
 
   useEffect(() => {
-    setName(user.name)
-    setEmail(user.email)
-  }, [user])
+    setName(user.name);
+    setEmail(user.email);
+  }, [user]);
 
   return (
     <section className={styles.section}>

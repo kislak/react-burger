@@ -57,7 +57,7 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: localStorage.getItem('refreshToken')
+        token: localStorage.getItem("refreshToken"),
       }),
     }).then((res) => this._getResponseData(res));
   }
@@ -68,7 +68,7 @@ class Api {
       headers: {
         "Content-Type": "application/json",
       },
-      body: '',
+      body: "",
     }).then((res) => this._getResponseData(res));
   }
 
@@ -77,9 +77,9 @@ class Api {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization" : token
-      }
-      }).then((res) => this._getResponseData(res));
+        Authorization: token,
+      },
+    }).then((res) => this._getResponseData(res));
   }
 
   getUser(token) {
@@ -87,8 +87,8 @@ class Api {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization" : token
-      }
+        Authorization: token,
+      },
     }).then((res) => this._getResponseData(res));
   }
 
@@ -97,7 +97,7 @@ class Api {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization" : token
+        Authorization: token,
       },
       body: JSON.stringify({ email, name }),
     }).then((res) => this._getResponseData(res));
@@ -126,7 +126,7 @@ class Api {
     }).then((res) => this._getResponseData(res));
   }
 
-    _getResponseData(res) {
+  _getResponseData(res) {
     if (res.ok) {
       return res.json();
     }

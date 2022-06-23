@@ -33,7 +33,7 @@ export const createUser = (email, password, name) => (dispatch) => {
       dispatch(setUserEmailAction(response.user.email));
       dispatch(setUserNameAction(response.user.name));
       dispatch(setUserAccessTokenAction(response.accessToken));
-      localStorage.setItem('refreshToken', response.refreshToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
@@ -48,8 +48,8 @@ export const loginUser = (email, password, successHandler) => (dispatch) => {
       dispatch(setUserEmailAction(response.user.email));
       dispatch(setUserNameAction(response.user.name));
       dispatch(setUserAccessTokenAction(response.accessToken));
-      localStorage.setItem('refreshToken', response.refreshToken);
-      successHandler()
+      localStorage.setItem("refreshToken", response.refreshToken);
+      successHandler();
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
@@ -61,27 +61,27 @@ export const refreshToken = () => (dispatch) => {
     .refreshToken()
     .then((response) => {
       dispatch(setUserAccessTokenAction(response.accessToken));
-      localStorage.setItem('refreshToken', response.refreshToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
     });
-}
+};
 
 export const logout = () => (dispatch) => {
   api
     .logout()
     .then((response) => {
       console.log(response);
-      dispatch(setUserEmailAction(''));
-      dispatch(setUserNameAction(''));
+      dispatch(setUserEmailAction(""));
+      dispatch(setUserNameAction(""));
       dispatch(setUserAccessTokenAction(null));
-      localStorage.removeItem('refreshToken');
+      localStorage.removeItem("refreshToken");
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
     });
-}
+};
 
 export const getUser = (token) => (dispatch) => {
   api
@@ -93,4 +93,4 @@ export const getUser = (token) => (dispatch) => {
     .catch((error) => {
       dispatch(addErrorAction(error));
     });
-}
+};

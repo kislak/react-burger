@@ -50,7 +50,6 @@ function AppHeader() {
             Лента Заказов
           </span>
         </NavLink>
-
       </nav>
       <Logo />
       <div className="nav nav__right">
