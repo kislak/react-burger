@@ -3,9 +3,8 @@ import styles from "./pages.module.css";
 import { useEffect } from "react";
 import { getIngredients } from "../../services/ingredients/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { allItemsSelector } from "../../services/burger-constructor/selectors";
 import { setCurrentIngredient } from "../../services/current-ingredient/actions";
-import { useParams } from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import { ingredientsSelector } from "../../services/ingredients/selectors";
 
 function Ingredient() {
@@ -24,7 +23,10 @@ function Ingredient() {
 
   return (
     <section className={styles.section}>
-      <IngredientDetails />
+      <div className={styles.center}>
+        <h1>Детали ингредиента</h1>
+        <IngredientDetails />
+      </div>
     </section>
   );
 }

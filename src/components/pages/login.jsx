@@ -20,7 +20,6 @@ function Login() {
         history.push("/");
       })
     );
-    console.log("вход", email, password);
   };
 
   return (
