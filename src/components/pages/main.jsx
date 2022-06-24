@@ -14,7 +14,7 @@ import { openOrderDetailsAction } from "../../services/order/actions";
 import { orderDetailsOpenSelector } from "../../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Main() {
   const dispatch = useDispatch();
@@ -24,14 +24,16 @@ function Main() {
   const history = useHistory();
 
   const closeIngredient = () => {
-    dispatch(setCurrentIngredient(null,
-      () => { history.push('/') }
-    ))
-  }
+    dispatch(
+      setCurrentIngredient(null, () => {
+        history.push("/");
+      })
+    );
+  };
 
   useEffect(() => {
     dispatch(getIngredients());
-    closeIngredient()
+    closeIngredient();
   }, [dispatch]);
 
   return (
@@ -46,7 +48,9 @@ function Main() {
       <Modal
         id="modal"
         isOpen={currentIngredient ? true : false}
-        setClose={() => { closeIngredient() }}
+        setClose={() => {
+          closeIngredient();
+        }}
         title="Детали ингредиента"
       >
         <IngredientDetails />

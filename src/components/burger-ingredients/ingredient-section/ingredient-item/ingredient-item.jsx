@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentIngredient } from "../../../../services/current-ingredient/actions";
 import { allItemsSelector } from "../../../../services/burger-constructor/selectors";
 import { useDrag } from "react-dnd";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function IngredientItem({ item }) {
   const [, dragRef] = useDrag({
@@ -27,12 +27,16 @@ function IngredientItem({ item }) {
   return (
     <section
       className={styles.item}
-      onClick={() => dispatch(setCurrentIngredient(item, ()=> {
-        history.push({
-          pathname: `/ingredients/${item._id}`,
-          state: 'modal',
-        })
-      }))}
+      onClick={() =>
+        dispatch(
+          setCurrentIngredient(item, () => {
+            history.push({
+              pathname: `/ingredients/${item._id}`,
+              state: "modal",
+            });
+          })
+        )
+      }
     >
       <span className="mb-8">
         {count > 0 && <Counter count={count} size="default" />}

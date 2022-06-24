@@ -15,7 +15,7 @@ import OrderHistory from "../pages/order-history";
 import { refreshToken } from "../../services/user/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ function App() {
     }
   }, []);
   const location = useLocation();
-
 
   return (
     <div className={styles.app}>
@@ -53,11 +52,8 @@ function App() {
           <Main />
         </Route>
 
-
         <Route path="/ingredients/:id" exact>
-          {
-            (location.state === 'modal') ?  <Main /> : <Ingredient />
-          }
+          {location.state === "modal" ? <Main /> : <Ingredient />}
         </Route>
 
         <ProtectedRoute path="/profile" exact>
