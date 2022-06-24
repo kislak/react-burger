@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getIngredients } from "../../services/ingredients/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentIngredient } from "../../services/current-ingredient/actions";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ingredientsSelector } from "../../services/ingredients/selectors";
 
 function Ingredient() {

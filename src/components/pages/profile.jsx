@@ -36,7 +36,7 @@ function Profile() {
   const logoutHandler = () => {
     dispatch(
       logout(() => {
-        history.push("/");
+        history.push("/login");
       })
     );
   };
