@@ -76,7 +76,7 @@ export const logout = (successHandler) => (dispatch) => {
       dispatch(setUserNameAction(""));
       dispatch(setUserAccessTokenAction(null));
       localStorage.removeItem("refreshToken");
-      successHandler()
+      successHandler();
     })
     .catch((error) => {
       dispatch(addErrorAction(error));

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styles from "./pages.module.css";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import {
   accessTokenSelector,
   userSelector,
 } from "../../services/user/selectors";
-import {getUser, logout, updateUser} from "../../services/user/actions";
+import { getUser, logout, updateUser } from "../../services/user/actions";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -31,13 +31,15 @@ function Profile() {
   }, [user]);
 
   const submitHandler = (e) => {
-    dispatch(updateUser(token, email, name))
+    dispatch(updateUser(token, email, name));
   };
   const logoutHandler = () => {
-    dispatch(logout(()=> {
-      history.push("/")
-    }))
-  }
+    dispatch(
+      logout(() => {
+        history.push("/");
+      })
+    );
+  };
 
   return (
     <section className={styles.section}>

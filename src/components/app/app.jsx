@@ -38,7 +38,11 @@ function App() {
         <ProtectedRouteNotAuthOnly path="/forgot-password" exact>
           <PasswordForgot />
         </ProtectedRouteNotAuthOnly>
-        <ProtectedRouteNotAuthOnly path="/reset-password" prevPath="/forgot-password" exact  >
+        <ProtectedRouteNotAuthOnly
+          path="/reset-password"
+          prevPath="/forgot-password"
+          exact
+        >
           <PasswordReset />
         </ProtectedRouteNotAuthOnly>
 

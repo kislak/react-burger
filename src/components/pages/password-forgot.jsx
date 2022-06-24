@@ -18,10 +18,9 @@ function PasswordForgot() {
     dispatch(
       sendPasswordResetEmail(email, () => {
         history.push({
-            pathname: "/reset-password",
-            state: { fromPath: "/forgot-password" }
-          }
-        );
+          pathname: "/reset-password",
+          state: { fromPath: "/forgot-password" },
+        });
       })
     );
   };

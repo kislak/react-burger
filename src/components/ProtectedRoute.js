@@ -4,7 +4,7 @@ import { Redirect, Route } from "react-router-dom";
 const DEFAULT_ROUTE = "/login";
 
 function ProtectedRoute({ children, ...restOfProps }) {
-  const isAuthenticated = (localStorage.getItem("refreshToken") !== null);
+  const isAuthenticated = localStorage.getItem("refreshToken") !== null;
 
   return (
     <Route {...restOfProps}>
