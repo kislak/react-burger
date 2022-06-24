@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import styles from "./pages.module.css";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import {
   accessTokenSelector,
   userSelector,
 } from "../../services/user/selectors";
-import { getUser } from "../../services/user/actions";
+import {getUser, logout, updateUser} from "../../services/user/actions";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -19,10 +19,7 @@ function Profile() {
   const user = useSelector(userSelector);
   const token = useSelector(accessTokenSelector);
   const dispatch = useDispatch();
-
-  const submitHandler = (e) => {
-    console.log("Profile", name, email, password);
-  };
+  const history = useHistory();
 
   useEffect(() => {
     token && dispatch(getUser(token));
@@ -32,6 +29,15 @@ function Profile() {
     setName(user.name);
     setEmail(user.email);
   }, [user]);
+
+  const submitHandler = (e) => {
+    dispatch(updateUser(token, email, name))
+  };
+  const logoutHandler = () => {
+    dispatch(logout(()=> {
+      history.push("/")
+    }))
+  }
 
   return (
     <section className={styles.section}>
@@ -43,17 +49,17 @@ function Profile() {
           Профиль
         </Link>
         <Link
-          to="#"
+          to="http://localhost:3000/profile/orders"
           className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
         >
           История заказов
         </Link>
-        <Link
-          to="/logout"
+        <a
           className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
+          onClick={logoutHandler}
         >
           Выход
-        </Link>
+        </a>
         <p className={`${styles.profile__text} text text_color_inactive mt-20`}>
           В этом разделе вы можете изменить свои персональные данные
         </p>
@@ -96,10 +102,10 @@ function Profile() {
             <Input
               type={passwordEditable ? "text" : "password"}
               placeholder="Пароль"
-              icon={passwordEditable ? "CheckMarkIcon" : "EditIcon"}
+              icon={passwordEditable ? "CheckMarkIcon" : "CheckMarkIcon"}
               onIconClick={() => {
-                setPasswordEditable(!passwordEditable);
-                submitHandler();
+                setPasswordEditable(false);
+                // submitHandler();
               }}
               value={password}
               disabled={!passwordEditable}

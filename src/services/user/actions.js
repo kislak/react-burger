@@ -68,15 +68,15 @@ export const refreshToken = () => (dispatch) => {
     });
 };
 
-export const logout = () => (dispatch) => {
+export const logout = (successHandler) => (dispatch) => {
   api
     .logout()
     .then((response) => {
-      console.log(response);
       dispatch(setUserEmailAction(""));
       dispatch(setUserNameAction(""));
       dispatch(setUserAccessTokenAction(null));
       localStorage.removeItem("refreshToken");
+      successHandler()
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
@@ -86,6 +86,18 @@ export const logout = () => (dispatch) => {
 export const getUser = (token) => (dispatch) => {
   api
     .getUser(token)
+    .then((response) => {
+      dispatch(setUserEmailAction(response.user.email));
+      dispatch(setUserNameAction(response.user.name));
+    })
+    .catch((error) => {
+      dispatch(addErrorAction(error));
+    });
+};
+
+export const updateUser = (token, email, name) => (dispatch) => {
+  api
+    .updateUser(token, email, name)
     .then((response) => {
       dispatch(setUserEmailAction(response.user.email));
       dispatch(setUserNameAction(response.user.name));

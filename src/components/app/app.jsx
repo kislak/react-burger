@@ -20,8 +20,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshToken());
+    if (localStorage.getItem("refreshToken") !== null) {
+      dispatch(refreshToken());
+    }
   }, []);
+
   return (
     <div className={styles.app}>
       <AppHeader />
@@ -35,7 +38,7 @@ function App() {
         <ProtectedRouteNotAuthOnly path="/forgot-password" exact>
           <PasswordForgot />
         </ProtectedRouteNotAuthOnly>
-        <ProtectedRouteNotAuthOnly path="/reset-password" exact>
+        <ProtectedRouteNotAuthOnly path="/reset-password" prevPath="/forgot-password" exact  >
           <PasswordReset />
         </ProtectedRouteNotAuthOnly>
 
@@ -47,13 +50,12 @@ function App() {
           <Ingredient />
         </Route>
 
-        {/*ProtectedRoute*/}
-        <Route path="/profile" exact>
+        <ProtectedRoute path="/profile" exact>
           <Profile />
-        </Route>
-        <Route path="/profile/orders">
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/orders">
           <OrderHistory />
-        </Route>
+        </ProtectedRoute>
         <Route path="/">
           <NotFound />
         </Route>

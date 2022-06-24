@@ -17,7 +17,11 @@ function PasswordForgot() {
     console.log("PasswordForgot", email);
     dispatch(
       sendPasswordResetEmail(email, () => {
-        history.push("/reset-password");
+        history.push({
+            pathname: "/reset-password",
+            state: { fromPath: "/forgot-password" }
+          }
+        );
       })
     );
   };

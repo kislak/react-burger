@@ -68,17 +68,9 @@ class Api {
       headers: {
         "Content-Type": "application/json",
       },
-      body: "",
-    }).then((res) => this._getResponseData(res));
-  }
-
-  getUser(token) {
-    return fetch(`${this._baseUrl}/auth/user`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
+      body: JSON.stringify({
+        token: localStorage.getItem("refreshToken"),
+      }),
     }).then((res) => this._getResponseData(res));
   }
 
@@ -93,7 +85,7 @@ class Api {
   }
 
   updateUser(token, email, name) {
-    return fetch(`${this._baseUrl}/password-reset`, {
+    return fetch(`${this._baseUrl}/auth/user`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
