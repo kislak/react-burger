@@ -14,7 +14,7 @@ import { openOrderDetailsAction } from "../../services/order/actions";
 import { orderDetailsOpenSelector } from "../../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import {useHistory, useParams} from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function Main() {
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ function Main() {
       dispatch(setCurrentIngredient(item, () => {}));
     }
   }, [items]);
-
 
   return (
     <>

@@ -11,7 +11,13 @@ function NotFound() {
       <section className={styles.center}>
         <p className="text_type_main-large">404</p>
         <p className="text_type_main-medium mb-30">Страница не найдена</p>
-        <Button type="primary" size="large" onClick={ () => {history.push('/')}}>
+        <Button
+          type="primary"
+          size="large"
+          onClick={() => {
+            history.push("/");
+          }}
+        >
           На главную
         </Button>
       </section>
