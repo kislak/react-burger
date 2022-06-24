@@ -64,6 +64,7 @@ export const refreshToken = () => (dispatch) => {
       localStorage.setItem("refreshToken", response.refreshToken);
     })
     .catch((error) => {
+      localStorage.removeItem("refreshToken");
       dispatch(addErrorAction(error));
     });
 };

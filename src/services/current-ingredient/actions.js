@@ -7,6 +7,7 @@ const setCurrentAction = (payload) => {
   };
 };
 
-export const setCurrentIngredient = (item) => (dispatch) => {
+export const setCurrentIngredient = (item, callback) => (dispatch) => {
   dispatch(setCurrentAction(item));
+  callback()
 };

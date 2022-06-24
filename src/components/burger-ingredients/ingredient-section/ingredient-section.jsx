@@ -3,7 +3,6 @@ import IngredientItem from "./ingredient-item/ingredient-item";
 import PropTypes from "prop-types";
 import BurgerItemType from "../../../prop-types/burger-item-type";
 import styles from "./ingredient-section.module.css";
-import { setCurrentIngredient } from "../../../services/current-ingredient/actions";
 
 function IngredientSection({ title, items, sectionName }) {
   return (
