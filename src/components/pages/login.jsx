@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -12,12 +12,14 @@ function Login() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
       loginUser(email, password, () => {
-        history.push("/");
+        const path = (location.state && location.state.afterLogin) || "/"
+        history.push(path);
       })
     );
   };

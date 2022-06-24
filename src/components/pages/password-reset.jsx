@@ -20,7 +20,6 @@ function PasswordReset() {
         history.push("/login");
       })
     );
-    console.log("PasswordReset", password, token);
   };
 
   return (

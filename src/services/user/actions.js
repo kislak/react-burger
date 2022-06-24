@@ -25,15 +25,15 @@ const setUserAccessTokenAction = (payload) => {
   };
 };
 
-export const createUser = (email, password, name) => (dispatch) => {
+export const createUser = (email, password, name, callback) => (dispatch) => {
   api
     .register(email, password, name)
     .then((response) => {
-      console.log(response);
       dispatch(setUserEmailAction(response.user.email));
       dispatch(setUserNameAction(response.user.name));
       dispatch(setUserAccessTokenAction(response.accessToken));
       localStorage.setItem("refreshToken", response.refreshToken);
+      callback()
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
@@ -44,7 +44,6 @@ export const loginUser = (email, password, successHandler) => (dispatch) => {
   api
     .login(email, password)
     .then((response) => {
-      console.log(response);
       dispatch(setUserEmailAction(response.user.email));
       dispatch(setUserNameAction(response.user.name));
       dispatch(setUserAccessTokenAction(response.accessToken));

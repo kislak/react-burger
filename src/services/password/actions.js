@@ -5,7 +5,6 @@ export const sendPasswordResetEmail = (email, successHandler) => (dispatch) => {
   api
     .passwordReset(email)
     .then((response) => {
-      console.log(response);
       successHandler();
     })
     .catch((error) => {
@@ -18,7 +17,6 @@ export const passwordResetSubmit =
     api
       .passwordResetSubmit(email, token)
       .then((response) => {
-        console.log(response);
         successHandler();
       })
       .catch((error) => {

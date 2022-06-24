@@ -51,7 +51,7 @@ function Profile() {
           Профиль
         </Link>
         <Link
-          to="http://localhost:3000/profile/orders"
+          to="profile/orders"
           className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
         >
           История заказов

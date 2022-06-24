@@ -14,7 +14,6 @@ function PasswordForgot() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("PasswordForgot", email);
     dispatch(
       sendPasswordResetEmail(email, () => {
         history.push({

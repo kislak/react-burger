@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { createUser } from "../../services/user/actions";
+import {createUser } from "../../services/user/actions";
 import { useDispatch } from "react-redux";
 
 function Register() {
@@ -12,11 +12,13 @@ function Register() {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("регистрация", email, password, name);
-    dispatch(createUser(email, password, name));
+    dispatch(createUser(email, password, name, () => {
+      history.push("/");
+    }));
   };
 
   return (
@@ -25,7 +27,7 @@ function Register() {
         <h1 className="text text_type_main-medium mt-6">Регистрация</h1>
         <div className={styles.input}>
           <Input
-            type="name"
+            type="text"
             placeholder="Имя"
             value={name}
             onChange={(e) => setName(e.target.value)}
