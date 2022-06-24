@@ -19,7 +19,7 @@ import {
   addMiddleItem,
 } from "../../services/burger-constructor/actions";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function BurgerConstructor() {
   const [total, setTotal] = useState(0);
@@ -58,7 +58,7 @@ function BurgerConstructor() {
         state: { afterLogin: "/" },
       });
     }
-  }
+  };
 
   return (
     <section className={`${styles.constructor} mt-15`} ref={dropRef}>
@@ -109,7 +109,9 @@ function BurgerConstructor() {
           <Button
             type="primary"
             size="medium"
-            onClick={() => {submitHandler()}}
+            onClick={() => {
+              submitHandler();
+            }}
           >
             Оформить заказ
           </Button>

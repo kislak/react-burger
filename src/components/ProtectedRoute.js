@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect, Route, useLocation} from "react-router-dom";
+import { Redirect, Route, useLocation } from "react-router-dom";
 
 const DEFAULT_ROUTE = "/login";
 
@@ -9,7 +9,16 @@ function ProtectedRoute({ children, ...restOfProps }) {
 
   return (
     <Route {...restOfProps}>
-      {isAuthenticated ? <>{children}</> : <Redirect   to={{pathname: DEFAULT_ROUTE, state: { afterLogin: location.pathname }}}/>}
+      {isAuthenticated ? (
+        <>{children}</>
+      ) : (
+        <Redirect
+          to={{
+            pathname: DEFAULT_ROUTE,
+            state: { afterLogin: location.pathname },
+          }}
+        />
+      )}
     </Route>
   );
 }

@@ -33,7 +33,7 @@ export const createUser = (email, password, name, callback) => (dispatch) => {
       dispatch(setUserNameAction(response.user.name));
       dispatch(setUserAccessTokenAction(response.accessToken));
       localStorage.setItem("refreshToken", response.refreshToken);
-      callback()
+      callback();
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
