@@ -18,7 +18,7 @@ function Login() {
     e.preventDefault();
     dispatch(
       loginUser(email, password, () => {
-        const path = (location?.state?.afterLogin) || "/";
+        const path = location?.state?.afterLogin || "/";
         history.push(path);
       })
     );
