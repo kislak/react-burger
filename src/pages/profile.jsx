@@ -32,7 +32,7 @@ function Profile() {
   };
   const logoutHandler = () => {
     dispatch(
-      logout(() => {
+      logout(token, () => {
         history.push("/login");
       })
     );

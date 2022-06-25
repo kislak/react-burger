@@ -62,11 +62,12 @@ class Api {
     }).then((res) => this._getResponseData(res));
   }
 
-  logout() {
+  logout(token) {
     return fetch(`${this._baseUrl}/auth/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify({
         token: localStorage.getItem("refreshToken"),

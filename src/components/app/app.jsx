@@ -20,13 +20,14 @@ import { isLoggedIn } from "../../services/user/selectors";
 
 function App() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(isLoggedIn);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!isAuthenticated) {
       dispatch(refreshToken());
     }
   }, []);
+
+  const isAuthenticated = useSelector(isLoggedIn);
   const location = useLocation();
 
   return (

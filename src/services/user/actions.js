@@ -40,7 +40,7 @@ export const createUser = (email, password, name, callback) => (dispatch) => {
     });
 };
 
-export const loginUser = (email, password, successHandler) => (dispatch) => {
+export const loginUser = (email, password, callback) => (dispatch) => {
   api
     .login(email, password)
     .then((response) => {
@@ -48,7 +48,7 @@ export const loginUser = (email, password, successHandler) => (dispatch) => {
       dispatch(setUserNameAction(response.user.name));
       dispatch(setUserAccessTokenAction(response.accessToken));
       localStorage.setItem("refreshToken", response.refreshToken);
-      successHandler();
+      callback();
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
@@ -68,15 +68,15 @@ export const refreshToken = () => (dispatch) => {
     });
 };
 
-export const logout = (successHandler) => (dispatch) => {
+export const logout = (token, callback) => (dispatch) => {
   api
-    .logout()
+    .logout(token)
     .then((response) => {
       dispatch(setUserEmailAction(""));
       dispatch(setUserNameAction(""));
       dispatch(setUserAccessTokenAction(null));
       localStorage.removeItem("refreshToken");
-      successHandler();
+      callback();
     })
     .catch((error) => {
       dispatch(addErrorAction(error));
