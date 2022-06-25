@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import {useSelector} from "react-redux";
-import {isLoggedIn} from "../services/user/selectors";
+import { useSelector } from "react-redux";
+import { isLoggedIn } from "../services/user/selectors";
 
 const DEFAULT_ROUTE = "/";
 

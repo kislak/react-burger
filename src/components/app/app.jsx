@@ -13,10 +13,10 @@ import Ingredient from "../../pages/ingredinent";
 import { Route, Switch, withRouter } from "react-router-dom";
 import OrderHistory from "../../pages/order-history";
 import { refreshToken } from "../../services/user/actions";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import {isLoggedIn} from "../../services/user/selectors";
+import { isLoggedIn } from "../../services/user/selectors";
 
 function App() {
   const dispatch = useDispatch();

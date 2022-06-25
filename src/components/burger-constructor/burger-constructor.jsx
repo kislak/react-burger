@@ -20,7 +20,7 @@ import {
 } from "../../services/burger-constructor/actions";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
 import { useHistory } from "react-router-dom";
-import {isLoggedIn} from "../../services/user/selectors";
+import { isLoggedIn } from "../../services/user/selectors";
 
 function BurgerConstructor() {
   const [total, setTotal] = useState(0);

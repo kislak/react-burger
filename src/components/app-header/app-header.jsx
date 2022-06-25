@@ -6,7 +6,7 @@ import {
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./app-header.module.css";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import { Link, NavLink, useRouteMatch } from "react-router-dom";
 
 function AppHeader() {
   const matchHome = useRouteMatch({
@@ -51,7 +51,9 @@ function AppHeader() {
           </span>
         </NavLink>
       </nav>
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       <div className="nav nav__right">
         <NavLink
           to="/profile"
