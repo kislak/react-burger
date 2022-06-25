@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   accessTokenSelector,
   userSelector,
-} from "../../services/user/selectors";
-import { getUser, logout, updateUser } from "../../services/user/actions";
+} from "../services/user/selectors";
+import { getUser, logout, updateUser } from "../services/user/actions";
 
 function Profile() {
   const [name, setName] = useState("");

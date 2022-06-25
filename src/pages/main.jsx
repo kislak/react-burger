@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import IngredientDetails from "../modal/ingredient-details/ingredient-details";
-import OrderDetails from "../modal/order-details/order-details";
+import BurgerConstructor from "../components/burger-constructor/burger-constructor";
+import BurgerIngredients from "../components/burger-ingredients/burger-ingredients";
+import IngredientDetails from "../components/modal/ingredient-details/ingredient-details";
+import OrderDetails from "../components/modal/order-details/order-details";
 import { useDispatch, useSelector } from "react-redux";
 
-import Modal from "../modal/modal/modal";
-import { getIngredients } from "../../services/ingredients/actions";
-import { ingredientsSelector } from "../../services/ingredients/selectors";
-import { currentIngredientSelector } from "../../services/current-ingredient/selectors";
-import { setCurrentIngredient } from "../../services/current-ingredient/actions";
-import { openOrderDetailsAction } from "../../services/order/actions";
-import { orderDetailsOpenSelector } from "../../services/order/selectors";
+import Modal from "../components/modal/modal/modal";
+import { getIngredients } from "../services/ingredients/actions";
+import { ingredientsSelector } from "../services/ingredients/selectors";
+import { currentIngredientSelector } from "../services/current-ingredient/selectors";
+import { setCurrentIngredient } from "../services/current-ingredient/actions";
+import { openOrderDetailsAction } from "../services/order/actions";
+import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useHistory, useParams } from "react-router-dom";

@@ -3,7 +3,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { createUser } from "../../services/user/actions";
+import { createUser } from "../services/user/actions";
 import { useDispatch } from "react-redux";
 
 function Register() {

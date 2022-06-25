@@ -20,6 +20,7 @@ import {
 } from "../../services/burger-constructor/actions";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
 import { useHistory } from "react-router-dom";
+import {isLoggedIn} from "../../services/user/selectors";
 
 function BurgerConstructor() {
   const [total, setTotal] = useState(0);
@@ -48,8 +49,9 @@ function BurgerConstructor() {
     },
   });
 
+  const isAuthenticated = useSelector(isLoggedIn);
+
   const submitHandler = () => {
-    const isAuthenticated = localStorage.getItem("refreshToken") !== null;
     if (isAuthenticated) {
       dispatch(submitOrder(topItem, midItems));
     } else {

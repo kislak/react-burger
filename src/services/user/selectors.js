@@ -1,4 +1,5 @@
 export const accessTokenSelector = (store) => store.userStore.accessToken;
+export const isLoggedIn = (store) => store.userStore.accessToken !== null ;
 
 export const userSelector = (store) => {
   return {
@@ -6,3 +7,4 @@ export const userSelector = (store) => {
     email: store.userStore.email,
   };
 };
+

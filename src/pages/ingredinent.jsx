@@ -1,11 +1,11 @@
-import IngredientDetails from "../modal/ingredient-details/ingredient-details";
+import IngredientDetails from "../components/modal/ingredient-details/ingredient-details";
 import styles from "./pages.module.css";
 import { useEffect } from "react";
-import { getIngredients } from "../../services/ingredients/actions";
+import { getIngredients } from "../services/ingredients/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentIngredient } from "../../services/current-ingredient/actions";
+import { setCurrentIngredient } from "../services/current-ingredient/actions";
 import { useParams } from "react-router-dom";
-import { ingredientsSelector } from "../../services/ingredients/selectors";
+import { ingredientsSelector } from "../services/ingredients/selectors";
 
 function Ingredient() {
   const dispatch = useDispatch();
