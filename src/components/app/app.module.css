@@ -4,6 +4,7 @@
     "header header"
     "ingredients constructor";
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content 1fr;
   grid-gap: 40px;
   overflow-y: hidden;
   height: 100vh;

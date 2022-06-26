@@ -1,64 +1,76 @@
-import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
 import AppHeader from "../app-header/app-header";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import IngredientDetails from "../modal/ingredient-details/ingredient-details";
-import OrderDetails from "../modal/order-details/order-details";
+import Main from "../../pages/main";
+import Register from "../../pages/register";
+import Login from "../../pages/login";
+import ProtectedRouteNotAuthOnly from "../ProtectedRouteNotAuthOnly";
+import ProtectedRoute from "../ProtectedRoute";
+import Profile from "../../pages/profile";
+import PasswordForgot from "../../pages/password-forgot";
+import PasswordReset from "../../pages/password-reset";
+import NotFound from "../../pages/not-found";
+import Ingredient from "../../pages/ingredinent";
+import { Route, Switch, withRouter } from "react-router-dom";
+import OrderHistory from "../../pages/order-history";
+import { refreshToken } from "../../services/user/actions";
 import { useDispatch, useSelector } from "react-redux";
-
-import Modal from "../modal/modal/modal";
-import { getIngredients } from "../../services/ingredients/actions";
-import { ingredientsSelector } from "../../services/ingredients/selectors";
-import { currentIngredientSelector } from "../../services/current-ingredient/selectors";
-import { setCurrentIngredient } from "../../services/current-ingredient/actions";
-import { openOrderDetailsAction } from "../../services/order/actions";
-import { orderDetailsOpenSelector } from "../../services/order/selectors";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { isLoggedIn } from "../../services/user/selectors";
 
 function App() {
   const dispatch = useDispatch();
-  const data = useSelector(ingredientsSelector);
-  const currentIngredient = useSelector(currentIngredientSelector);
-  const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
 
   useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
+    if (!isAuthenticated) {
+      dispatch(refreshToken());
+    }
+  }, []);
+
+  const isAuthenticated = useSelector(isLoggedIn);
+  const location = useLocation();
 
   return (
     <div className={styles.app}>
       <AppHeader />
-      {data && (
-        <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </DndProvider>
-      )}
+      <Switch>
+        <ProtectedRouteNotAuthOnly path="/register" exact>
+          <Register />
+        </ProtectedRouteNotAuthOnly>
+        <ProtectedRouteNotAuthOnly path="/login" exact>
+          <Login />
+        </ProtectedRouteNotAuthOnly>
+        <ProtectedRouteNotAuthOnly path="/forgot-password" exact>
+          <PasswordForgot />
+        </ProtectedRouteNotAuthOnly>
+        <ProtectedRouteNotAuthOnly
+          path="/reset-password"
+          prevPath="/forgot-password"
+          exact
+        >
+          <PasswordReset />
+        </ProtectedRouteNotAuthOnly>
 
-      <Modal
-        id="modal"
-        isOpen={currentIngredient ? true : false}
-        setClose={() => {
-          dispatch(setCurrentIngredient(null));
-        }}
-        title="Детали ингредиента"
-      >
-        <IngredientDetails />
-      </Modal>
+        <Route path="/" exact>
+          <Main />
+        </Route>
 
-      <Modal
-        id="modal"
-        isOpen={isOrderDetailsOpen}
-        setClose={() => {
-          dispatch(openOrderDetailsAction(false));
-        }}
-      >
-        <OrderDetails />
-      </Modal>
+        <Route path="/ingredients/:id" exact>
+          {location.state === "modal" ? <Main /> : <Ingredient />}
+        </Route>
+
+        <ProtectedRoute path="/profile" exact>
+          <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/orders">
+          <OrderHistory />
+        </ProtectedRoute>
+        <Route path="/">
+          <NotFound />
+        </Route>
+      </Switch>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);

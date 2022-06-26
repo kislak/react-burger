@@ -19,7 +19,8 @@ import {
   addMiddleItem,
 } from "../../services/burger-constructor/actions";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
-import { v4 as uuidv4 } from "uuid";
+import { useHistory } from "react-router-dom";
+import { isLoggedIn } from "../../services/user/selectors";
 
 function BurgerConstructor() {
   const [total, setTotal] = useState(0);
@@ -28,6 +29,7 @@ function BurgerConstructor() {
   const topItem = useSelector(topItemSelector);
   const midItems = useSelector(midItemsSelector);
   const allItems = useSelector(allItemsSelector);
+  const history = useHistory();
 
   useEffect(() => {
     const newTotal = allItems.reduce((acc, cur) => {
@@ -46,6 +48,19 @@ function BurgerConstructor() {
       }
     },
   });
+
+  const isAuthenticated = useSelector(isLoggedIn);
+
+  const submitHandler = () => {
+    if (isAuthenticated) {
+      dispatch(submitOrder(topItem, midItems));
+    } else {
+      history.push({
+        pathname: "/login",
+        state: { afterLogin: "/" },
+      });
+    }
+  };
 
   return (
     <section className={`${styles.constructor} mt-15`} ref={dropRef}>
@@ -97,7 +112,7 @@ function BurgerConstructor() {
             type="primary"
             size="medium"
             onClick={() => {
-              dispatch(submitOrder(topItem, midItems));
+              submitHandler();
             }}
           >
             Оформить заказ
