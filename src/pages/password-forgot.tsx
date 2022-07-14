@@ -7,21 +7,26 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { sendPasswordResetEmail } from "../services/password/actions";
 
+// костыль чтобы Button принимал children
+declare module "react" {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 function PasswordForgot() {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(
-      sendPasswordResetEmail(email, () => {
-        history.push({
-          pathname: "/reset-password",
-          state: { fromPath: "/forgot-password" },
-        });
-      })
-    );
+    sendPasswordResetEmail(email, dispatch, () => {
+      history.push({
+        pathname: "/reset-password",
+        state: { fromPath: "/forgot-password" },
+      });
+    });
   };
 
   return (

@@ -6,19 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentIngredient } from "../services/current-ingredient/actions";
 import { useParams } from "react-router-dom";
 import { ingredientsSelector } from "../services/ingredients/selectors";
+import { TBurgerItem } from "../prop-types/burger-item";
 
 function Ingredient() {
   const dispatch = useDispatch();
-  const items = useSelector(ingredientsSelector);
-  const params = useParams();
-
+  const items: Array<TBurgerItem> = useSelector(ingredientsSelector);
+  const { id } = useParams() as {
+    id: string;
+  };
   useEffect(() => {
-    dispatch(getIngredients());
+    getIngredients(dispatch);
   }, [dispatch]);
 
   useEffect(() => {
-    const item = items.find((x) => x._id === params.id);
-    dispatch(setCurrentIngredient(item, () => {}));
+    const item = items.find((x) => x._id === id);
+    if (item) {
+      setCurrentIngredient(item, dispatch, () => {});
+    }
   }, [items]);
 
   return (

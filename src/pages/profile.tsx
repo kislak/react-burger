@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./pages.module.css";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { accessTokenSelector, userSelector } from "../services/user/selectors";
 import { getUser, logout, updateUser } from "../services/user/actions";
 
-function Profile() {
+const Profile: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,9 +27,15 @@ function Profile() {
     setEmail(user.email);
   }, [user]);
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatchUpdateUser();
+  };
+
+  const dispatchUpdateUser = () => {
     updateUser(token, email, name, dispatch);
   };
+
   const logoutHandler = () => {
     logout(token, dispatch, () => {
       history.push("/login");
@@ -71,7 +77,7 @@ function Profile() {
               icon={nameEditable ? "CheckMarkIcon" : "EditIcon"}
               onIconClick={() => {
                 setNameEditable(!nameEditable);
-                submitHandler();
+                dispatchUpdateUser();
               }}
               disabled={!nameEditable}
               onChange={(e) => setName(e.target.value)}
@@ -87,7 +93,7 @@ function Profile() {
               icon={emailEditable ? "CheckMarkIcon" : "EditIcon"}
               onIconClick={() => {
                 setEmailEditable(!emailEditable);
-                submitHandler();
+                dispatchUpdateUser();
               }}
               disabled={!emailEditable}
               onChange={(e) => setEmail(e.target.value)}
@@ -102,7 +108,7 @@ function Profile() {
               icon={passwordEditable ? "CheckMarkIcon" : "CheckMarkIcon"}
               onIconClick={() => {
                 setPasswordEditable(false);
-                // submitHandler();
+                // dispatchUpdateUser();
               }}
               value={password}
               disabled={!passwordEditable}
@@ -114,6 +120,6 @@ function Profile() {
       </section>
     </section>
   );
-}
+};
 
 export default Profile;

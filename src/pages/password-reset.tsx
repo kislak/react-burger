@@ -6,20 +6,25 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { passwordResetSubmit } from "../services/password/actions";
 import { useDispatch } from "react-redux";
 
-function PasswordReset() {
+// костыль чтобы Button принимал children
+declare module "react" {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
+const PasswordReset: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [token, setToken] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(
-      passwordResetSubmit(password, token, () => {
-        history.push("/login");
-      })
-    );
+    passwordResetSubmit(password, token, dispatch, () => {
+      history.push("/login");
+    });
   };
 
   return (
@@ -66,6 +71,6 @@ function PasswordReset() {
       </form>
     </section>
   );
-}
+};
 
 export default PasswordReset;

@@ -15,6 +15,7 @@ import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useHistory, useParams } from "react-router-dom";
+import { TBurgerItem } from "../prop-types/burger-item";
 
 function Main() {
   const dispatch = useDispatch();
@@ -23,24 +24,24 @@ function Main() {
   const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
   const history = useHistory();
   const items = useSelector(ingredientsSelector);
-  const params = useParams();
+  const { id } = useParams() as {
+    id: string;
+  };
 
   const closeIngredient = () => {
-    dispatch(
-      setCurrentIngredient(null, () => {
-        history.push("/");
-      })
-    );
+    setCurrentIngredient(null, dispatch, () => {
+      history.push("/");
+    });
   };
 
   useEffect(() => {
-    dispatch(getIngredients());
+    getIngredients(dispatch);
   }, [dispatch]);
 
   useEffect(() => {
-    if (params.id) {
-      const item = items.find((x) => x._id === params.id);
-      dispatch(setCurrentIngredient(item, () => {}));
+    if (id) {
+      const item = items.find((x: TBurgerItem) => x._id === id);
+      setCurrentIngredient(item, dispatch, () => {});
     }
   }, [items]);
 

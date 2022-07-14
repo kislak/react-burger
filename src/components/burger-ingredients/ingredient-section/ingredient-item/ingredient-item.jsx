@@ -28,14 +28,12 @@ function IngredientItem({ item }) {
     <section
       className={styles.item}
       onClick={() =>
-        dispatch(
-          setCurrentIngredient(item, () => {
-            history.push({
-              pathname: `/ingredients/${item._id}`,
-              state: "modal",
-            });
-          })
-        )
+        setCurrentIngredient(item, dispatch, () => {
+          history.push({
+            pathname: `/ingredients/${item._id}`,
+            state: "modal",
+          });
+        })
       }
     >
       <span className="mb-8">
