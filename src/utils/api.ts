@@ -1,4 +1,4 @@
-import {TBurgerItem} from "../prop-types/burger-item";
+import { TBurgerItem } from "../prop-types/burger-item";
 
 const BASE_URL = "https://norma.nomoreparties.space/api";
 
