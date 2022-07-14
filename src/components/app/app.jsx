@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      dispatch(refreshToken());
+      refreshToken(dispatch);
     }
   }, []);
 

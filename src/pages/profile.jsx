@@ -19,7 +19,7 @@ function Profile() {
   const history = useHistory();
 
   useEffect(() => {
-    token && dispatch(getUser(token));
+    token && getUser(token,dispatch);
   }, [token]);
 
   useEffect(() => {
@@ -28,14 +28,12 @@ function Profile() {
   }, [user]);
 
   const submitHandler = (e) => {
-    dispatch(updateUser(token, email, name));
+    updateUser(token, email, name, dispatch);
   };
   const logoutHandler = () => {
-    dispatch(
-      logout(token, () => {
+      logout(token, dispatch, () => {
         history.push("/login");
       })
-    );
   };
 
   return (

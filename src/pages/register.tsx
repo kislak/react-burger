@@ -16,11 +16,9 @@ const Register: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(
-      createUser(email, password, name, () => {
-        history.push("/");
-      })
-    );
+    createUser(email, password, name, dispatch, () => {
+      history.push("/");
+    })
   };
 
   return (
@@ -62,9 +60,7 @@ const Register: React.FC = () => {
         </div>
 
         <div className="mt-6">
-          <Button type="primary" size="small">
-            Зарегистрироваться
-          </Button>
+          <Button type="primary" size="small"/>
         </div>
         <div className="mt-20 text text_type_main-default">
           <span className="m-2 text_color_inactive">Уже зарегистрированы?</span>

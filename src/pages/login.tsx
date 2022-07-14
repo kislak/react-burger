@@ -17,12 +17,10 @@ const Login: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(
-      loginUser(email, password, () => {
-        const path = location?.state?.afterLogin || "/";
-        history.push(path);
-      })
-    );
+    loginUser(email, password, dispatch, () => {
+      const path = location?.state?.afterLogin || "/";
+      history.push(path);
+    })
   };
 
   return (
@@ -52,9 +50,8 @@ const Login: React.FC = () => {
           />
         </div>
         <div className="mt-6">
-          <Button type="primary" size="small">
-            Войти
-          </Button>
+          <Button type="primary" size="small" />
+
         </div>
         <div className="mt-20 text text_type_main-default">
           <span className="m-2 text_color_inactive">
