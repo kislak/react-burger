@@ -7,6 +7,13 @@ import { loginUser } from "../services/user/actions";
 import { useDispatch } from "react-redux";
 import { Location } from "history";
 
+// костыль чтобы Button принимал children
+declare module "react" {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,7 +57,9 @@ const Login: React.FC = () => {
           />
         </div>
         <div className="mt-6">
-          <Button type="primary" size="small" />
+          <Button type="primary" size="small">
+            Войти
+          </Button>
         </div>
         <div className="mt-20 text text_type_main-default">
           <span className="m-2 text_color_inactive">

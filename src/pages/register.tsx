@@ -6,6 +6,13 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { createUser } from "../services/user/actions";
 import { useDispatch } from "react-redux";
 
+// костыль чтобы Button принимал children
+declare module "react" {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 const Register: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -60,7 +67,9 @@ const Register: React.FC = () => {
         </div>
 
         <div className="mt-6">
-          <Button type="primary" size="small" />
+          <Button type="primary" size="small">
+            Зарегистрироваться
+          </Button>
         </div>
         <div className="mt-20 text text_type_main-default">
           <span className="m-2 text_color_inactive">Уже зарегистрированы?</span>
