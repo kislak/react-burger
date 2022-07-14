@@ -20,7 +20,7 @@ const Login: React.FC = () => {
     loginUser(email, password, dispatch, () => {
       const path = location?.state?.afterLogin || "/";
       history.push(path);
-    })
+    });
   };
 
   return (
@@ -51,7 +51,6 @@ const Login: React.FC = () => {
         </div>
         <div className="mt-6">
           <Button type="primary" size="small" />
-
         </div>
         <div className="mt-20 text text_type_main-default">
           <span className="m-2 text_color_inactive">
@@ -70,6 +69,6 @@ const Login: React.FC = () => {
       </form>
     </section>
   );
-}
+};
 
 export default Login;

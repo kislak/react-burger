@@ -1,6 +1,6 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/errorHandler";
-import {AnyAction, Dispatch} from "redux";
+import { AnyAction, Dispatch } from "redux";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_ACCESS_TOKEN = "SET_USER_ACCESS_TOKEN";
@@ -26,35 +26,46 @@ const setUserAccessTokenAction = (payload: any) => {
   };
 };
 
-export const createUser = (email: string, password: string, name: string, dispatch: Dispatch, callback: () => void) => {
-    api
-        .register(email, password, name)
-        .then((response) => {
-            dispatch(setUserEmailAction(response.user.email));
-            dispatch(setUserNameAction(response.user.name));
-            dispatch(setUserAccessTokenAction(response.accessToken));
-            localStorage.setItem("refreshToken", response.refreshToken);
-            callback();
-        })
-        .catch((error) => {
-            dispatch(addErrorAction(error));
-        });
-}
+export const createUser = (
+  email: string,
+  password: string,
+  name: string,
+  dispatch: Dispatch,
+  callback: () => void
+) => {
+  api
+    .register(email, password, name)
+    .then((response) => {
+      dispatch(setUserEmailAction(response.user.email));
+      dispatch(setUserNameAction(response.user.name));
+      dispatch(setUserAccessTokenAction(response.accessToken));
+      localStorage.setItem("refreshToken", response.refreshToken);
+      callback();
+    })
+    .catch((error) => {
+      dispatch(addErrorAction(error));
+    });
+};
 
-export const loginUser = (email: string, password: string, dispatch: Dispatch, callback: () => void) => {
-    api
-        .login(email, password)
-        .then((response) => {
-            dispatch(setUserEmailAction(response.user.email));
-            dispatch(setUserNameAction(response.user.name));
-            dispatch(setUserAccessTokenAction(response.accessToken));
-            localStorage.setItem("refreshToken", response.refreshToken);
-            callback();
-        })
-        .catch((error) => {
-            dispatch(addErrorAction(error));
-        });
-}
+export const loginUser = (
+  email: string,
+  password: string,
+  dispatch: Dispatch,
+  callback: () => void
+) => {
+  api
+    .login(email, password)
+    .then((response) => {
+      dispatch(setUserEmailAction(response.user.email));
+      dispatch(setUserNameAction(response.user.name));
+      dispatch(setUserAccessTokenAction(response.accessToken));
+      localStorage.setItem("refreshToken", response.refreshToken);
+      callback();
+    })
+    .catch((error) => {
+      dispatch(addErrorAction(error));
+    });
+};
 
 export const refreshToken = (dispatch: Dispatch) => {
   api
@@ -69,7 +80,11 @@ export const refreshToken = (dispatch: Dispatch) => {
     });
 };
 
-export const logout = (token: string, dispatch: Dispatch, callback:  () => void) => {
+export const logout = (
+  token: string,
+  dispatch: Dispatch,
+  callback: () => void
+) => {
   api
     .logout(token)
     .then((response) => {
@@ -96,7 +111,12 @@ export const getUser = (token: string, dispatch: Dispatch) => {
     });
 };
 
-export const updateUser = (token: string, email: string, name: string, dispatch: Dispatch) => {
+export const updateUser = (
+  token: string,
+  email: string,
+  name: string,
+  dispatch: Dispatch
+) => {
   api
     .updateUser(token, email, name)
     .then((response) => {
