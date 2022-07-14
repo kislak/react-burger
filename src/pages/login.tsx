@@ -3,22 +3,24 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { createUser } from "../services/user/actions";
+import { loginUser } from "../services/user/actions";
 import { useDispatch } from "react-redux";
+import { Location } from "history";
 
-function Register() {
-  const [name, setName] = useState("");
+const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+  const location: any = useLocation<Location>();
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(
-      createUser(email, password, name, () => {
-        history.push("/");
+      loginUser(email, password, () => {
+        const path = location?.state?.afterLogin || "/";
+        history.push(path);
       })
     );
   };
@@ -26,17 +28,7 @@ function Register() {
   return (
     <section className={styles.section}>
       <form className={styles.form} onSubmit={submitHandler}>
-        <h1 className="text text_type_main-medium mt-6">Регистрация</h1>
-        <div className={styles.input}>
-          <Input
-            type="text"
-            placeholder="Имя"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            size="small"
-          />
-        </div>
-
+        <h1 className="text text_type_main-medium mt-6">Вход</h1>
         <div className={styles.input}>
           <Input
             type="email"
@@ -46,7 +38,6 @@ function Register() {
             size="small"
           />
         </div>
-
         <div className={styles.input}>
           <Input
             type={passwordVisible ? "text" : "password"}
@@ -60,16 +51,23 @@ function Register() {
             size="small"
           />
         </div>
-
         <div className="mt-6">
           <Button type="primary" size="small">
-            Зарегистрироваться
+            Войти
           </Button>
         </div>
         <div className="mt-20 text text_type_main-default">
-          <span className="m-2 text_color_inactive">Уже зарегистрированы?</span>
-          <Link to="/login" className={styles.link}>
-            Войти
+          <span className="m-2 text_color_inactive">
+            Вы — новый пользователь?
+          </span>
+          <Link to="/register" className={styles.link}>
+            Зарегистрироваться
+          </Link>
+        </div>
+        <div className="mt-4 text text_type_main-default">
+          <span className="m-2 text_color_inactive">Забыли пароль? </span>
+          <Link to="/forgot-password" className={styles.link}>
+            Восстановить пароль
           </Link>
         </div>
       </form>
@@ -77,4 +75,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
