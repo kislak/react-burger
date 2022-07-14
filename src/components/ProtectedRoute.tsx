@@ -5,7 +5,15 @@ import { isLoggedIn } from "../services/user/selectors";
 
 const DEFAULT_ROUTE = "/login";
 
-function ProtectedRoute({ children, ...restOfProps }) {
+interface IProtectedRoute {
+  children: React.FC;
+  any: any;
+}
+
+const ProtectedRoute: React.FC<IProtectedRoute> = ({
+  children,
+  ...restOfProps
+}) => {
   const location = useLocation();
   const isAuthenticated = useSelector(isLoggedIn);
 
@@ -23,6 +31,6 @@ function ProtectedRoute({ children, ...restOfProps }) {
       )}
     </Route>
   );
-}
+};
 
 export default ProtectedRoute;

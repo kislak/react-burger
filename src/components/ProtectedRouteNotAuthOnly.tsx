@@ -3,12 +3,23 @@ import { Redirect, Route, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { isLoggedIn } from "../services/user/selectors";
+import { Location } from "history";
 
 const DEFAULT_ROUTE = "/";
 
-function ProtectedRouteNotAuthOnly({ children, prevPath, ...restOfProps }) {
-  const history = useHistory();
-  const location = useLocation();
+interface IProtectedRouteNotAuthOnly {
+  children: React.FC;
+  prevPath: string | null;
+  any: any;
+}
+
+const ProtectedRouteNotAuthOnly: React.FC<IProtectedRouteNotAuthOnly> = ({
+  children,
+  prevPath,
+  ...restOfProps
+}) => {
+  const history: any = useHistory<History>();
+  const location: any = useLocation<Location>();
   const isAuthenticated = useSelector(isLoggedIn);
 
   if (prevPath && prevPath !== history.location?.state?.fromPath) {
@@ -24,6 +35,6 @@ function ProtectedRouteNotAuthOnly({ children, prevPath, ...restOfProps }) {
       )}
     </Route>
   );
-}
+};
 
 export default ProtectedRouteNotAuthOnly;

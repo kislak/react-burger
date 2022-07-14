@@ -14,7 +14,7 @@ declare module "react" {
   }
 }
 
-function PasswordForgot() {
+const PasswordForgot: React.FC = () => {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
@@ -59,6 +59,6 @@ function PasswordForgot() {
       </form>
     </section>
   );
-}
+};
 
 export default PasswordForgot;

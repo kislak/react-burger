@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function NotFound() {
+const NotFound: React.FC = () => {
   const history = useHistory();
 
   return (
@@ -23,6 +23,6 @@ function NotFound() {
       </section>
     </section>
   );
-}
+};
 
 export default NotFound;

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./pages.module.css";
+import React from "react";
 
-function OrderHistory() {
+const OrderHistory: React.FC = () => {
   return (
     <section className={styles.section}>
       <Link
@@ -18,6 +19,6 @@ function OrderHistory() {
       </Link>
     </section>
   );
-}
+};
 
 export default OrderHistory;
