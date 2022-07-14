@@ -8,7 +8,7 @@ import { Location } from "history";
 const DEFAULT_ROUTE = "/";
 
 interface IProtectedRouteNotAuthOnly {
-  children: React.FC;
+  children: React.ReactNode;
   prevPath: string | null;
   any: any;
 }

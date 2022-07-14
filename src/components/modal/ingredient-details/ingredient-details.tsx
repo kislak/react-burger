@@ -1,8 +1,9 @@
 import styles from "./ingredient-details.module.css";
 import { useSelector } from "react-redux";
 import { currentIngredientSelector } from "../../../services/current-ingredient/selectors";
+import React from "react";
 
-function IngredientDetails() {
+const IngredientDetails: React.FC = () => {
   const currentIngredient = useSelector(currentIngredientSelector);
   return (
     currentIngredient && (
@@ -13,7 +14,6 @@ function IngredientDetails() {
         </p>
 
         <table
-          border="0"
           cellSpacing="20"
           cellPadding="0"
           className="text text_color_inactive mt-8"
@@ -38,6 +38,6 @@ function IngredientDetails() {
       </section>
     )
   );
-}
+};
 
 export default IngredientDetails;

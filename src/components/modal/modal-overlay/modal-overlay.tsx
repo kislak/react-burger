@@ -1,10 +1,19 @@
 import styles from "./modal-overlay.module.css";
-import PropTypes from "prop-types";
-import { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 
-function ModalOverlay({ children, isOpen, setClose }) {
+interface IModalOverlay {
+  children: React.ReactNode;
+  isOpen: boolean;
+  setClose: () => void;
+}
+
+const ModalOverlay: React.FC<IModalOverlay> = ({
+  children,
+  isOpen,
+  setClose,
+}) => {
   const escFunction = useCallback(
-    (e) => {
+    (e: KeyboardEvent) => {
       e.key === "Escape" && setClose();
     },
     [setClose]
@@ -29,12 +38,6 @@ function ModalOverlay({ children, isOpen, setClose }) {
       {children}
     </div>
   );
-}
-
-ModalOverlay.propTypes = {
-  children: PropTypes.element.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  setClose: PropTypes.func.isRequired,
 };
 
 export default ModalOverlay;

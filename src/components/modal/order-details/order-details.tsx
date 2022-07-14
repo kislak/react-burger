@@ -9,7 +9,7 @@ import {
   showLoader,
 } from "../../../services/order/selectors";
 
-function OrderDetails() {
+const OrderDetails: React.FC = () => {
   const orderNumber = useSelector(orderNumberSelector);
   const loading = useSelector(showLoader);
 
@@ -36,6 +36,6 @@ function OrderDetails() {
       )}
     </section>
   );
-}
+};
 
 export default OrderDetails;

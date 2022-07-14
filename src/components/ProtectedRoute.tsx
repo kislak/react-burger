@@ -6,7 +6,7 @@ import { isLoggedIn } from "../services/user/selectors";
 const DEFAULT_ROUTE = "/login";
 
 interface IProtectedRoute {
-  children: React.FC;
+  children: React.ReactNode;
   any: any;
 }
 

@@ -2,12 +2,19 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
 import styles from "../modal-overlay/modal-overlay.module.css";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 
-function Modal({ id, title, isOpen, setClose, children }) {
+interface IModal {
+  id: string;
+  title?: string;
+  isOpen: boolean;
+  children: React.ReactNode;
+  setClose: () => void;
+}
+
+const Modal: React.FC<IModal> = ({ id, title, isOpen, setClose, children }) => {
   return ReactDOM.createPortal(
     <ModalOverlay isOpen={isOpen} setClose={setClose}>
       <section
@@ -23,21 +30,14 @@ function Modal({ id, title, isOpen, setClose, children }) {
             type="button"
             onClick={setClose}
           >
-            <CloseIcon />
+            <CloseIcon type="primary" />
           </button>
         </div>
         <article className={styles.content}>{children}</article>
       </section>
     </ModalOverlay>,
-    document.querySelector(`#${id}`)
+    document.querySelector(`#${id}`)!
   );
-}
-
-Modal.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
-  setClose: PropTypes.func.isRequired,
 };
 
 export default Modal;
