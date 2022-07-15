@@ -45,7 +45,7 @@ const Main: React.FC = () => {
       const item = items.find((x: TBurgerItem) => x._id === id);
       dispatch(setCurrentIngredient(item, () => {}));
     }
-  }, [items]);
+  }, [items, dispatch, id]);
 
   return (
     <>

@@ -44,7 +44,7 @@ const IngredientItem: React.FC<IIngredientItem> = ({ item }) => {
       <span className="mb-8">
         {count > 0 && <Counter count={count} size="default" />}
       </span>
-      <img src={item.image} ref={dragRef} />
+      <img src={item.image} ref={dragRef} alt="drag-icon" />
       <div className={styles.price}>
         <span className="text text_type_digits-default m-1">{item.price}</span>
         <CurrencyIcon type="primary" />

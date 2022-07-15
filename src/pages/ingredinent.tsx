@@ -23,7 +23,7 @@ const Ingredient: React.FC = () => {
     if (item) {
       dispatch(setCurrentIngredient(item, () => {}));
     }
-  }, [items]);
+  }, [items, dispatch, id]);
 
   return (
     <section className={styles.section}>

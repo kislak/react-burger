@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, MouseEvent } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./pages.module.css";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -20,7 +20,7 @@ const Profile: React.FC = () => {
 
   useEffect(() => {
     token && dispatch(getUser(token));
-  }, [token]);
+  }, [token, dispatch]);
 
   useEffect(() => {
     setName(user.name);
@@ -36,7 +36,8 @@ const Profile: React.FC = () => {
     dispatch(updateUser(token, email, name));
   };
 
-  const logoutHandler = () => {
+  const logoutHandler = (e: MouseEvent) => {
+    e.preventDefault();
     dispatch(
       logout(token, () => {
         history.push("/login");
@@ -62,6 +63,7 @@ const Profile: React.FC = () => {
         <a
           className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
           onClick={logoutHandler}
+          href="/#"
         >
           Выход
         </a>

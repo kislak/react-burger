@@ -27,15 +27,14 @@ declare module "react" {
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(isLoggedIn);
+  const location = useLocation();
 
   useEffect(() => {
     if (!isAuthenticated) {
       dispatch(refreshToken());
     }
-  }, []);
-
-  const isAuthenticated = useSelector(isLoggedIn);
-  const location = useLocation();
+  }, [dispatch, isAuthenticated]);
 
   return (
     <div className={styles.app}>
