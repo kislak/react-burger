@@ -68,7 +68,9 @@ export const loginUser = (
 };
 
 export const refreshToken = (dispatch: Dispatch) => {
-  if (!localStorage.hasOwnProperty("refreshToken")) { return }
+  if (!localStorage.hasOwnProperty("refreshToken")) {
+    return;
+  }
   api
     .refreshToken()
     .then((response) => {
