@@ -7,13 +7,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { sendPasswordResetEmail } from "../services/password/actions";
 
-// костыль чтобы Button принимал children
-declare module "react" {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-
 const PasswordForgot: React.FC = () => {
   const [email, setEmail] = useState("");
   const history = useHistory();

@@ -6,13 +6,6 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { passwordResetSubmit } from "../services/password/actions";
 import { useDispatch } from "react-redux";
 
-// костыль чтобы Button принимал children
-declare module "react" {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-
 const PasswordReset: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);

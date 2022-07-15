@@ -7,13 +7,6 @@ import { loginUser } from "../services/user/actions";
 import { useDispatch } from "react-redux";
 import { Location } from "history";
 
-// костыль чтобы Button принимал children
-declare module "react" {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

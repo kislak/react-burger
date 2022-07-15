@@ -6,13 +6,6 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { createUser } from "../services/user/actions";
 import { useDispatch } from "react-redux";
 
-// костыль чтобы Button принимал children
-declare module "react" {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-
 const Register: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

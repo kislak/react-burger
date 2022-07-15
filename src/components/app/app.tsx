@@ -19,6 +19,12 @@ import { useLocation } from "react-router-dom";
 import { isLoggedIn } from "../../services/user/selectors";
 import React from "react";
 
+declare module "react" {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
