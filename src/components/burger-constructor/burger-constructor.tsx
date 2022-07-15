@@ -21,14 +21,15 @@ import {
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
 import { useHistory } from "react-router-dom";
 import { isLoggedIn } from "../../services/user/selectors";
+import { TBurgerItem } from "../../prop-types/burger-item";
 
-function BurgerConstructor() {
+const BurgerConstructor: React.FC = () => {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
 
-  const topItem = useSelector(topItemSelector);
-  const midItems = useSelector(midItemsSelector);
-  const allItems = useSelector(allItemsSelector);
+  const topItem: TBurgerItem = useSelector(topItemSelector);
+  const midItems: Array<TBurgerItem> = useSelector(midItemsSelector);
+  const allItems: Array<TBurgerItem> = useSelector(allItemsSelector);
   const history = useHistory();
 
   useEffect(() => {
@@ -40,11 +41,11 @@ function BurgerConstructor() {
 
   const [, dropRef] = useDrop({
     accept: "addIngredient",
-    drop(item) {
+    drop(item: TBurgerItem) {
       if (item.type === "bun") {
-        dispatch(setTopItem(item));
+        setTopItem(item, dispatch);
       } else {
-        dispatch(addMiddleItem(item));
+        addMiddleItem(item, dispatch);
       }
     },
   });
@@ -53,7 +54,7 @@ function BurgerConstructor() {
 
   const submitHandler = () => {
     if (isAuthenticated) {
-      dispatch(submitOrder(topItem, midItems));
+      submitOrder(topItem, midItems, dispatch);
     } else {
       history.push({
         pathname: "/login",
@@ -121,6 +122,6 @@ function BurgerConstructor() {
       </div>
     </section>
   );
-}
+};
 
 export default BurgerConstructor;

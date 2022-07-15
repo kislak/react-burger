@@ -9,8 +9,9 @@ const DEFAULT_ROUTE = "/";
 
 interface IProtectedRouteNotAuthOnly {
   children: React.ReactNode;
-  prevPath: string | null;
-  any: any;
+  prevPath?: string;
+  path: string;
+  exact?: boolean;
 }
 
 const ProtectedRouteNotAuthOnly: React.FC<IProtectedRouteNotAuthOnly> = ({

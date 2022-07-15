@@ -17,8 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { isLoggedIn } from "../../services/user/selectors";
+import React from "react";
 
-function App() {
+const App: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -71,6 +72,6 @@ function App() {
       </Switch>
     </div>
   );
-}
+};
 
 export default withRouter(App);

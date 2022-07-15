@@ -7,7 +7,8 @@ const DEFAULT_ROUTE = "/login";
 
 interface IProtectedRoute {
   children: React.ReactNode;
-  any: any;
+  path: string;
+  exact?: boolean;
 }
 
 const ProtectedRoute: React.FC<IProtectedRoute> = ({

@@ -8,7 +8,7 @@ import {
 import styles from "./app-header.module.css";
 import { Link, NavLink, useRouteMatch } from "react-router-dom";
 
-function AppHeader() {
+const AppHeader: React.FC = () => {
   const matchHome = useRouteMatch({
     path: "/",
     strict: true,
@@ -69,6 +69,6 @@ function AppHeader() {
       </div>
     </header>
   );
-}
+};
 
 export default AppHeader;

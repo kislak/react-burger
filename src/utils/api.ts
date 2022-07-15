@@ -13,7 +13,7 @@ class Api {
     }).then((res) => this.getResponseData(res));
   }
 
-  submitOrder(ingredients: Array<TBurgerItem>) {
+  submitOrder(ingredients: Array<string>) {
     return fetch(`${this.baseUrl}/orders`, {
       method: "POST",
       headers: {

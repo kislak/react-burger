@@ -1,6 +1,4 @@
 import styles from "./burger-constructor-item.module.css";
-import PropTypes from "prop-types";
-import BurgerItemType from "../../../prop-types/burger-item-type";
 import {
   ConstructorElement,
   DragIcon,
@@ -14,8 +12,16 @@ import React from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
 import mergeRefs from "react-merge-refs";
+import { TBurgerItem } from "../../../prop-types/burger-item";
 
-function BurgerConstructorItem({ midItem, index }) {
+interface IBurgerConstructorItem {
+  midItem: TBurgerItem;
+  index: number;
+}
+const BurgerConstructorItem: React.FC<IBurgerConstructorItem> = ({
+  midItem,
+  index,
+}) => {
   const dispatch = useDispatch();
 
   const [{ isDragging }, dragSortRef] = useDrag(
@@ -31,18 +37,18 @@ function BurgerConstructorItem({ midItem, index }) {
 
   const [{ isHoverTop, isHoverBottom }, dropSortRef] = useDrop({
     accept: "sortIngredient",
-    drop(item, monitor) {
-      if (monitor.getDifferenceFromInitialOffset().y < 0) {
-        dispatch(insertBefore(item.midItem.uuid, midItem.uuid));
+    drop(item: { midItem: TBurgerItem }, monitor) {
+      if (monitor.getDifferenceFromInitialOffset()!.y < 0) {
+        insertBefore(item.midItem.uuid, midItem.uuid, dispatch);
       } else {
-        dispatch(insertAfter(item.midItem.uuid, midItem.uuid));
+        insertAfter(item.midItem.uuid, midItem.uuid, dispatch);
       }
     },
     collect: (monitor) => ({
       isHoverTop:
-        monitor.isOver() && monitor.getDifferenceFromInitialOffset().y < 0,
+        monitor.isOver() && monitor.getDifferenceFromInitialOffset()!.y < 0,
       isHoverBottom:
-        monitor.isOver() && monitor.getDifferenceFromInitialOffset().y > 0,
+        monitor.isOver() && monitor.getDifferenceFromInitialOffset()!.y > 0,
     }),
   });
 
@@ -60,22 +66,17 @@ function BurgerConstructorItem({ midItem, index }) {
         visibility: isDragging ? "hidden" : "inherit",
       }}
     >
-      <DragIcon />
+      <DragIcon type="primary" />
       <ConstructorElement
         text={midItem.name}
         price={midItem.price}
         thumbnail={midItem.image_mobile}
         handleClose={() => {
-          dispatch(deleteMiddleItem(index));
+          deleteMiddleItem(index, dispatch);
         }}
       />
     </li>
   );
-}
-
-BurgerConstructorItem.propTypes = {
-  midItem: PropTypes.shape(BurgerItemType).isRequired,
-  index: PropTypes.number.isRequired,
 };
 
 export default BurgerConstructorItem;

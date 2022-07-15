@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
+import { TBurgerItem } from "../../prop-types/burger-item";
+import { Dispatch } from "redux";
 
 export const SET_TOP_ITEM = "SET_TOP_ITEM";
 export const ADD_MIDDLE_ITEM = "ADD_MIDDLE_ITEM";
@@ -7,14 +9,14 @@ export const INSERT_BEFORE = "INSERT_BEFORE";
 export const INSERT_AFTER = "INSERT_AFTER";
 export const RESET_CONSTRUCTOR = "RESET_CONSTRUCTOR";
 
-const setTopItemAction = (payload) => {
+const setTopItemAction = (payload: any) => {
   return {
     type: SET_TOP_ITEM,
     payload: payload,
   };
 };
 
-const addMiddleItemAction = (playload) => {
+const addMiddleItemAction = (playload: TBurgerItem) => {
   const midItem = Object.assign({}, playload);
   midItem.uuid = uuidv4();
 
@@ -24,21 +26,21 @@ const addMiddleItemAction = (playload) => {
   };
 };
 
-const deleteMiddleItemAction = (payload) => {
+const deleteMiddleItemAction = (payload: any) => {
   return {
     type: DELETE_MIDDLE_ITEM,
     payload: payload,
   };
 };
 
-const insertBeforeAction = (payload) => {
+const insertBeforeAction = (payload: any) => {
   return {
     type: INSERT_BEFORE,
     payload: payload,
   };
 };
 
-const insertAfterAction = (payload) => {
+const insertAfterAction = (payload: any) => {
   return {
     type: INSERT_AFTER,
     payload: payload,
@@ -51,23 +53,31 @@ export const resetOrderConstructorAction = () => {
   };
 };
 
-export const setTopItem = (item) => (dispatch) => {
+export const setTopItem = (item: TBurgerItem, dispatch: Dispatch) => {
   dispatch(setTopItemAction(item));
 };
 
-export const addMiddleItem = (item) => (dispatch) => {
+export const addMiddleItem = (item: TBurgerItem, dispatch: Dispatch) => {
   dispatch(addMiddleItemAction(item));
 };
 
-export const deleteMiddleItem = (index) => (dispatch) => {
+export const deleteMiddleItem = (index: number, dispatch: Dispatch) => {
   dispatch(deleteMiddleItemAction(index));
 };
 
-export const insertBefore = (uuid, insertBeforeUuid) => (dispatch) => {
+export const insertBefore = (
+  uuid: string,
+  insertBeforeUuid: string,
+  dispatch: Dispatch
+) => {
   dispatch(
     insertBeforeAction({ uuid: uuid, insertBeforeUuid: insertBeforeUuid })
   );
 };
-export const insertAfter = (uuid, insertAfterUuid) => (dispatch) => {
+export const insertAfter = (
+  uuid: string,
+  insertAfterUuid: string,
+  dispatch: Dispatch
+) => {
   dispatch(insertAfterAction({ uuid: uuid, insertAfterUuid: insertAfterUuid }));
 };
