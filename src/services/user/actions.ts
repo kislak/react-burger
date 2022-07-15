@@ -1,25 +1,25 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/errorHandler";
-import { AnyAction, Dispatch } from "redux";
+import { Dispatch } from "redux";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_ACCESS_TOKEN = "SET_USER_ACCESS_TOKEN";
 
-const setUserEmailAction = (payload: any) => {
+const setUserEmailAction = (payload: string) => {
   return {
     type: SET_USER_EMAIL,
     payload: payload,
   };
 };
 
-const setUserNameAction = (payload: any) => {
+const setUserNameAction = (payload: string) => {
   return {
     type: SET_USER_NAME,
     payload: payload,
   };
 };
 
-const setUserAccessTokenAction = (payload: any) => {
+const setUserAccessTokenAction = (payload: string | null) => {
   return {
     type: SET_USER_ACCESS_TOKEN,
     payload: payload,

@@ -7,21 +7,21 @@ export const SUBMIT_ORDER = "SUBMIT_ORDER_SUCCESS";
 export const OPEN_ORDER_DETAILS = "OPEN_ORDER_DETAILS";
 export const SHOW_LOADER = "SHOW_LOADER";
 
-const submitOrderAction = (payload: any) => {
+const submitOrderAction = (payload: string) => {
   return {
     type: SUBMIT_ORDER,
     payload: payload,
   };
 };
 
-const showLoaderAction = (payload: any) => {
+const showLoaderAction = (payload: boolean) => {
   return {
     type: SHOW_LOADER,
     payload: payload,
   };
 };
 
-export const openOrderDetailsAction = (payload: any) => {
+export const openOrderDetailsAction = (payload: boolean) => {
   return {
     type: OPEN_ORDER_DETAILS,
     payload: payload,

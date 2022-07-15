@@ -9,7 +9,7 @@ export const INSERT_BEFORE = "INSERT_BEFORE";
 export const INSERT_AFTER = "INSERT_AFTER";
 export const RESET_CONSTRUCTOR = "RESET_CONSTRUCTOR";
 
-const setTopItemAction = (payload: any) => {
+const setTopItemAction = (payload: TBurgerItem) => {
   return {
     type: SET_TOP_ITEM,
     payload: payload,
@@ -26,21 +26,27 @@ const addMiddleItemAction = (playload: TBurgerItem) => {
   };
 };
 
-const deleteMiddleItemAction = (payload: any) => {
+const deleteMiddleItemAction = (payload: number) => {
   return {
     type: DELETE_MIDDLE_ITEM,
     payload: payload,
   };
 };
 
-const insertBeforeAction = (payload: any) => {
+const insertBeforeAction = (payload: {
+  uuid: string;
+  insertBeforeUuid: string;
+}) => {
   return {
     type: INSERT_BEFORE,
     payload: payload,
   };
 };
 
-const insertAfterAction = (payload: any) => {
+const insertAfterAction = (payload: {
+  uuid: string;
+  insertAfterUuid: string;
+}) => {
   return {
     type: INSERT_AFTER,
     payload: payload,

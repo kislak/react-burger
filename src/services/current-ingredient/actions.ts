@@ -3,7 +3,7 @@ import { TBurgerItem } from "../../prop-types/burger-item";
 
 export const SET_CURRENT = "SET_CURRENT";
 
-const setCurrentAction = (payload: any) => {
+const setCurrentAction = (payload: TBurgerItem | null) => {
   return {
     type: SET_CURRENT,
     payload: payload,
