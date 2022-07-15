@@ -3,16 +3,19 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
-import BurgerItemType from "../../../../prop-types/burger-item-type";
 import styles from "./ingredient-item.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentIngredient } from "../../../../services/current-ingredient/actions";
 import { allItemsSelector } from "../../../../services/burger-constructor/selectors";
 import { useDrag } from "react-dnd";
 import { useHistory } from "react-router-dom";
+import { TBurgerItem } from "../../../../prop-types/burger-item";
 
-function IngredientItem({ item }) {
+interface IIngredientItem {
+  item: TBurgerItem;
+}
+
+const IngredientItem: React.FC<IIngredientItem> = ({ item }) => {
   const [, dragRef] = useDrag({
     type: "addIngredient",
     item: item,
@@ -42,17 +45,13 @@ function IngredientItem({ item }) {
       <img src={item.image} ref={dragRef} />
       <div className={styles.price}>
         <span className="text text_type_digits-default m-1">{item.price}</span>
-        <CurrencyIcon />
+        <CurrencyIcon type="primary" />
       </div>
       <div className={`${styles.name} text text_type_main-default`}>
         {item.name}
       </div>
     </section>
   );
-}
-
-IngredientItem.propTypes = {
-  item: PropTypes.shape(BurgerItemType),
 };
 
 export default IngredientItem;

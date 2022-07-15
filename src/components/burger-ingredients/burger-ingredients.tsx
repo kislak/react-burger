@@ -1,4 +1,4 @@
-import React from "react";
+import React, { UIEvent } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientSection from "./ingredient-section/ingredient-section";
 import styles from "./burger-ingredients.module.css";
@@ -9,31 +9,41 @@ import {
   ingredientsSauce,
 } from "../../services/ingredients/selectors";
 
-function BurgerIngredients() {
+const BurgerIngredients: React.FC = () => {
   const [current, setCurrent] = React.useState("bun");
-  const bunRef = React.useRef(null);
-  const sauceRef = React.useRef(null);
-  const mainRef = React.useRef(null);
+  const bunRef = React.useRef<HTMLDivElement>(null);
+  const sauceRef = React.useRef<HTMLDivElement>(null);
+  const mainRef = React.useRef<HTMLDivElement>(null);
 
-  const clickHandler = (value) => {
+  const clickHandler = (value: string) => {
     setCurrent(value);
-    value === "bun" && bunRef.current.scrollIntoView({ behavior: "smooth" });
+    value === "bun" &&
+      bunRef.current &&
+      bunRef.current.scrollIntoView({ behavior: "smooth" });
     value === "sauce" &&
+      sauceRef.current &&
       sauceRef.current.scrollIntoView({ behavior: "smooth" });
-    value === "main" && mainRef.current.scrollIntoView({ behavior: "smooth" });
+    value === "main" &&
+      mainRef.current &&
+      mainRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  const scrollHandler = (e) => {
-    const bunRefRec = bunRef.current.getBoundingClientRect();
-    const sauceRefRec = sauceRef.current.getBoundingClientRect();
+  const scrollHandler = (e: UIEvent<HTMLDivElement>) => {
+    if (bunRef.current) {
+      const bunRefRec = bunRef.current.getBoundingClientRect();
+      if (bunRefRec.height - 400 + bunRefRec.top > 0) {
+        setCurrent("bun");
+        return;
+      }
+    }
 
-    if (bunRefRec.height - 400 + bunRefRec.top > 0) {
-      setCurrent("bun");
-      return;
+    if (sauceRef.current) {
+      const sauceRefRec = sauceRef.current.getBoundingClientRect();
+      if (sauceRefRec.height - 400 + sauceRefRec.top > 0) {
+        setCurrent("sauce");
+        return;
+      }
     }
-    if (sauceRefRec.height - 400 + sauceRefRec.top > 0) {
-      setCurrent("sauce");
-      return;
-    }
+
     setCurrent("main");
   };
 
@@ -73,6 +83,6 @@ function BurgerIngredients() {
       </div>
     </section>
   );
-}
+};
 
 export default BurgerIngredients;
