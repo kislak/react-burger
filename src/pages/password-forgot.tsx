@@ -14,12 +14,14 @@ const PasswordForgot: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    sendPasswordResetEmail(email, dispatch, () => {
-      history.push({
-        pathname: "/reset-password",
-        state: { fromPath: "/forgot-password" },
-      });
-    });
+    dispatch(
+      sendPasswordResetEmail(email, () => {
+        history.push({
+          pathname: "/reset-password",
+          state: { fromPath: "/forgot-password" },
+        });
+      })
+    );
   };
 
   return (

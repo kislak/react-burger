@@ -16,9 +16,11 @@ const Register: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    createUser(email, password, name, dispatch, () => {
-      history.push("/");
-    });
+    dispatch(
+      createUser(email, password, name, () => {
+        history.push("/");
+      })
+    );
   };
 
   return (

@@ -39,9 +39,9 @@ const BurgerConstructorItem: React.FC<IBurgerConstructorItem> = ({
     accept: "sortIngredient",
     drop(item: { midItem: TBurgerItem }, monitor) {
       if (monitor.getDifferenceFromInitialOffset()!.y < 0) {
-        insertBefore(item.midItem.uuid, midItem.uuid, dispatch);
+        dispatch(insertBefore(item.midItem.uuid, midItem.uuid));
       } else {
-        insertAfter(item.midItem.uuid, midItem.uuid, dispatch);
+        dispatch(insertAfter(item.midItem.uuid, midItem.uuid));
       }
     },
     collect: (monitor) => ({
@@ -72,7 +72,7 @@ const BurgerConstructorItem: React.FC<IBurgerConstructorItem> = ({
         price={midItem.price}
         thumbnail={midItem.image_mobile}
         handleClose={() => {
-          deleteMiddleItem(index, dispatch);
+          dispatch(deleteMiddleItem(index));
         }}
       />
     </li>

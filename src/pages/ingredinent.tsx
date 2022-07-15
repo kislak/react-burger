@@ -15,13 +15,13 @@ const Ingredient: React.FC = () => {
     id: string;
   };
   useEffect(() => {
-    getIngredients(dispatch);
+    dispatch(getIngredients());
   }, [dispatch]);
 
   useEffect(() => {
     const item = items.find((x) => x._id === id);
     if (item) {
-      setCurrentIngredient(item, dispatch, () => {});
+      dispatch(setCurrentIngredient(item, () => {}));
     }
   }, [items]);
 

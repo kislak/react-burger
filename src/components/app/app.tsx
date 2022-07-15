@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      refreshToken(dispatch);
+      dispatch(refreshToken());
     }
   }, []);
 

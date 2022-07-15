@@ -28,27 +28,25 @@ export const openOrderDetailsAction = (payload: any) => {
   };
 };
 
-export const submitOrder = (
-  topItem: TBurgerItem,
-  midItems: Array<TBurgerItem>,
-  dispatch: Dispatch
-) => {
-  const ingredients = [topItem._id, topItem._id].concat(
-    midItems.map((i) => {
-      return i._id;
-    })
-  );
-  dispatch(showLoaderAction(true));
-  api
-    .submitOrder(ingredients)
-    .then((response) => {
-      dispatch(showLoaderAction(false));
-      dispatch(submitOrderAction(response.order.number));
-      dispatch(openOrderDetailsAction(true));
-      dispatch(resetOrderConstructorAction());
-    })
-    .catch((error) => {
-      dispatch(showLoaderAction(false));
-      dispatch(addErrorAction(error));
-    });
-};
+export const submitOrder =
+  (topItem: TBurgerItem, midItems: Array<TBurgerItem>): any =>
+  (dispatch: Dispatch) => {
+    const ingredients = [topItem._id, topItem._id].concat(
+      midItems.map((i) => {
+        return i._id;
+      })
+    );
+    dispatch(showLoaderAction(true));
+    api
+      .submitOrder(ingredients)
+      .then((response) => {
+        dispatch(showLoaderAction(false));
+        dispatch(submitOrderAction(response.order.number));
+        dispatch(openOrderDetailsAction(true));
+        dispatch(resetOrderConstructorAction());
+      })
+      .catch((error) => {
+        dispatch(showLoaderAction(false));
+        dispatch(addErrorAction(error));
+      });
+  };

@@ -29,19 +29,21 @@ const Main: React.FC = () => {
   };
 
   const closeIngredient = () => {
-    setCurrentIngredient(null, dispatch, () => {
-      history.push("/");
-    });
+    dispatch(
+      setCurrentIngredient(null, () => {
+        history.push("/");
+      })
+    );
   };
 
   useEffect(() => {
-    getIngredients(dispatch);
+    dispatch(getIngredients());
   }, [dispatch]);
 
   useEffect(() => {
     if (id) {
       const item = items.find((x: TBurgerItem) => x._id === id);
-      setCurrentIngredient(item, dispatch, () => {});
+      dispatch(setCurrentIngredient(item, () => {}));
     }
   }, [items]);
 

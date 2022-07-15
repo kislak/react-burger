@@ -31,12 +31,14 @@ const IngredientItem: React.FC<IIngredientItem> = ({ item }) => {
     <section
       className={styles.item}
       onClick={() =>
-        setCurrentIngredient(item, dispatch, () => {
-          history.push({
-            pathname: `/ingredients/${item._id}`,
-            state: "modal",
-          });
-        })
+        dispatch(
+          setCurrentIngredient(item, () => {
+            history.push({
+              pathname: `/ingredients/${item._id}`,
+              state: "modal",
+            });
+          })
+        )
       }
     >
       <span className="mb-8">

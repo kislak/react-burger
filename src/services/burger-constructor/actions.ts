@@ -53,31 +53,35 @@ export const resetOrderConstructorAction = () => {
   };
 };
 
-export const setTopItem = (item: TBurgerItem, dispatch: Dispatch) => {
-  dispatch(setTopItemAction(item));
-};
+export const setTopItem =
+  (item: TBurgerItem): any =>
+  (dispatch: Dispatch) => {
+    dispatch(setTopItemAction(item));
+  };
 
-export const addMiddleItem = (item: TBurgerItem, dispatch: Dispatch) => {
-  dispatch(addMiddleItemAction(item));
-};
+export const addMiddleItem =
+  (item: TBurgerItem): any =>
+  (dispatch: Dispatch) => {
+    dispatch(addMiddleItemAction(item));
+  };
 
-export const deleteMiddleItem = (index: number, dispatch: Dispatch) => {
-  dispatch(deleteMiddleItemAction(index));
-};
+export const deleteMiddleItem =
+  (index: number): any =>
+  (dispatch: Dispatch) => {
+    dispatch(deleteMiddleItemAction(index));
+  };
 
-export const insertBefore = (
-  uuid: string,
-  insertBeforeUuid: string,
-  dispatch: Dispatch
-) => {
-  dispatch(
-    insertBeforeAction({ uuid: uuid, insertBeforeUuid: insertBeforeUuid })
-  );
-};
-export const insertAfter = (
-  uuid: string,
-  insertAfterUuid: string,
-  dispatch: Dispatch
-) => {
-  dispatch(insertAfterAction({ uuid: uuid, insertAfterUuid: insertAfterUuid }));
-};
+export const insertBefore =
+  (uuid: string, insertBeforeUuid: string): any =>
+  (dispatch: Dispatch) => {
+    dispatch(
+      insertBeforeAction({ uuid: uuid, insertBeforeUuid: insertBeforeUuid })
+    );
+  };
+export const insertAfter =
+  (uuid: string, insertAfterUuid: string): any =>
+  (dispatch: Dispatch) => {
+    dispatch(
+      insertAfterAction({ uuid: uuid, insertAfterUuid: insertAfterUuid })
+    );
+  };

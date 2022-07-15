@@ -1,6 +1,6 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/errorHandler";
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_ACCESS_TOKEN = "SET_USER_ACCESS_TOKEN";
@@ -26,48 +26,41 @@ const setUserAccessTokenAction = (payload: any) => {
   };
 };
 
-export const createUser = (
-  email: string,
-  password: string,
-  name: string,
-  dispatch: Dispatch,
-  callback: () => void
-) => {
-  api
-    .register(email, password, name)
-    .then((response) => {
-      dispatch(setUserEmailAction(response.user.email));
-      dispatch(setUserNameAction(response.user.name));
-      dispatch(setUserAccessTokenAction(response.accessToken));
-      localStorage.setItem("refreshToken", response.refreshToken);
-      callback();
-    })
-    .catch((error) => {
-      dispatch(addErrorAction(error));
-    });
-};
+export const createUser =
+  (email: string, password: string, name: string, callback: () => void): any =>
+  (dispatch: Dispatch) => {
+    api
+      .register(email, password, name)
+      .then((response) => {
+        dispatch(setUserEmailAction(response.user.email));
+        dispatch(setUserNameAction(response.user.name));
+        dispatch(setUserAccessTokenAction(response.accessToken));
+        localStorage.setItem("refreshToken", response.refreshToken);
+        callback();
+      })
+      .catch((error) => {
+        dispatch(addErrorAction(error));
+      });
+  };
 
-export const loginUser = (
-  email: string,
-  password: string,
-  dispatch: Dispatch,
-  callback: () => void
-) => {
-  api
-    .login(email, password)
-    .then((response) => {
-      dispatch(setUserEmailAction(response.user.email));
-      dispatch(setUserNameAction(response.user.name));
-      dispatch(setUserAccessTokenAction(response.accessToken));
-      localStorage.setItem("refreshToken", response.refreshToken);
-      callback();
-    })
-    .catch((error) => {
-      dispatch(addErrorAction(error));
-    });
-};
+export const loginUser =
+  (email: string, password: string, callback: () => void): any =>
+  (dispatch: Dispatch) => {
+    api
+      .login(email, password)
+      .then((response) => {
+        dispatch(setUserEmailAction(response.user.email));
+        dispatch(setUserNameAction(response.user.name));
+        dispatch(setUserAccessTokenAction(response.accessToken));
+        localStorage.setItem("refreshToken", response.refreshToken);
+        callback();
+      })
+      .catch((error) => {
+        dispatch(addErrorAction(error));
+      });
+  };
 
-export const refreshToken = (dispatch: Dispatch) => {
+export const refreshToken = (): any => (dispatch: Dispatch) => {
   if (!localStorage.hasOwnProperty("refreshToken")) {
     return;
   }
@@ -83,50 +76,47 @@ export const refreshToken = (dispatch: Dispatch) => {
     });
 };
 
-export const logout = (
-  token: string,
-  dispatch: Dispatch,
-  callback: () => void
-) => {
-  api
-    .logout(token)
-    .then((response) => {
-      dispatch(setUserEmailAction(""));
-      dispatch(setUserNameAction(""));
-      dispatch(setUserAccessTokenAction(null));
-      localStorage.removeItem("refreshToken");
-      callback();
-    })
-    .catch((error) => {
-      dispatch(addErrorAction(error));
-    });
-};
+export const logout =
+  (token: string, callback: () => void): any =>
+  (dispatch: Dispatch) => {
+    api
+      .logout(token)
+      .then((response) => {
+        dispatch(setUserEmailAction(""));
+        dispatch(setUserNameAction(""));
+        dispatch(setUserAccessTokenAction(null));
+        localStorage.removeItem("refreshToken");
+        callback();
+      })
+      .catch((error) => {
+        dispatch(addErrorAction(error));
+      });
+  };
 
-export const getUser = (token: string, dispatch: Dispatch) => {
-  api
-    .getUser(token)
-    .then((response) => {
-      dispatch(setUserEmailAction(response.user.email));
-      dispatch(setUserNameAction(response.user.name));
-    })
-    .catch((error) => {
-      dispatch(addErrorAction(error));
-    });
-};
+export const getUser =
+  (token: string): any =>
+  (dispatch: Dispatch) => {
+    api
+      .getUser(token)
+      .then((response) => {
+        dispatch(setUserEmailAction(response.user.email));
+        dispatch(setUserNameAction(response.user.name));
+      })
+      .catch((error) => {
+        dispatch(addErrorAction(error));
+      });
+  };
 
-export const updateUser = (
-  token: string,
-  email: string,
-  name: string,
-  dispatch: Dispatch
-) => {
-  api
-    .updateUser(token, email, name)
-    .then((response) => {
-      dispatch(setUserEmailAction(response.user.email));
-      dispatch(setUserNameAction(response.user.name));
-    })
-    .catch((error) => {
-      dispatch(addErrorAction(error));
-    });
-};
+export const updateUser =
+  (token: string, email: string, name: string): any =>
+  (dispatch: Dispatch) => {
+    api
+      .updateUser(token, email, name)
+      .then((response) => {
+        dispatch(setUserEmailAction(response.user.email));
+        dispatch(setUserNameAction(response.user.name));
+      })
+      .catch((error) => {
+        dispatch(addErrorAction(error));
+      });
+  };

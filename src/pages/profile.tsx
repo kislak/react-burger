@@ -19,7 +19,7 @@ const Profile: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    token && getUser(token, dispatch);
+    token && dispatch(getUser(token));
   }, [token]);
 
   useEffect(() => {
@@ -33,13 +33,15 @@ const Profile: React.FC = () => {
   };
 
   const dispatchUpdateUser = () => {
-    updateUser(token, email, name, dispatch);
+    dispatch(updateUser(token, email, name));
   };
 
   const logoutHandler = () => {
-    logout(token, dispatch, () => {
-      history.push("/login");
-    });
+    dispatch(
+      logout(token, () => {
+        history.push("/login");
+      })
+    );
   };
 
   return (

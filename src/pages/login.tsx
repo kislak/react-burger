@@ -17,10 +17,12 @@ const Login: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    loginUser(email, password, dispatch, () => {
-      const path = location?.state?.afterLogin || "/";
-      history.push(path);
-    });
+    dispatch(
+      loginUser(email, password, () => {
+        const path = location?.state?.afterLogin || "/";
+        history.push(path);
+      })
+    );
   };
 
   return (

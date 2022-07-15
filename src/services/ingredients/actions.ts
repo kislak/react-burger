@@ -10,7 +10,7 @@ export const ingredientsGetSuccessAction = (payload: any) => {
   };
 };
 
-export const getIngredients = (dispatch: Dispatch) => {
+export const getIngredients = (): any => (dispatch: Dispatch) => {
   api
     .getIngredients()
     .then((response) => {

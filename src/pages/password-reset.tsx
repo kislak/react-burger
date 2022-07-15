@@ -15,9 +15,11 @@ const PasswordReset: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    passwordResetSubmit(password, token, dispatch, () => {
-      history.push("/login");
-    });
+    dispatch(
+      passwordResetSubmit(password, token, () => {
+        history.push("/login");
+      })
+    );
   };
 
   return (

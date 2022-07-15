@@ -10,11 +10,9 @@ const setCurrentAction = (payload: any) => {
   };
 };
 
-export const setCurrentIngredient = (
-  item: TBurgerItem | null,
-  dispatch: Dispatch,
-  callback: () => void
-) => {
-  dispatch(setCurrentAction(item));
-  callback();
-};
+export const setCurrentIngredient =
+  (item: TBurgerItem | null, callback: () => void): any =>
+  (dispatch: Dispatch) => {
+    dispatch(setCurrentAction(item));
+    callback();
+  };

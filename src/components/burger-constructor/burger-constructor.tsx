@@ -43,9 +43,9 @@ const BurgerConstructor: React.FC = () => {
     accept: "addIngredient",
     drop(item: TBurgerItem) {
       if (item.type === "bun") {
-        setTopItem(item, dispatch);
+        dispatch(setTopItem(item));
       } else {
-        addMiddleItem(item, dispatch);
+        dispatch(addMiddleItem(item));
       }
     },
   });
@@ -54,7 +54,7 @@ const BurgerConstructor: React.FC = () => {
 
   const submitHandler = () => {
     if (isAuthenticated) {
-      submitOrder(topItem, midItems, dispatch);
+      dispatch(submitOrder(topItem, midItems));
     } else {
       history.push({
         pathname: "/login",
