@@ -8,7 +8,11 @@ const IngredientDetails: React.FC = () => {
   return (
     currentIngredient && (
       <section className={styles.details}>
-        <img src={currentIngredient.image_large} className="mt-8" />
+        <img
+          src={currentIngredient.image_large}
+          className="mt-8"
+          alt="ingredient image"
+        />
         <p className="mt-4 text text_type_main-medium">
           {currentIngredient.name}
         </p>
