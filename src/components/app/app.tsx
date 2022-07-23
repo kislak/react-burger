@@ -15,9 +15,12 @@ import OrderHistory from "../../pages/order-history";
 import { refreshToken } from "../../services/user/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import { isLoggedIn } from "../../services/user/selectors";
-import React from "react";
+import OrderDetails from "../modal/order-details/order-details";
+import Feed from "../../pages/feed";
+import FeedDetails from "../../pages/feed-details";
 
 declare module "react" {
   interface FunctionComponent<P = {}> {
@@ -68,9 +71,19 @@ const App: React.FC = () => {
         <ProtectedRoute path="/profile" exact>
           <Profile />
         </ProtectedRoute>
-        <ProtectedRoute path="/profile/orders">
+        <ProtectedRoute path="/profile/orders" exact>
           <OrderHistory />
         </ProtectedRoute>
+        <ProtectedRoute path="/profile/orders/:id">
+          <OrderDetails />
+        </ProtectedRoute>
+
+        <Route path="/feed" exact>
+          <Feed />
+        </Route>
+        <Route path="/feed/:id">
+          <FeedDetails />
+        </Route>
         <Route path="/">
           <NotFound />
         </Route>

@@ -11,7 +11,7 @@ const IngredientDetails: React.FC = () => {
         <img
           src={currentIngredient.image_large}
           className="mt-8"
-          alt="ingredient image"
+          alt="ingredient"
         />
         <p className="mt-4 text text_type_main-medium">
           {currentIngredient.name}

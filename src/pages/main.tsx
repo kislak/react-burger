@@ -58,7 +58,7 @@ const Main: React.FC = () => {
 
       <Modal
         id="modal"
-        isOpen={currentIngredient ? true : false}
+        isOpen={currentIngredient}
         setClose={() => {
           closeIngredient();
         }}
