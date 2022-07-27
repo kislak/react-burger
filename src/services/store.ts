@@ -7,7 +7,7 @@ import { AllOrdersHandler } from "./_middleware/all-orders-handler";
 import thunkMiddleware from "redux-thunk";
 
 const initialState = {
-  ingredientsStore: { ingredients: [] }
+  ingredientsStore: { ingredients: [] },
   // allOrdersStore: { orders: [] }
 };
 
@@ -15,7 +15,9 @@ export const configureStore = (): Store => {
   const store = createStore(
     rootReducer,
     initialState,
-    composeWithDevTools(applyMiddleware(errorHandler(), AllOrdersHandler(), thunkMiddleware))
+    composeWithDevTools(
+      applyMiddleware(errorHandler(), AllOrdersHandler(), thunkMiddleware)
+    )
   );
   return store;
 };

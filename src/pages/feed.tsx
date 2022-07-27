@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
-import {wsConnect} from "../services/_middleware/all-orders-handler";
-import {useDispatch} from "react-redux";
+import React, { useEffect } from "react";
+import { wsConnect } from "../services/_middleware/all-orders-handler";
+import { useDispatch } from "react-redux";
 
 type TOrder = {
   id: string;
