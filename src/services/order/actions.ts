@@ -1,5 +1,5 @@
 import api from "../../utils/api";
-import { addErrorAction } from "../_middleware/errorHandler";
+import { addErrorAction } from "../_middleware/error-handler";
 import { resetOrderConstructorAction } from "../burger-constructor/actions";
 import { TBurgerItem } from "../../prop-types/burger-item";
 import { Dispatch } from "redux";

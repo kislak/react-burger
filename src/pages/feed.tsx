@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {wsConnect} from "../services/_middleware/all-orders-handler";
+import {useDispatch} from "react-redux";
 
 type TOrder = {
   id: string;
@@ -6,6 +8,12 @@ type TOrder = {
 };
 
 const Feed: React.FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(wsConnect);
+  }, [dispatch]);
+
   const orders: Array<TOrder> = [
     {
       id: "0323",
@@ -27,7 +35,7 @@ const Feed: React.FC = () => {
         <h1 className="text text_type_main-large">Лента заказов</h1>
         {orders.map((order) => {
           return (
-            <section>
+            <section key={order.id}>
               #{order.id} - {order.name}
             </section>
           );
@@ -38,7 +46,7 @@ const Feed: React.FC = () => {
           <h2 className="text text_type_main-medium">Готовы:</h2>
           <ul>
             {readyOrders.map((orederId) => {
-              return <li>{orederId}</li>;
+              return <li key={orederId}>{orederId}</li>;
             })}
           </ul>
         </section>
@@ -47,7 +55,7 @@ const Feed: React.FC = () => {
           <h2 className="text text_type_main-medium">В работе:</h2>
           <ul>
             {pendingOrders.map((orederId) => {
-              return <li>{orederId}</li>;
+              return <li key={orederId}>{orederId}</li>;
             })}
           </ul>
         </section>

@@ -1,5 +1,5 @@
 import api from "../../utils/api";
-import { addErrorAction } from "../_middleware/errorHandler";
+import { addErrorAction } from "../_middleware/error-handler";
 import { Dispatch } from "redux";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_NAME = "SET_USER_NAME";
