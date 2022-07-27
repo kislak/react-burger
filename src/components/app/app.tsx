@@ -60,30 +60,34 @@ const App: React.FC = () => {
           <PasswordReset />
         </ProtectedRouteNotAuthOnly>
 
+        <ProtectedRoute path="/profile" exact>
+          <Profile />
+        </ProtectedRoute>
+
+        <ProtectedRoute path="/profile/orders" exact>
+          <OrderHistory />
+        </ProtectedRoute>
+
+        <ProtectedRoute path="/profile/orders/:id" exact>
+          <OrderDetails />
+        </ProtectedRoute>
+
         <Route path="/" exact>
           <Main />
+        </Route>
+
+        <Route path="/feed" exact>
+          <Feed />
+        </Route>
+
+        <Route path="/feed/:id" exact>
+          <FeedDetails />
         </Route>
 
         <Route path="/ingredients/:id" exact>
           {location.state === "modal" ? <Main /> : <Ingredient />}
         </Route>
 
-        <ProtectedRoute path="/profile" exact>
-          <Profile />
-        </ProtectedRoute>
-        <ProtectedRoute path="/profile/orders" exact>
-          <OrderHistory />
-        </ProtectedRoute>
-        <ProtectedRoute path="/profile/orders/:id">
-          <OrderDetails />
-        </ProtectedRoute>
-
-        <Route path="/feed" exact>
-          <Feed />
-        </Route>
-        <Route path="/feed/:id">
-          <FeedDetails />
-        </Route>
         <Route path="/">
           <NotFound />
         </Route>

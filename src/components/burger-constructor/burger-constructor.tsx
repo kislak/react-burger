@@ -22,12 +22,13 @@ import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-
 import { useHistory } from "react-router-dom";
 import { isLoggedIn } from "../../services/user/selectors";
 import { TBurgerItem } from "../../prop-types/burger-item";
+import check from "../../images/check.svg";
 
 const BurgerConstructor: React.FC = () => {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
 
-  const topItem: TBurgerItem = useSelector(topItemSelector);
+  const topItem: TBurgerItem | null = useSelector(topItemSelector);
   const midItems: Array<TBurgerItem> = useSelector(midItemsSelector);
   const allItems: Array<TBurgerItem> = useSelector(allItemsSelector);
   const history = useHistory();
@@ -54,7 +55,9 @@ const BurgerConstructor: React.FC = () => {
 
   const submitHandler = () => {
     if (isAuthenticated) {
-      dispatch(submitOrder(topItem, midItems));
+      if (topItem) {
+        dispatch(submitOrder(topItem, midItems));
+      }
     } else {
       history.push({
         pathname: "/login",
@@ -69,12 +72,12 @@ const BurgerConstructor: React.FC = () => {
         <ConstructorElement
           type="top"
           isLocked={true}
-          text={`${topItem.name}(верх)`}
-          price={topItem.price}
-          thumbnail={topItem.image_mobile}
+          text={`${topItem?.name}(верх)`}
+          price={ topItem?.price || 0 }
+          thumbnail={topItem?.image_mobile || check}
         />
       </div>
-      {!topItem.name && (
+      {!topItem && (
         <div
           className={`${styles.constructor} m-15 text text_type_main-medium`}
         >
@@ -97,9 +100,9 @@ const BurgerConstructor: React.FC = () => {
         <ConstructorElement
           type="bottom"
           isLocked={true}
-          text={`${topItem.name}(низ)`}
-          price={topItem.price}
-          thumbnail={topItem.image_mobile}
+          text={`${topItem?.name}(низ)`}
+          price={ topItem?.price || 0 }
+          thumbnail={topItem?.image_mobile || check}
         />
       </div>
 
@@ -108,7 +111,7 @@ const BurgerConstructor: React.FC = () => {
           <span className="text text_type_digits-medium m-2">{total}</span>
           <CurrencyIcon type="primary" />
         </div>
-        {topItem.name && (
+        {topItem && (
           <Button
             type="primary"
             size="medium"

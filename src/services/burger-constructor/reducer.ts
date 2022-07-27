@@ -5,20 +5,22 @@ import {
   INSERT_BEFORE,
   INSERT_AFTER,
   RESET_CONSTRUCTOR,
+  TBurgerConstructorActions
 } from "./actions";
 
-import check from "../../images/check.svg";
+import {TBurgerItem} from "../../prop-types/burger-item";
+
+type TState = {
+  topItem: TBurgerItem | null;
+  midItems: Array<TBurgerItem>
+}
 
 const initialState = {
-  topItem: {
-    name: "",
-    price: 0,
-    image_mobile: check,
-  },
+  topItem: null,
   midItems: [],
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state: TState = initialState, action: TBurgerConstructorActions) => {
   const midItems = state.midItems;
 
   switch (action.type) {
@@ -40,10 +42,10 @@ export const reducer = (state = initialState, action) => {
       };
     case INSERT_BEFORE:
       const index = midItems.findIndex(
-        (item) => item.uuid === action.payload.uuid
+        (item: TBurgerItem) => item.uuid === action.payload.uuid
       );
       const indexToInsertBefore = midItems.findIndex(
-        (item) => item.uuid === action.payload.insertBeforeUuid
+        (item: TBurgerItem) => item.uuid === action.payload.insertBeforeUuid
       );
 
       const itemToInsertBefore = midItems.splice(index, 1)[0];
@@ -55,10 +57,10 @@ export const reducer = (state = initialState, action) => {
       };
     case INSERT_AFTER:
       const currentIndex = midItems.findIndex(
-        (item) => item.uuid === action.payload.uuid
+        (item: TBurgerItem) => item.uuid === action.payload.uuid
       );
       const indexToInsertAfter = midItems.findIndex(
-        (item) => item.uuid === action.payload.insertAfterUuid
+        (item: TBurgerItem) => item.uuid === action.payload.insertAfterUuid
       );
       const itemToInsertAfter = midItems.splice(currentIndex, 1)[0];
       midItems.splice(indexToInsertAfter, 0, itemToInsertAfter);
