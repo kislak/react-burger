@@ -72,7 +72,7 @@ const BurgerConstructor: React.FC = () => {
         <ConstructorElement
           type="top"
           isLocked={true}
-          text={`${topItem?.name}(верх)`}
+          text={`${topItem?.name || ""}(верх)`}
           price={topItem?.price || 0}
           thumbnail={topItem?.image_mobile || check}
         />
@@ -100,7 +100,7 @@ const BurgerConstructor: React.FC = () => {
         <ConstructorElement
           type="bottom"
           isLocked={true}
-          text={`${topItem?.name}(низ)`}
+          text={`${topItem?.name || ""}(низ)`}
           price={topItem?.price || 0}
           thumbnail={topItem?.image_mobile || check}
         />

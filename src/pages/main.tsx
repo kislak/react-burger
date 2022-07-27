@@ -43,7 +43,9 @@ const Main: React.FC = () => {
   useEffect(() => {
     if (id) {
       const item = items.find((x: TBurgerItem) => x._id === id);
-      dispatch(setCurrentIngredient(item, () => {}));
+      if (item) {
+        dispatch(setCurrentIngredient(item, () => {}));
+      }
     }
   }, [items, dispatch, id]);
 
@@ -58,7 +60,7 @@ const Main: React.FC = () => {
 
       <Modal
         id="modal"
-        isOpen={currentIngredient}
+        isOpen={currentIngredient ? true : false}
         setClose={() => {
           closeIngredient();
         }}

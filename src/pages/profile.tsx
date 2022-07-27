@@ -33,16 +33,17 @@ const Profile: React.FC = () => {
   };
 
   const dispatchUpdateUser = () => {
-    dispatch(updateUser(token, email, name));
+    token && dispatch(updateUser(token, email, name));
   };
 
   const logoutHandler = (e: MouseEvent) => {
     e.preventDefault();
-    dispatch(
-      logout(token, () => {
-        history.push("/login");
-      })
-    );
+    token &&
+      dispatch(
+        logout(token, () => {
+          history.push("/login");
+        })
+      );
   };
 
   return (

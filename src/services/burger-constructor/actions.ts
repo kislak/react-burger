@@ -9,19 +9,9 @@ export const INSERT_BEFORE = "INSERT_BEFORE";
 export const INSERT_AFTER = "INSERT_AFTER";
 export const RESET_CONSTRUCTOR = "RESET_CONSTRUCTOR";
 
-// import { createAction } from "@reduxjs/toolkit";
-// const  setTopItemAction = createAction<TBurgerItem, 'SET_TOP_ITEM'>('SET_TOP_ITEM')
-
 type TSetTopItemAction = {
   type: typeof SET_TOP_ITEM;
   payload: TBurgerItem;
-};
-
-const setTopItemAction = (payload: TBurgerItem): TSetTopItemAction => {
-  return {
-    type: SET_TOP_ITEM,
-    payload: payload,
-  };
 };
 
 type TAddMiddleItemAction = {
@@ -29,26 +19,9 @@ type TAddMiddleItemAction = {
   payload: TBurgerItem;
 };
 
-const addMiddleItemAction = (playload: TBurgerItem): TAddMiddleItemAction => {
-  const midItem = Object.assign({}, playload);
-  midItem.uuid = uuidv4();
-
-  return {
-    type: ADD_MIDDLE_ITEM,
-    payload: midItem,
-  };
-};
-
 type TDeleteMiddleItemAction = {
   type: typeof DELETE_MIDDLE_ITEM;
   payload: number;
-};
-
-const deleteMiddleItemAction = (payload: number): TDeleteMiddleItemAction => {
-  return {
-    type: DELETE_MIDDLE_ITEM,
-    payload: payload,
-  };
 };
 
 type TInsertBeforePayload = {
@@ -61,15 +34,6 @@ type TInsertBeforeAction = {
   payload: TInsertBeforePayload;
 };
 
-const insertBeforeAction = (
-  payload: TInsertBeforePayload
-): TInsertBeforeAction => {
-  return {
-    type: INSERT_BEFORE,
-    payload: payload,
-  };
-};
-
 type TInsertAfterPayload = {
   uuid: string;
   insertAfterUuid: string;
@@ -78,6 +42,53 @@ type TInsertAfterPayload = {
 type TInsertAfterAction = {
   type: typeof INSERT_AFTER;
   payload: TInsertAfterPayload;
+};
+
+type TResetOrderConstructorAction = {
+  type: typeof RESET_CONSTRUCTOR;
+};
+
+export type TBurgerConstructorActions =
+  | TSetTopItemAction
+  | TAddMiddleItemAction
+  | TDeleteMiddleItemAction
+  | TInsertBeforeAction
+  | TInsertAfterAction
+  | TResetOrderConstructorAction;
+
+// import { createAction } from "@reduxjs/toolkit";
+// const  setTopItemAction = createAction<TBurgerItem, 'SET_TOP_ITEM'>('SET_TOP_ITEM')
+const setTopItemAction = (payload: TBurgerItem): TSetTopItemAction => {
+  return {
+    type: SET_TOP_ITEM,
+    payload: payload,
+  };
+};
+
+const addMiddleItemAction = (playload: TBurgerItem): TAddMiddleItemAction => {
+  const midItem = Object.assign({}, playload);
+  midItem.uuid = uuidv4();
+
+  return {
+    type: ADD_MIDDLE_ITEM,
+    payload: midItem,
+  };
+};
+
+const deleteMiddleItemAction = (payload: number): TDeleteMiddleItemAction => {
+  return {
+    type: DELETE_MIDDLE_ITEM,
+    payload: payload,
+  };
+};
+
+const insertBeforeAction = (
+  payload: TInsertBeforePayload
+): TInsertBeforeAction => {
+  return {
+    type: INSERT_BEFORE,
+    payload: payload,
+  };
 };
 
 const insertAfterAction = (
@@ -89,23 +100,11 @@ const insertAfterAction = (
   };
 };
 
-type TResetOrderConstructorAction = {
-  type: typeof RESET_CONSTRUCTOR;
-};
-
 export const resetOrderConstructorAction = (): TResetOrderConstructorAction => {
   return {
     type: RESET_CONSTRUCTOR,
   };
 };
-
-export type TBurgerConstructorActions =
-  | TSetTopItemAction
-  | TAddMiddleItemAction
-  | TDeleteMiddleItemAction
-  | TInsertBeforeAction
-  | TInsertAfterAction
-  | TResetOrderConstructorAction;
 
 export const setTopItem =
   (item: TBurgerItem): any =>

@@ -1,10 +1,12 @@
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore, Store } from "redux";
 import rootReducer from "./reducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { errorHandler } from "./_middleware/errorHandler";
 import thunkMiddleware from "redux-thunk";
 
-export const configureStore = (initialState) => {
+const initialState = { ingredientsStore: { ingredients: [] } };
+
+export const configureStore = (): Store => {
   const store = createStore(
     rootReducer,
     initialState,

@@ -10,7 +10,7 @@ import {
 
 import { TBurgerItem } from "../../prop-types/burger-item";
 
-type TState = {
+export type TBurgerConstructorStore = {
   topItem: TBurgerItem | null;
   midItems: Array<TBurgerItem>;
 };
@@ -20,8 +20,15 @@ const initialState = {
   midItems: [],
 };
 
+// import { createReducer } from "@reduxjs/toolkit"
+// export const reducer = createReducer(initialState, (builder) => {
+//   build.addCase(SET_TOP_ITEM, (state, action) => {
+//     state.topItem: action.payload
+//   })
+// }
+
 export const reducer = (
-  state: TState = initialState,
+  state: TBurgerConstructorStore = initialState,
   action: TBurgerConstructorActions
 ) => {
   const midItems = state.midItems;

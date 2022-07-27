@@ -4,7 +4,14 @@ import { Dispatch } from "redux";
 import { TBurgerItem } from "../../prop-types/burger-item";
 export const INGREDIENTS_GET_SUCCESS = "INGREDIENTS_GET_SUCCESS";
 
-export const ingredientsGetSuccessAction = (payload: Array<TBurgerItem>) => {
+export type TIngredientsGetSuccessAction = {
+  type: typeof INGREDIENTS_GET_SUCCESS;
+  payload: Array<TBurgerItem>;
+};
+
+export const ingredientsGetSuccessAction = (
+  payload: Array<TBurgerItem>
+): TIngredientsGetSuccessAction => {
   return {
     type: INGREDIENTS_GET_SUCCESS,
     payload: payload,

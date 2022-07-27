@@ -7,21 +7,43 @@ export const SUBMIT_ORDER = "SUBMIT_ORDER_SUCCESS";
 export const OPEN_ORDER_DETAILS = "OPEN_ORDER_DETAILS";
 export const SHOW_LOADER = "SHOW_LOADER";
 
-const submitOrderAction = (payload: string) => {
+type TSubmitOrderAction = {
+  type: typeof SUBMIT_ORDER;
+  payload: string;
+};
+
+type TShowLoaderAction = {
+  type: typeof SHOW_LOADER;
+  payload: boolean;
+};
+
+type TOpenOrderDetailsAction = {
+  type: typeof OPEN_ORDER_DETAILS;
+  payload: boolean;
+};
+
+export type TOrderActions =
+  | TSubmitOrderAction
+  | TShowLoaderAction
+  | TOpenOrderDetailsAction;
+
+const submitOrderAction = (payload: string): TSubmitOrderAction => {
   return {
     type: SUBMIT_ORDER,
     payload: payload,
   };
 };
 
-const showLoaderAction = (payload: boolean) => {
+const showLoaderAction = (payload: boolean): TShowLoaderAction => {
   return {
     type: SHOW_LOADER,
     payload: payload,
   };
 };
 
-export const openOrderDetailsAction = (payload: boolean) => {
+export const openOrderDetailsAction = (
+  payload: boolean
+): TOpenOrderDetailsAction => {
   return {
     type: OPEN_ORDER_DETAILS,
     payload: payload,
