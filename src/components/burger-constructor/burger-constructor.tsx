@@ -73,7 +73,7 @@ const BurgerConstructor: React.FC = () => {
           type="top"
           isLocked={true}
           text={`${topItem?.name}(верх)`}
-          price={ topItem?.price || 0 }
+          price={topItem?.price || 0}
           thumbnail={topItem?.image_mobile || check}
         />
       </div>
@@ -101,7 +101,7 @@ const BurgerConstructor: React.FC = () => {
           type="bottom"
           isLocked={true}
           text={`${topItem?.name}(низ)`}
-          price={ topItem?.price || 0 }
+          price={topItem?.price || 0}
           thumbnail={topItem?.image_mobile || check}
         />
       </div>

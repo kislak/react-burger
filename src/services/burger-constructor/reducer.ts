@@ -5,22 +5,25 @@ import {
   INSERT_BEFORE,
   INSERT_AFTER,
   RESET_CONSTRUCTOR,
-  TBurgerConstructorActions
+  TBurgerConstructorActions,
 } from "./actions";
 
-import {TBurgerItem} from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../prop-types/burger-item";
 
 type TState = {
   topItem: TBurgerItem | null;
-  midItems: Array<TBurgerItem>
-}
+  midItems: Array<TBurgerItem>;
+};
 
 const initialState = {
   topItem: null,
   midItems: [],
 };
 
-export const reducer = (state: TState = initialState, action: TBurgerConstructorActions) => {
+export const reducer = (
+  state: TState = initialState,
+  action: TBurgerConstructorActions
+) => {
   const midItems = state.midItems;
 
   switch (action.type) {
