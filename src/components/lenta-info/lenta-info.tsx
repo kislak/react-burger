@@ -34,8 +34,8 @@ const LentaInfo: React.FC<ILentaInfo> = ({
           </ul>
         </div>
 
-        <div>
-          <h2 className="text text_type_main-medium ml-30">В работе:</h2>
+        <div className="ml-30">
+          <h2 className="text text_type_main-medium">В работе:</h2>
           <ul className={styles.list}>
             {pendingOrders.map((order) => {
               return (

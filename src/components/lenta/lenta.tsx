@@ -1,5 +1,7 @@
 import React from "react";
 import { TOrder } from "../../types/order";
+import styles from "./lenta.module.css";
+import LentaItem from "./lenta-item/lenta-item";
 
 interface ILenta {
   orders: Array<TOrder>;
@@ -7,15 +9,13 @@ interface ILenta {
 
 const Lenta: React.FC<ILenta> = ({ orders }) => {
   return (
-    <section>
-      <h1 className="text text_type_main-large">Лента заказов</h1>
-      {orders.map((order) => {
-        return (
-          <section key={order._id}>
-            #{order._id} - {order.name}
-          </section>
-        );
-      })}
+    <section className={styles.main}>
+      <h1 className="text text_type_main-medium">Лента заказов</h1>
+      <section className={`${styles.list} custom-scroll`}>
+        {orders.map((order) => (
+          <LentaItem order={order} />
+        ))}
+      </section>
     </section>
   );
 };
