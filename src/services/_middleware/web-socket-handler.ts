@@ -34,7 +34,7 @@ export const webSocketHandler = (url: string, wsActions: TWsActions): any => {
       const { dispatch } = store;
 
       if (wsConnect.match(action)) {
-        // console.log("connect");
+        console.log("connect");
         if (!socket) {
           if (action.payload) {
             socket = new WebSocket(`${url}${action.payload}`);
