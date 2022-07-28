@@ -59,12 +59,12 @@ export const submitOrder =
       })
     );
     dispatch(showLoaderAction(true));
+    dispatch(openOrderDetailsAction(true));
     api
       .submitOrder(ingredients, token)
       .then((response) => {
         dispatch(showLoaderAction(false));
         dispatch(submitOrderAction(response.order.number));
-        dispatch(openOrderDetailsAction(true));
         dispatch(resetOrderConstructorAction());
       })
       .catch((error) => {

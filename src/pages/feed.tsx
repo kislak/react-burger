@@ -6,6 +6,9 @@ import {
   totalSelector,
   totalTodaySelector,
 } from "../services/all-orders/selectors";
+import Lenta from "../components/lenta/lenta";
+import LentaInfo from "../components/lenta-info/lenta-info";
+
 
 const Feed: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,44 +27,13 @@ const Feed: React.FC = () => {
 
   return (
     <>
-      <section>
-        <h1 className="text text_type_main-large">Лента заказов</h1>
-        {orders.map((order) => {
-          return (
-            <section key={order._id}>
-              #{order._id} - {order.name}
-            </section>
-          );
-        })}
-      </section>
-      <section>
-        <section>
-          <h2 className="text text_type_main-medium">Готовы:</h2>
-          <ul>
-            {readyOrders.map((order) => {
-              return <li key={order._id}>{order.number}</li>;
-            })}
-          </ul>
-        </section>
-
-        <section>
-          <h2 className="text text_type_main-medium">В работе:</h2>
-          <ul>
-            {pendingOrders.map((order) => {
-              return <li key={order._id}>{order.number}</li>;
-            })}
-          </ul>
-        </section>
-
-        <section>
-          <h2>выполнено за все время:</h2>
-          <p>{total}</p>
-        </section>
-        <section>
-          <h2>выполнено за сегодня:</h2>
-          <p>{totalToday}</p>
-        </section>
-      </section>
+      <Lenta orders={orders} />
+      <LentaInfo
+          readyOrders={readyOrders}
+          pendingOrders={pendingOrders}
+          total={total}
+          totalToday={totalToday}
+      />
     </>
   );
 };
