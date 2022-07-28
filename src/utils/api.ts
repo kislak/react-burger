@@ -16,7 +16,7 @@ class Api {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token
+        Authorization: token,
       },
       body: JSON.stringify({ ingredients: ingredients }),
     }).then((res) => this.getResponseData(res));

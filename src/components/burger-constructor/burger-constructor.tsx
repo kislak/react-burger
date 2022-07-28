@@ -20,7 +20,7 @@ import {
 } from "../../services/burger-constructor/actions";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
 import { useHistory } from "react-router-dom";
-import {accessTokenSelector, isLoggedIn} from "../../services/user/selectors";
+import { accessTokenSelector, isLoggedIn } from "../../services/user/selectors";
 import { TBurgerItem } from "../../types/burger-item";
 import check from "../../images/check.svg";
 
@@ -31,7 +31,7 @@ const BurgerConstructor: React.FC = () => {
   const topItem: TBurgerItem | null = useSelector(topItemSelector);
   const midItems: Array<TBurgerItem> = useSelector(midItemsSelector);
   const allItems: Array<TBurgerItem> = useSelector(allItemsSelector);
-  const token = useSelector(accessTokenSelector)
+  const token = useSelector(accessTokenSelector);
   const history = useHistory();
 
   useEffect(() => {

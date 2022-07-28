@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { wsConnect } from "../services/all-orders/actions";
 import { useDispatch, useSelector } from "react-redux";
-import {ordersSelector, totalSelector, totalTodaySelector} from "../services/all-orders/selectors";
+import {
+  ordersSelector,
+  totalSelector,
+  totalTodaySelector,
+} from "../services/all-orders/selectors";
 
 const Feed: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,7 +18,9 @@ const Feed: React.FC = () => {
   }, [dispatch]);
 
   const readyOrders = orders.filter((i) => i.status === "done").slice(0, 20);
-  const pendingOrders = orders.filter((i) => i.status === "pending").slice(0, 20);
+  const pendingOrders = orders
+    .filter((i) => i.status === "pending")
+    .slice(0, 20);
 
   return (
     <>

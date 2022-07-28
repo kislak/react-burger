@@ -5,7 +5,7 @@ import { errorHandler } from "./_middleware/error-handler";
 import { webSocketHandler } from "./_middleware/web-socket-handler";
 import thunkMiddleware from "redux-thunk";
 import { allOrdersActions } from "./all-orders/actions";
-import {profileOrdersActions} from "./profile-orders/actions";
+import { profileOrdersActions } from "./profile-orders/actions";
 
 const ALL_ORDERS_URL = "wss://norma.nomoreparties.space/orders/all";
 const PROFILE_ORDERS_URL = "wss://norma.nomoreparties.space/orders";
@@ -20,10 +20,10 @@ export const configureStore = (): Store => {
     initialState,
     composeWithDevTools(
       applyMiddleware(
-          errorHandler(),
-          webSocketHandler(ALL_ORDERS_URL, allOrdersActions),
-          webSocketHandler(PROFILE_ORDERS_URL, profileOrdersActions),
-          thunkMiddleware
+        errorHandler(),
+        webSocketHandler(ALL_ORDERS_URL, allOrdersActions),
+        webSocketHandler(PROFILE_ORDERS_URL, profileOrdersActions),
+        thunkMiddleware
       )
     )
   );
