@@ -9,7 +9,6 @@ import {
 import Lenta from "../components/lenta/lenta";
 import LentaInfo from "../components/lenta-info/lenta-info";
 
-
 const Feed: React.FC = () => {
   const dispatch = useDispatch();
   const total = useSelector(totalSelector);
@@ -29,10 +28,10 @@ const Feed: React.FC = () => {
     <>
       <Lenta orders={orders} />
       <LentaInfo
-          readyOrders={readyOrders}
-          pendingOrders={pendingOrders}
-          total={total}
-          totalToday={totalToday}
+        readyOrders={readyOrders}
+        pendingOrders={pendingOrders}
+        total={total}
+        totalToday={totalToday}
       />
     </>
   );
