@@ -2,7 +2,7 @@ import {
   INGREDIENTS_GET_SUCCESS,
   TIngredientsGetSuccessAction,
 } from "./actions";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 
 export type TIngredientsStore = {
   ingredients: Array<TBurgerItem>;

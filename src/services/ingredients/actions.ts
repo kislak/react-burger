@@ -1,7 +1,7 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/error-handler";
 import { Dispatch } from "redux";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 export const INGREDIENTS_GET_SUCCESS = "INGREDIENTS_GET_SUCCESS";
 
 export type TIngredientsGetSuccessAction = {

@@ -1,5 +1,5 @@
 import { SET_CURRENT, TSetCurrentAction } from "./actions";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 
 export type TCurrentIngredientStore = {
   currentIngredient: null | TBurgerItem;

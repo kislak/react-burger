@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 import { Dispatch } from "redux";
 
 export const SET_TOP_ITEM = "SET_TOP_ITEM";

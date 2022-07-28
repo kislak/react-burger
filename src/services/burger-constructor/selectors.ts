@@ -1,4 +1,4 @@
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 import { TBurgerConstructorStore } from "./reducer";
 
 type TStore = {

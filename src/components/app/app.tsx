@@ -11,7 +11,7 @@ import PasswordReset from "../../pages/password-reset";
 import NotFound from "../../pages/not-found";
 import Ingredient from "../../pages/ingredinent";
 import { Route, Switch, withRouter } from "react-router-dom";
-import OrderHistory from "../../pages/order-history";
+import ProfileFeed from "../../pages/feed-profile";
 import { refreshToken } from "../../services/user/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -65,7 +65,7 @@ const App: React.FC = () => {
         </ProtectedRoute>
 
         <ProtectedRoute path="/profile/orders" exact>
-          <OrderHistory />
+          <ProfileFeed />
         </ProtectedRoute>
 
         <ProtectedRoute path="/profile/orders/:id" exact>

@@ -20,8 +20,8 @@ import {
 } from "../../services/burger-constructor/actions";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
 import { useHistory } from "react-router-dom";
-import { isLoggedIn } from "../../services/user/selectors";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import {accessTokenSelector, isLoggedIn} from "../../services/user/selectors";
+import { TBurgerItem } from "../../types/burger-item";
 import check from "../../images/check.svg";
 
 const BurgerConstructor: React.FC = () => {
@@ -31,6 +31,7 @@ const BurgerConstructor: React.FC = () => {
   const topItem: TBurgerItem | null = useSelector(topItemSelector);
   const midItems: Array<TBurgerItem> = useSelector(midItemsSelector);
   const allItems: Array<TBurgerItem> = useSelector(allItemsSelector);
+  const token = useSelector(accessTokenSelector)
   const history = useHistory();
 
   useEffect(() => {
@@ -56,7 +57,9 @@ const BurgerConstructor: React.FC = () => {
   const submitHandler = () => {
     if (isAuthenticated) {
       if (topItem) {
-        dispatch(submitOrder(topItem, midItems));
+        if (token) {
+          dispatch(submitOrder(topItem, midItems, token));
+        }
       }
     } else {
       history.push({

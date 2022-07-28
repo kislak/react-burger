@@ -1,7 +1,7 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/error-handler";
 import { resetOrderConstructorAction } from "../burger-constructor/actions";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 import { Dispatch } from "redux";
 export const SUBMIT_ORDER = "SUBMIT_ORDER_SUCCESS";
 export const OPEN_ORDER_DETAILS = "OPEN_ORDER_DETAILS";
@@ -51,7 +51,7 @@ export const openOrderDetailsAction = (
 };
 
 export const submitOrder =
-  (topItem: TBurgerItem, midItems: Array<TBurgerItem>): any =>
+  (topItem: TBurgerItem, midItems: Array<TBurgerItem>, token: string): any =>
   (dispatch: Dispatch) => {
     const ingredients = [topItem._id, topItem._id].concat(
       midItems.map((i) => {
@@ -60,7 +60,7 @@ export const submitOrder =
     );
     dispatch(showLoaderAction(true));
     api
-      .submitOrder(ingredients)
+      .submitOrder(ingredients, token)
       .then((response) => {
         dispatch(showLoaderAction(false));
         dispatch(submitOrderAction(response.order.number));

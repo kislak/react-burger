@@ -15,7 +15,7 @@ import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useHistory, useParams } from "react-router-dom";
-import { TBurgerItem } from "../prop-types/burger-item";
+import { TBurgerItem } from "../types/burger-item";
 
 const Main: React.FC = () => {
   const dispatch = useDispatch();

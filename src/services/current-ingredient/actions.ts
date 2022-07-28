@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 
 export const SET_CURRENT = "SET_CURRENT";
 

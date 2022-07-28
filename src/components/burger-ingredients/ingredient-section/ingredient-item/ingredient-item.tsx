@@ -9,7 +9,7 @@ import { setCurrentIngredient } from "../../../../services/current-ingredient/ac
 import { allItemsSelector } from "../../../../services/burger-constructor/selectors";
 import { useDrag } from "react-dnd";
 import { useHistory } from "react-router-dom";
-import { TBurgerItem } from "../../../../prop-types/burger-item";
+import { TBurgerItem } from "../../../../types/burger-item";
 
 interface IIngredientItem {
   item: TBurgerItem;

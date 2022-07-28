@@ -8,7 +8,7 @@ import {
   TBurgerConstructorActions,
 } from "./actions";
 
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 
 export type TBurgerConstructorStore = {
   topItem: TBurgerItem | null;
