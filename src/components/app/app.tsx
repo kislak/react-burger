@@ -21,6 +21,7 @@ import { isLoggedIn } from "../../services/user/selectors";
 import OrderDetails from "../modal/order-details/order-details";
 import Feed from "../../pages/feed";
 import FeedDetails from "../../pages/feed-details";
+import { getIngredients } from "../../services/ingredients/actions";
 
 declare module "react" {
   interface FunctionComponent<P = {}> {
@@ -38,6 +39,10 @@ const App: React.FC = () => {
       dispatch(refreshToken());
     }
   }, [dispatch, isAuthenticated]);
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   return (
     <div className={styles.app}>

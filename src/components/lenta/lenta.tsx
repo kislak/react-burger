@@ -13,7 +13,7 @@ const Lenta: React.FC<ILenta> = ({ orders }) => {
       <h1 className="text text_type_main-medium">Лента заказов</h1>
       <section className={`${styles.list} custom-scroll`}>
         {orders.map((order) => (
-          <LentaItem order={order} />
+          <LentaItem order={order} key={order._id} />
         ))}
       </section>
     </section>

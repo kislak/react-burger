@@ -37,10 +37,6 @@ const Main: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (id) {
       const item = items.find((x: TBurgerItem) => x._id === id);
       if (item) {
