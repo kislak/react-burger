@@ -14,6 +14,7 @@ import { STATUS_MAP, formatDate } from "../../lenta/lenta-item/lenta-item";
 import lentaStyle from "../../lenta/lenta-item/lenta-item.module.css";
 import { ingredientsSelector } from "../../../services/ingredients/selectors";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { TBurgerItem } from "../../../types/burger-item";
 
 const OrderDetails: React.FC = () => {
   const orderNumber = useSelector(orderNumberSelector);
@@ -35,6 +36,16 @@ const OrderDetails: React.FC = () => {
   const orderIngredientsCost =
     orderIngredients &&
     orderIngredients.reduce((prev, item) => prev + (item?.price || 0), 0);
+
+  const orderIngredientsUniq =
+    orderIngredients &&
+    orderIngredients.reduce((res, item) => {
+      if (item) {
+        res[item._id] = res[item._id] || [];
+        res[item._id].push(item);
+      }
+      return res;
+    }, Object.create(null));
 
   return (
     <section className={styles.content}>
@@ -72,9 +83,12 @@ const OrderDetails: React.FC = () => {
           </div>
           <div className="text text_type_main-medium mt-5 mb-5">Состав:</div>
           <div className={`${styles.list} custom-scroll`}>
-            {orderIngredients.map((value, index) => {
+            {Object.keys(orderIngredientsUniq).map((k) => {
+              let value: TBurgerItem = orderIngredientsUniq[k][0];
+              let l: number = orderIngredientsUniq[k].length;
+
               return (
-                <div className={styles.listItem}>
+                <div className={styles.listItem} key={k}>
                   <div className={styles.itemLeft}>
                     <div
                       style={{ backgroundImage: `url(${value?.image_mobile})` }}
@@ -89,7 +103,7 @@ const OrderDetails: React.FC = () => {
                   <div className={styles.itemRight}>
                     <span className="mr-2 text_type_digits-default">
                       {" "}
-                      1 x {value?.price}{" "}
+                      {l} x {value?.price}{" "}
                     </span>
                     <CurrencyIcon type="primary" />
                   </div>

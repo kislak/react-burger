@@ -27,6 +27,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin: 20px 0;
 }
 
 .itemLeft {
@@ -43,7 +44,7 @@
 }
 
 .name {
-  max-width: 380px;
+  max-width: 340px;
 }
 
 .itemRight {

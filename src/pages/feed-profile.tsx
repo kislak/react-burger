@@ -10,7 +10,7 @@ import Modal from "../components/modal/modal/modal";
 import { openOrderDetails } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
-import {useHistory, useParams} from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const FeedProfile: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,9 +19,9 @@ const FeedProfile: React.FC = () => {
   const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
   const history = useHistory();
 
-    const { id } = useParams() as {
-        id: string;
-    };
+  const { id } = useParams() as {
+    id: string;
+  };
 
   useEffect(() => {
     if (token) {
@@ -30,12 +30,11 @@ const FeedProfile: React.FC = () => {
     }
   }, [dispatch, token]);
 
-    useEffect(() => {
-        dispatch(openOrderDetails(Number(id), () => {}));
-    }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(openOrderDetails(Number(id), () => {}));
+  }, [dispatch, id]);
 
-
-    const modalCloseHandler = () => {
+  const modalCloseHandler = () => {
     dispatch(
       openOrderDetails(null, () => {
         history.push("/profile/orders");

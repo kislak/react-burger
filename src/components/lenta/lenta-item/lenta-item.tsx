@@ -100,7 +100,7 @@ const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
             }
 
             if (index > showItems) {
-              return;
+              return null;
             }
 
             return (

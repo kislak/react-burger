@@ -10,7 +10,7 @@ import Lenta from "../components/lenta/lenta";
 import LentaInfo from "../components/lenta-info/lenta-info";
 import styles from "../components/lenta/lenta.module.css";
 import Modal from "../components/modal/modal/modal";
-import { openOrderDetails, submitOrderAction } from "../services/order/actions";
+import { openOrderDetails } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { useHistory, useParams } from "react-router-dom";
