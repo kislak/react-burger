@@ -3,3 +3,8 @@
   flex-direction: column;
   align-items: center;
 }
+
+.number {
+  display: flex;
+  align-items: flex-start;
+}

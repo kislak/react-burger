@@ -6,7 +6,7 @@ import {
 } from "./actions";
 
 export type TOrderStore = {
-  orderNumber: string | null;
+  orderNumber: number | null;
   orderDetailsOpen: boolean;
   showLoader: boolean;
 };

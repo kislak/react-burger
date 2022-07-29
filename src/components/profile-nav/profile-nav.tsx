@@ -34,7 +34,6 @@ const ProfileNav: React.FC = () => {
         to="/profile/orders"
         className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
         activeClassName={`${styles.profile__link_active} text text_type_main-medium`}
-        exact
       >
         История заказов
       </NavLink>
@@ -49,7 +48,7 @@ const ProfileNav: React.FC = () => {
         <Route path="/profile" exact>
           В этом разделе вы можете изменить свои персональные данные
         </Route>
-        <Route path="/profile/orders" exact>
+        <Route path="/profile/orders">
           В этом разделе вы можете посмотреть свою историю заказов
         </Route>
       </p>

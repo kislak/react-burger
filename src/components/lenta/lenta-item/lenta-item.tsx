@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import {
   submitOrderAction,
-  openOrderDetailsAction,
+  openOrderDetails,
 } from "../../../services/order/actions";
+import {useHistory} from "react-router-dom";
 
 interface ILenta {
   order: TOrder;
@@ -32,6 +33,7 @@ const formatDate = (date: Date) => {
 };
 
 const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const showItems = 4;
   const ingredients = useSelector(ingredientsSelector);
@@ -46,8 +48,15 @@ const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
 
   const clickHandler = () => {
     dispatch(submitOrderAction(order.number));
-    dispatch(openOrderDetailsAction(true));
-  };
+    dispatch(openOrderDetails(true, () => {
+              history.push({
+                pathname: `${showStatus ? '/profile/orders' : '/feed'}/${order.number}`,
+                state: "modal",
+              })
+            }
+        )
+    )
+  }
 
   return (
     <section className={styles.main} key={order._id} onClick={clickHandler}>

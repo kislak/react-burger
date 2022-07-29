@@ -10,9 +10,10 @@ import Lenta from "../components/lenta/lenta";
 import LentaInfo from "../components/lenta-info/lenta-info";
 import styles from "../components/lenta/lenta.module.css";
 import Modal from "../components/modal/modal/modal";
-import { openOrderDetailsAction } from "../services/order/actions";
+import { openOrderDetails } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
+import {useHistory} from "react-router-dom";
 
 const Feed: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Feed: React.FC = () => {
   const totalToday = useSelector(totalTodaySelector);
   const orders = useSelector(ordersSelector);
   const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(wsConnect);
@@ -30,7 +32,13 @@ const Feed: React.FC = () => {
     .filter((i) => i.status === "pending")
     .slice(0, 20);
 
-  return (
+    const modalCloseHandler = () => {
+        dispatch(openOrderDetails(false, () => {
+            history.push("/feed");
+        }))
+    }
+
+    return (
     <>
       <section className={styles.main}>
         <h1 className="text text_type_main-medium">Лента заказов</h1>
@@ -46,9 +54,7 @@ const Feed: React.FC = () => {
       <Modal
         id="modal"
         isOpen={isOrderDetailsOpen}
-        setClose={() => {
-          dispatch(openOrderDetailsAction(false));
-        }}
+        setClose={modalCloseHandler}
       >
         <OrderDetails />
       </Modal>

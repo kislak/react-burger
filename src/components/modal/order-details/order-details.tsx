@@ -8,16 +8,24 @@ import {
   orderNumberSelector,
   showLoader,
 } from "../../../services/order/selectors";
+import {ordersSelector} from "../../../services/all-orders/selectors";
+import {profileOrdersSelector} from "../../../services/profile-orders/selectors";
 
 const OrderDetails: React.FC = () => {
   const orderNumber = useSelector(orderNumberSelector);
   const loading = useSelector(showLoader);
+  const orders = useSelector(ordersSelector);
+  const profileOrders = useSelector(profileOrdersSelector);
+
+  let order = orders.find((i) => i.number === orderNumber)
+  if (!order) {
+    order = profileOrders.find((i) => i.number === orderNumber)
+  }
 
   return (
     <section className={styles.content}>
-      {loading ? (
-        <img src={loader} alt="loader" />
-      ) : (
+      {loading && <img src={loader} alt="loader" />}
+      {!loading && !order &&
         <>
           <h2 className="text text_type_digits-large mt-8">{orderNumber}</h2>
           <p className="text text_type_main-medium mt-8">
@@ -33,7 +41,14 @@ const OrderDetails: React.FC = () => {
             Дождитесь готовности на орбитальной станции
           </p>
         </>
-      )}
+      }
+
+      {!loading && order &&
+          <div className={styles.number}>
+            {order.number}
+
+          </div>
+      }
     </section>
   );
 };

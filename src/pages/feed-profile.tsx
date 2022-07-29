@@ -7,15 +7,17 @@ import styles from "./pages.module.css";
 import ProfileNav from "../components/profile-nav/profile-nav";
 import Lenta from "../components/lenta/lenta";
 import Modal from "../components/modal/modal/modal";
-import { openOrderDetailsAction } from "../services/order/actions";
+import {openOrderDetails} from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
+import {useHistory} from "react-router-dom";
 
 const FeedProfile: React.FC = () => {
   const dispatch = useDispatch();
   const token = useSelector(accessTokenSelector);
   const orders = useSelector(profileOrdersSelector);
   const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
+  const history = useHistory();
 
   useEffect(() => {
     if (token) {
@@ -24,16 +26,20 @@ const FeedProfile: React.FC = () => {
     }
   }, [dispatch, token]);
 
-  return (
+    const modalCloseHandler = () => {
+        dispatch(openOrderDetails(false, () => {
+            history.push("/profile/orders");
+        }))
+    }
+
+    return (
     <section className={styles.section}>
       <ProfileNav />
       <Lenta orders={orders} showStatus={true}></Lenta>
       <Modal
         id="modal"
         isOpen={isOrderDetailsOpen}
-        setClose={() => {
-          dispatch(openOrderDetailsAction(false));
-        }}
+        setClose={modalCloseHandler}
       >
         <OrderDetails />
       </Modal>

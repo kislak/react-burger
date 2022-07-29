@@ -9,7 +9,7 @@ import Modal from "../components/modal/modal/modal";
 import { ingredientsSelector } from "../services/ingredients/selectors";
 import { currentIngredientSelector } from "../services/current-ingredient/selectors";
 import { setCurrentIngredient } from "../services/current-ingredient/actions";
-import { openOrderDetailsAction } from "../services/order/actions";
+import { openOrderDetails } from "../services/order/actions";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -68,7 +68,7 @@ const Main: React.FC = () => {
         id="modal"
         isOpen={isOrderDetailsOpen}
         setClose={() => {
-          dispatch(openOrderDetailsAction(false));
+          dispatch(openOrderDetails(false, () => {}));
         }}
       >
         <OrderDetails />

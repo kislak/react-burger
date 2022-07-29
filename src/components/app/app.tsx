@@ -18,10 +18,9 @@ import { useEffect } from "react";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { isLoggedIn } from "../../services/user/selectors";
-import OrderDetails from "../modal/order-details/order-details";
 import Feed from "../../pages/feed";
-import FeedDetails from "../../pages/feed-details";
 import { getIngredients } from "../../services/ingredients/actions";
+import Order from "../../pages/order";
 
 declare module "react" {
   interface FunctionComponent<P = {}> {
@@ -74,7 +73,7 @@ const App: React.FC = () => {
         </ProtectedRoute>
 
         <ProtectedRoute path="/profile/orders/:id" exact>
-          <OrderDetails />
+          {location.state === "modal" ? <ProfileFeed /> : <Order />}
         </ProtectedRoute>
 
         <Route path="/" exact>
@@ -86,7 +85,7 @@ const App: React.FC = () => {
         </Route>
 
         <Route path="/feed/:id" exact>
-          <OrderDetails />
+          {location.state === "modal" ? <Feed /> : <Order />}
         </Route>
 
         <Route path="/ingredients/:id" exact>

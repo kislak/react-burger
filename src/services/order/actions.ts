@@ -41,7 +41,7 @@ const showLoaderAction = (payload: boolean): TShowLoaderAction => {
   };
 };
 
-export const openOrderDetailsAction = (
+const openOrderDetailsAction = (
   payload: boolean
 ): TOpenOrderDetailsAction => {
   return {
@@ -49,6 +49,13 @@ export const openOrderDetailsAction = (
     payload: payload,
   };
 };
+
+export const openOrderDetails =
+    (flag: boolean, callback: () => void): any =>
+        (dispatch: Dispatch) => {
+            dispatch(openOrderDetailsAction(flag));
+            callback();
+        };
 
 export const submitOrder =
   (topItem: TBurgerItem, midItems: Array<TBurgerItem>, token: string): any =>
