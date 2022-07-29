@@ -44,11 +44,11 @@
 }
 
 .pending {
-  color: lightseagreen;
+  color: white;
 }
 
 .done {
-  color: #f2f2f3;
+  color: lightseagreen;
 }
 
 .created {

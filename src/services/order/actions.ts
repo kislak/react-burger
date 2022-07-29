@@ -9,7 +9,7 @@ export const SHOW_LOADER = "SHOW_LOADER";
 
 type TSubmitOrderAction = {
   type: typeof SUBMIT_ORDER;
-  payload: number;
+  payload: number | null;
 };
 
 type TShowLoaderAction = {
@@ -27,7 +27,9 @@ export type TOrderActions =
   | TShowLoaderAction
   | TOpenOrderDetailsAction;
 
-export const submitOrderAction = (payload: number): TSubmitOrderAction => {
+export const submitOrderAction = (
+  payload: number | null
+): TSubmitOrderAction => {
   return {
     type: SUBMIT_ORDER,
     payload: payload,
@@ -49,9 +51,10 @@ const openOrderDetailsAction = (payload: boolean): TOpenOrderDetailsAction => {
 };
 
 export const openOrderDetails =
-  (flag: boolean, callback: () => void): any =>
+  (order: number | null, callback: () => void): any =>
   (dispatch: Dispatch) => {
-    dispatch(openOrderDetailsAction(flag));
+    dispatch(submitOrderAction(order));
+    dispatch(openOrderDetailsAction(order ? true : false));
     callback();
   };
 

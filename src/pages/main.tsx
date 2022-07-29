@@ -66,9 +66,9 @@ const Main: React.FC = () => {
 
       <Modal
         id="modal"
-        isOpen={isOrderDetailsOpen}
+        isOpen={isOrderDetailsOpen ? true : false}
         setClose={() => {
-          dispatch(openOrderDetails(false, () => {}));
+          dispatch(openOrderDetails(null, () => {}));
         }}
       >
         <OrderDetails />

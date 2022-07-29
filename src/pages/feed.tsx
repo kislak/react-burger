@@ -10,10 +10,10 @@ import Lenta from "../components/lenta/lenta";
 import LentaInfo from "../components/lenta-info/lenta-info";
 import styles from "../components/lenta/lenta.module.css";
 import Modal from "../components/modal/modal/modal";
-import { openOrderDetails } from "../services/order/actions";
+import { openOrderDetails, submitOrderAction } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const Feed: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,13 +32,21 @@ const Feed: React.FC = () => {
     .filter((i) => i.status === "pending")
     .slice(0, 20);
 
+  const { id } = useParams() as {
+    id: string;
+  };
+
   const modalCloseHandler = () => {
     dispatch(
-      openOrderDetails(false, () => {
+      openOrderDetails(null, () => {
         history.push("/feed");
       })
     );
   };
+
+  useEffect(() => {
+    dispatch(openOrderDetails(Number(id), () => {}));
+  }, [dispatch, id]);
 
   return (
     <>

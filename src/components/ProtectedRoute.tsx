@@ -17,6 +17,7 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({
 }) => {
   const location = useLocation();
   const isAuthenticated = useSelector(isLoggedIn);
+  console.log('auth', isAuthenticated)
 
   return (
     <Route {...restOfProps}>
@@ -26,7 +27,7 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({
         <Redirect
           to={{
             pathname: DEFAULT_ROUTE,
-            state: { afterLogin: location.pathname },
+            state: { afterLogin: location.pathname, modal: (location.state === "modal") },
           }}
         />
       )}

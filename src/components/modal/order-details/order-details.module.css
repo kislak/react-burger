@@ -8,3 +8,45 @@
   display: flex;
   align-items: flex-start;
 }
+
+.details {
+  min-width: 600px;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  min-height: min-content;
+}
+
+.list {
+  overflow-y: scroll;
+  max-height: 350px;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemLeft {
+  display: flex;
+  align-items: center;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.name {
+  max-width: 380px;
+}
+
+.itemRight {
+  display: flex;
+  margin-right: 10px;
+}

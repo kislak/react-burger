@@ -15,13 +15,13 @@ interface ILenta {
   showStatus: boolean;
 }
 
-const STATUS_MAP = {
+export const STATUS_MAP = {
   pending: "Готовится",
   done: "Выполнен",
   created: "Создан",
 };
 
-const formatDate = (date: Date) => {
+export const formatDate = (date: Date) => {
   return date.toLocaleString("ru-RU", {
     year: "2-digit",
     month: "short",
@@ -49,7 +49,7 @@ const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
   const clickHandler = () => {
     dispatch(submitOrderAction(order.number));
     dispatch(
-      openOrderDetails(true, () => {
+      openOrderDetails(order.number, () => {
         history.push({
           pathname: `${showStatus ? "/profile/orders" : "/feed"}/${
             order.number
