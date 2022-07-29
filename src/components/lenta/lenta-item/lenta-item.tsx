@@ -8,7 +8,7 @@ import {
   submitOrderAction,
   openOrderDetails,
 } from "../../../services/order/actions";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 interface ILenta {
   order: TOrder;
@@ -48,15 +48,17 @@ const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
 
   const clickHandler = () => {
     dispatch(submitOrderAction(order.number));
-    dispatch(openOrderDetails(true, () => {
-              history.push({
-                pathname: `${showStatus ? '/profile/orders' : '/feed'}/${order.number}`,
-                state: "modal",
-              })
-            }
-        )
-    )
-  }
+    dispatch(
+      openOrderDetails(true, () => {
+        history.push({
+          pathname: `${showStatus ? "/profile/orders" : "/feed"}/${
+            order.number
+          }`,
+          state: "modal",
+        });
+      })
+    );
+  };
 
   return (
     <section className={styles.main} key={order._id} onClick={clickHandler}>

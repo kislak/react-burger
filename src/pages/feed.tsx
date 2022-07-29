@@ -13,7 +13,7 @@ import Modal from "../components/modal/modal/modal";
 import { openOrderDetails } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Feed: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,13 +32,15 @@ const Feed: React.FC = () => {
     .filter((i) => i.status === "pending")
     .slice(0, 20);
 
-    const modalCloseHandler = () => {
-        dispatch(openOrderDetails(false, () => {
-            history.push("/feed");
-        }))
-    }
+  const modalCloseHandler = () => {
+    dispatch(
+      openOrderDetails(false, () => {
+        history.push("/feed");
+      })
+    );
+  };
 
-    return (
+  return (
     <>
       <section className={styles.main}>
         <h1 className="text text_type_main-medium">Лента заказов</h1>

@@ -7,10 +7,10 @@ import styles from "./pages.module.css";
 import ProfileNav from "../components/profile-nav/profile-nav";
 import Lenta from "../components/lenta/lenta";
 import Modal from "../components/modal/modal/modal";
-import {openOrderDetails} from "../services/order/actions";
+import { openOrderDetails } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const FeedProfile: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,13 +26,15 @@ const FeedProfile: React.FC = () => {
     }
   }, [dispatch, token]);
 
-    const modalCloseHandler = () => {
-        dispatch(openOrderDetails(false, () => {
-            history.push("/profile/orders");
-        }))
-    }
+  const modalCloseHandler = () => {
+    dispatch(
+      openOrderDetails(false, () => {
+        history.push("/profile/orders");
+      })
+    );
+  };
 
-    return (
+  return (
     <section className={styles.section}>
       <ProfileNav />
       <Lenta orders={orders} showStatus={true}></Lenta>
