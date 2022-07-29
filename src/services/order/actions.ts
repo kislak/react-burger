@@ -53,10 +53,10 @@ export const openOrderDetailsAction = (
 export const submitOrder =
   (topItem: TBurgerItem, midItems: Array<TBurgerItem>, token: string): any =>
   (dispatch: Dispatch) => {
-    const ingredients = [topItem._id, topItem._id].concat(
+    const ingredients = [topItem._id].concat(
       midItems.map((i) => {
         return i._id;
-      })
+      }).concat(topItem._id)
     );
     dispatch(showLoaderAction(true));
     dispatch(openOrderDetailsAction(true));
