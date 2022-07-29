@@ -2,12 +2,23 @@ import React from "react";
 import { TOrder } from "../../../types/order";
 import styles from "./lenta-item.module.css";
 import { ingredientsSelector } from "../../../services/ingredients/selectors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  submitOrderAction,
+  openOrderDetailsAction,
+} from "../../../services/order/actions";
 
 interface ILenta {
   order: TOrder;
+  showStatus: boolean;
 }
+
+const STATUS_MAP = {
+  pending: "Готовится",
+  done: "Выполнен",
+  created: "Создан",
+};
 
 const formatDate = (date: Date) => {
   return date.toLocaleString("ru-RU", {
@@ -20,8 +31,9 @@ const formatDate = (date: Date) => {
   });
 };
 
-const LentaItem: React.FC<ILenta> = ({ order }) => {
-  const showItmes = 4;
+const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
+  const dispatch = useDispatch();
+  const showItems = 4;
   const ingredients = useSelector(ingredientsSelector);
   const orderIngredients = order.ingredients.map((value, index, array) => {
     return ingredients.find((item) => item._id === value);
@@ -32,8 +44,13 @@ const LentaItem: React.FC<ILenta> = ({ order }) => {
     0
   );
 
+  const clickHandler = () => {
+    dispatch(submitOrderAction(order.number));
+    dispatch(openOrderDetailsAction(true));
+  };
+
   return (
-    <section className={styles.main} key={order._id}>
+    <section className={styles.main} key={order._id} onClick={clickHandler}>
       <div className={styles.top}>
         <div className="text text_type_digits-default">#{order.number}</div>
         <div className="text input__textfield-disabled">
@@ -43,12 +60,18 @@ const LentaItem: React.FC<ILenta> = ({ order }) => {
 
       <div className="text text_type_main-medium mt-3 mb-3">{order.name}</div>
 
+      {showStatus && (
+        <div className={`${styles[order.status]} text text_type_main-small`}>
+          {STATUS_MAP[order.status]}
+        </div>
+      )}
+
       <div className={styles.bottom}>
         <div>
           {orderIngredients.map((value, index) => {
             if (
-              index === showItmes &&
-              orderIngredients.length > showItmes + 1
+              index === showItems &&
+              orderIngredients.length > showItems + 1
             ) {
               return (
                 <div
@@ -59,13 +82,13 @@ const LentaItem: React.FC<ILenta> = ({ order }) => {
                   }}
                 >
                   <span className="text text_type_main-medium text_color_primary">
-                    +{orderIngredients.length - 1 - showItmes}
+                    +{orderIngredients.length - 1 - showItems}
                   </span>
                 </div>
               );
             }
 
-            if (index > showItmes) {
+            if (index > showItems) {
               return;
             }
 
@@ -84,6 +107,7 @@ const LentaItem: React.FC<ILenta> = ({ order }) => {
             );
           })}
         </div>
+
         <div>
           <span className="text text_type_digits-medium m-2">
             {orderIngredientsCost}

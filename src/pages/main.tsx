@@ -6,7 +6,6 @@ import OrderDetails from "../components/modal/order-details/order-details";
 import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "../components/modal/modal/modal";
-import { getIngredients } from "../services/ingredients/actions";
 import { ingredientsSelector } from "../services/ingredients/selectors";
 import { currentIngredientSelector } from "../services/current-ingredient/selectors";
 import { setCurrentIngredient } from "../services/current-ingredient/actions";

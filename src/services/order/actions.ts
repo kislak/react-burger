@@ -9,7 +9,7 @@ export const SHOW_LOADER = "SHOW_LOADER";
 
 type TSubmitOrderAction = {
   type: typeof SUBMIT_ORDER;
-  payload: string;
+  payload: number;
 };
 
 type TShowLoaderAction = {
@@ -27,7 +27,7 @@ export type TOrderActions =
   | TShowLoaderAction
   | TOpenOrderDetailsAction;
 
-const submitOrderAction = (payload: string): TSubmitOrderAction => {
+export const submitOrderAction = (payload: number): TSubmitOrderAction => {
   return {
     type: SUBMIT_ORDER,
     payload: payload,
@@ -54,9 +54,11 @@ export const submitOrder =
   (topItem: TBurgerItem, midItems: Array<TBurgerItem>, token: string): any =>
   (dispatch: Dispatch) => {
     const ingredients = [topItem._id].concat(
-      midItems.map((i) => {
-        return i._id;
-      }).concat(topItem._id)
+      midItems
+        .map((i) => {
+          return i._id;
+        })
+        .concat(topItem._id)
     );
     dispatch(showLoaderAction(true));
     dispatch(openOrderDetailsAction(true));

@@ -86,7 +86,7 @@ const App: React.FC = () => {
         </Route>
 
         <Route path="/feed/:id" exact>
-          <FeedDetails />
+          <OrderDetails />
         </Route>
 
         <Route path="/ingredients/:id" exact>

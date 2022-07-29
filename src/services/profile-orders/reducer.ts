@@ -36,6 +36,6 @@ export const reducer = createReducer(initialState, (builder) => {
       state.connectionError = action.payload;
     })
     .addCase(wsMessage, (state, action) => {
-      state.orders = action.payload.orders;
+      state.orders = action.payload.orders.reverse();
     });
 });

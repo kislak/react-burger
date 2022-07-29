@@ -42,3 +42,15 @@
   align-items: center;
   background-color: #1c1c21;
 }
+
+.pending {
+  color: lightseagreen;
+}
+
+.done {
+  color: #f2f2f3;
+}
+
+.created {
+  color: blue;
+}

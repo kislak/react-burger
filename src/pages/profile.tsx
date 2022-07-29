@@ -1,10 +1,10 @@
-import React, { useEffect, useState, MouseEvent } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import styles from "./pages.module.css";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import { accessTokenSelector, userSelector } from "../services/user/selectors";
-import { getUser, logout, updateUser } from "../services/user/actions";
+import { getUser, updateUser } from "../services/user/actions";
+import ProfileNav from "../components/profile-nav/profile-nav";
 
 const Profile: React.FC = () => {
   const [name, setName] = useState("");
@@ -16,7 +16,6 @@ const Profile: React.FC = () => {
   const user = useSelector(userSelector);
   const token = useSelector(accessTokenSelector);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     token && dispatch(getUser(token));
@@ -36,42 +35,9 @@ const Profile: React.FC = () => {
     token && dispatch(updateUser(token, email, name));
   };
 
-  const logoutHandler = (e: MouseEvent) => {
-    e.preventDefault();
-    token &&
-      dispatch(
-        logout(token, () => {
-          history.push("/login");
-        })
-      );
-  };
-
   return (
     <section className={styles.section}>
-      <nav className={styles.profile__nav}>
-        <Link
-          to="/profile"
-          className={`${styles.profile__link_active} text text_type_main-medium`}
-        >
-          Профиль
-        </Link>
-        <Link
-          to="profile/orders"
-          className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
-        >
-          История заказов
-        </Link>
-        <a
-          className={`${styles.profile__link} text text_type_main-medium text_color_inactive`}
-          onClick={logoutHandler}
-          href="/#"
-        >
-          Выход
-        </a>
-        <p className={`${styles.profile__text} text text_color_inactive mt-20`}>
-          В этом разделе вы можете изменить свои персональные данные
-        </p>
-      </nav>
+      <ProfileNav />
       <section>
         <form className={styles.form} onSubmit={submitHandler}>
           <div className={styles.input}>

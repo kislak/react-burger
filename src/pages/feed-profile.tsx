@@ -3,11 +3,19 @@ import { wsConnect } from "../services/profile-orders/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { profileOrdersSelector } from "../services/profile-orders/selectors";
 import { accessTokenSelector } from "../services/user/selectors";
+import styles from "./pages.module.css";
+import ProfileNav from "../components/profile-nav/profile-nav";
+import Lenta from "../components/lenta/lenta";
+import Modal from "../components/modal/modal/modal";
+import { openOrderDetailsAction } from "../services/order/actions";
+import OrderDetails from "../components/modal/order-details/order-details";
+import { orderDetailsOpenSelector } from "../services/order/selectors";
 
 const FeedProfile: React.FC = () => {
   const dispatch = useDispatch();
   const token = useSelector(accessTokenSelector);
   const orders = useSelector(profileOrdersSelector);
+  const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
 
   useEffect(() => {
     if (token) {
@@ -17,14 +25,18 @@ const FeedProfile: React.FC = () => {
   }, [dispatch, token]);
 
   return (
-    <section>
-      {orders.map((order) => {
-        return (
-          <section key={order._id}>
-            #{order._id} - {order.name}
-          </section>
-        );
-      })}
+    <section className={styles.section}>
+      <ProfileNav />
+      <Lenta orders={orders} showStatus={true}></Lenta>
+      <Modal
+        id="modal"
+        isOpen={isOrderDetailsOpen}
+        setClose={() => {
+          dispatch(openOrderDetailsAction(false));
+        }}
+      >
+        <OrderDetails />
+      </Modal>
     </section>
   );
 };

@@ -5,17 +5,15 @@ import LentaItem from "./lenta-item/lenta-item";
 
 interface ILenta {
   orders: Array<TOrder>;
+  showStatus: boolean;
 }
 
-const Lenta: React.FC<ILenta> = ({ orders }) => {
+const Lenta: React.FC<ILenta> = ({ orders, showStatus }) => {
   return (
-    <section className={styles.main}>
-      <h1 className="text text_type_main-medium">Лента заказов</h1>
-      <section className={`${styles.list} custom-scroll`}>
-        {orders.map((order) => (
-          <LentaItem order={order} key={order._id} />
-        ))}
-      </section>
+    <section className={`${styles.list} custom-scroll`}>
+      {orders.map((order) => (
+        <LentaItem order={order} key={order._id} showStatus={showStatus} />
+      ))}
     </section>
   );
 };
