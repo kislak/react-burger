@@ -33,7 +33,7 @@ const App: React.FC = () => {
   const isAuthenticated = useSelector(isLoggedIn);
   const location = useLocation();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(getIngredients());
   }, [dispatch]);
 

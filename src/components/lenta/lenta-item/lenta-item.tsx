@@ -9,6 +9,7 @@ import {
   openOrderDetails,
 } from "../../../services/order/actions";
 import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 interface ILenta {
   order: TOrder;
@@ -91,6 +92,7 @@ const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
                     position: "relative",
                     left: `-${index * 30}px`,
                   }}
+                  key={uuidv4()}
                 >
                   <span className="text text_type_main-medium text_color_primary">
                     +{orderIngredients.length - 1 - showItems}
@@ -100,7 +102,7 @@ const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
             }
 
             if (index > showItems) {
-              return null;
+              return "";
             }
 
             return (
@@ -112,6 +114,7 @@ const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
                   zIndex: `${10 - index}`,
                 }}
                 className={styles.img}
+                key={uuidv4()}
               >
                 &nbsp;
               </div>

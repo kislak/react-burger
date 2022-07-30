@@ -31,7 +31,7 @@ const FeedProfile: React.FC = () => {
   }, [dispatch, token]);
 
   useEffect(() => {
-    dispatch(openOrderDetails(Number(id), () => {}));
+    id && dispatch(openOrderDetails(Number(id), () => {}));
   }, [dispatch, id]);
 
   const modalCloseHandler = () => {
