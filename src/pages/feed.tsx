@@ -13,6 +13,7 @@ import { openOrderDetails } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { useHistory, useParams } from "react-router-dom";
+import styles from "./pages.module.css";
 
 const Feed: React.FC = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const Feed: React.FC = () => {
 
   return (
     <>
-      <section>
+      <section className={styles.feed}>
         <h1 className="text text_type_main-medium">Лента заказов</h1>
         <Lenta orders={orders} showStatus={false} />
       </section>
