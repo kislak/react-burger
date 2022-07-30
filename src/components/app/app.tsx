@@ -14,7 +14,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import ProfileFeed from "../../pages/feed-profile";
 import { refreshToken } from "../../services/user/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { isLoggedIn } from "../../services/user/selectors";
