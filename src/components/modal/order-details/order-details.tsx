@@ -52,7 +52,9 @@ const OrderDetails: React.FC = () => {
       {loading && <img src={loader} alt="loader" />}
       {!loading && !order && (
         <>
-          <h2 className="text text_type_digits-large mt-8">{orderNumber}</h2>
+          <h2 className="text text_type_digits-large mt-8">
+            {String(orderNumber)}
+          </h2>
           <p className="text text_type_main-medium mt-8">
             Идентификатор заказа
           </p>

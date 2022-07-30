@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { wsConnect } from "../services/all-orders/actions";
+import React, { useEffect, useMemo } from "react";
+import { wsConnect, wsClose } from "../services/all-orders/actions";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ordersSelector,
@@ -8,7 +8,6 @@ import {
 } from "../services/all-orders/selectors";
 import Lenta from "../components/lenta/lenta";
 import LentaInfo from "../components/lenta-info/lenta-info";
-import styles from "../components/lenta/lenta.module.css";
 import Modal from "../components/modal/modal/modal";
 import { openOrderDetails } from "../services/order/actions";
 import OrderDetails from "../components/modal/order-details/order-details";
@@ -25,12 +24,18 @@ const Feed: React.FC = () => {
 
   useEffect(() => {
     dispatch(wsConnect);
+    return () => {
+      dispatch(wsClose);
+    };
   }, [dispatch]);
 
-  const readyOrders = orders.filter((i) => i.status === "done").slice(0, 20);
-  const pendingOrders = orders
-    .filter((i) => i.status === "pending")
-    .slice(0, 20);
+  const readyOrders = useMemo(() => {
+    return orders.filter((i) => i.status === "done").slice(0, 20);
+  }, [orders]);
+
+  const pendingOrders = useMemo(() => {
+    return orders.filter((i) => i.status === "pending").slice(0, 20);
+  }, [orders]);
 
   const { id } = useParams() as {
     id: string;
@@ -50,7 +55,7 @@ const Feed: React.FC = () => {
 
   return (
     <>
-      <section className={styles.main}>
+      <section>
         <h1 className="text text_type_main-medium">Лента заказов</h1>
         <Lenta orders={orders} showStatus={false} />
       </section>

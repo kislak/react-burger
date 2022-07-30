@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { wsConnect } from "../services/profile-orders/actions";
+import { wsConnect, wsClose } from "../services/profile-orders/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { profileOrdersSelector } from "../services/profile-orders/selectors";
 import { accessTokenSelector } from "../services/user/selectors";
@@ -28,6 +28,9 @@ const FeedProfile: React.FC = () => {
       let t = token.replace("Bearer ", "");
       dispatch(wsConnect(`?token=${t}`));
     }
+    return () => {
+      dispatch(wsClose);
+    };
   }, [dispatch, token]);
 
   useEffect(() => {
