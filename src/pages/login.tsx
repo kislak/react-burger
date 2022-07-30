@@ -19,8 +19,13 @@ const Login: React.FC = () => {
     e.preventDefault();
     dispatch(
       loginUser(email, password, () => {
+        console.log('lgon', location?.state?.modal)
         const path = location?.state?.afterLogin || "/";
-        history.push(path);
+        history.push({
+          pathname: path,
+          state: { modal: location?.state?.modal }
+        })
+        // history.push(path);
       })
     );
   };

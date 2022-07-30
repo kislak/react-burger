@@ -31,7 +31,7 @@ declare module "react" {
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(isLoggedIn);
-  const location = useLocation();
+  const location: any = useLocation();
 
   useEffect(() => {
     dispatch(getIngredients());
@@ -72,8 +72,8 @@ const App: React.FC = () => {
           <ProfileFeed />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/profile/orders/:id" exact>
-          {location.state === "modal" ? <ProfileFeed /> : <Order />}
+        <ProtectedRoute path="/profile/orders/:id" exact modal={location.state === "modal"}>
+          {(location.state === "modal" || location?.state?.modal) ? <ProfileFeed /> : <Order />}
         </ProtectedRoute>
 
         <Route path="/" exact>
