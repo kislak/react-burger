@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-self: right;
+  max-width: 720px;
+  min-height: min-content;
+}
+
+.list {
+  overflow-y: scroll;
+}

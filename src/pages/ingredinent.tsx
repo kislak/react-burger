@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentIngredient } from "../services/current-ingredient/actions";
 import { useParams } from "react-router-dom";
 import { ingredientsSelector } from "../services/ingredients/selectors";
-import { TBurgerItem } from "../prop-types/burger-item";
+import { TBurgerItem } from "../types/burger-item";
 
 const Ingredient: React.FC = () => {
   const dispatch = useDispatch();

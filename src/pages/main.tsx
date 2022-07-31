@@ -6,16 +6,15 @@ import OrderDetails from "../components/modal/order-details/order-details";
 import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "../components/modal/modal/modal";
-import { getIngredients } from "../services/ingredients/actions";
 import { ingredientsSelector } from "../services/ingredients/selectors";
 import { currentIngredientSelector } from "../services/current-ingredient/selectors";
 import { setCurrentIngredient } from "../services/current-ingredient/actions";
-import { openOrderDetailsAction } from "../services/order/actions";
+import { openOrderDetails } from "../services/order/actions";
 import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useHistory, useParams } from "react-router-dom";
-import { TBurgerItem } from "../prop-types/burger-item";
+import { TBurgerItem } from "../types/burger-item";
 
 const Main: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,13 +36,11 @@ const Main: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (id) {
       const item = items.find((x: TBurgerItem) => x._id === id);
-      dispatch(setCurrentIngredient(item, () => {}));
+      if (item) {
+        dispatch(setCurrentIngredient(item, () => {}));
+      }
     }
   }, [items, dispatch, id]);
 
@@ -69,9 +66,9 @@ const Main: React.FC = () => {
 
       <Modal
         id="modal"
-        isOpen={isOrderDetailsOpen}
+        isOpen={isOrderDetailsOpen ? true : false}
         setClose={() => {
-          dispatch(openOrderDetailsAction(false));
+          dispatch(openOrderDetails(null, () => {}));
         }}
       >
         <OrderDetails />

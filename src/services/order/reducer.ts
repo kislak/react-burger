@@ -1,4 +1,15 @@
-import { SUBMIT_ORDER, OPEN_ORDER_DETAILS, SHOW_LOADER } from "./actions";
+import {
+  SUBMIT_ORDER,
+  OPEN_ORDER_DETAILS,
+  SHOW_LOADER,
+  TOrderActions,
+} from "./actions";
+
+export type TOrderStore = {
+  orderNumber: number | null;
+  orderDetailsOpen: boolean;
+  showLoader: boolean;
+};
 
 const initialState = {
   orderNumber: null,
@@ -6,7 +17,10 @@ const initialState = {
   showLoader: false,
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (
+  state: TOrderStore = initialState,
+  action: TOrderActions
+) => {
   switch (action.type) {
     case SUBMIT_ORDER:
       return {

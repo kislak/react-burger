@@ -2,7 +2,14 @@ import {
   SET_USER_NAME,
   SET_USER_EMAIL,
   SET_USER_ACCESS_TOKEN,
+  TUserActions,
 } from "./actions";
+
+export type TUserStore = {
+  name: string;
+  email: string;
+  accessToken: string | null;
+};
 
 const initialState = {
   name: "",
@@ -10,7 +17,10 @@ const initialState = {
   accessToken: null,
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (
+  state: TUserStore = initialState,
+  action: TUserActions
+) => {
   switch (action.type) {
     case SET_USER_NAME:
       return {

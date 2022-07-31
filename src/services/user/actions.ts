@@ -1,9 +1,29 @@
 import api from "../../utils/api";
-import { addErrorAction } from "../_middleware/errorHandler";
+import { addErrorAction } from "../_middleware/error-handler";
 import { Dispatch } from "redux";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_ACCESS_TOKEN = "SET_USER_ACCESS_TOKEN";
+
+type TSetUserEmailAction = {
+  type: typeof SET_USER_EMAIL;
+  payload: string;
+};
+
+type TSetUserNameAction = {
+  type: typeof SET_USER_NAME;
+  payload: string;
+};
+
+type TSetUserAccessTokenAction = {
+  type: typeof SET_USER_ACCESS_TOKEN;
+  payload: string | null;
+};
+
+export type TUserActions =
+  | TSetUserEmailAction
+  | TSetUserNameAction
+  | TSetUserAccessTokenAction;
 
 const setUserEmailAction = (payload: string) => {
   return {

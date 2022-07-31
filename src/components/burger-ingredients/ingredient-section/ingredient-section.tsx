@@ -1,7 +1,7 @@
 import React from "react";
 import IngredientItem from "./ingredient-item/ingredient-item";
 import styles from "./ingredient-section.module.css";
-import { TBurgerItem } from "../../../prop-types/burger-item";
+import { TBurgerItem } from "../../../types/burger-item";
 
 interface IIngredientSection {
   title: string;

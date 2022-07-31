@@ -11,11 +11,12 @@ class Api {
     }).then((res) => this.getResponseData(res));
   }
 
-  submitOrder(ingredients: Array<string>) {
+  submitOrder(ingredients: Array<string>, token: string) {
     return fetch(`${this.baseUrl}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify({ ingredients: ingredients }),
     }).then((res) => this.getResponseData(res));

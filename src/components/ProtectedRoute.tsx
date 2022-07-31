@@ -26,7 +26,9 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({
         <Redirect
           to={{
             pathname: DEFAULT_ROUTE,
-            state: { afterLogin: location.pathname },
+            state: {
+              afterLogin: location.pathname,
+            },
           }}
         />
       )}

@@ -17,12 +17,12 @@ const AppHeader: React.FC = () => {
 
   const matchProfile = useRouteMatch({
     path: "/profile",
-    strict: true,
-    exact: true,
+    strict: false,
+    exact: false,
   });
 
-  const matchOrderHistory = useRouteMatch({
-    path: "/profile/orders",
+  const matchFeed = useRouteMatch({
+    path: "/feed",
     strict: true,
     exact: true,
   });
@@ -41,11 +41,11 @@ const AppHeader: React.FC = () => {
         </NavLink>
 
         <NavLink
-          to="/profile/orders"
+          to="/feed"
           className={`${styles.link} m-2 p-5`}
           activeClassName={`${styles.link__active} m-2 p-5`}
         >
-          <ListIcon type={matchOrderHistory ? "primary" : "secondary"} />
+          <ListIcon type={matchFeed ? "primary" : "secondary"} />
           <span className="ml-2 text text_type_main-default">
             Лента Заказов
           </span>
@@ -59,7 +59,6 @@ const AppHeader: React.FC = () => {
           to="/profile"
           className={`${styles.link} m-2 p-5`}
           activeClassName={`${styles.link__active} m-2 p-5`}
-          exact
         >
           <ProfileIcon type={matchProfile ? "primary" : "secondary"} />
           <span className="ml-2 text text_type_main-default">

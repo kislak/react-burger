@@ -12,7 +12,7 @@ import React from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
 import mergeRefs from "react-merge-refs";
-import { TBurgerItem } from "../../../prop-types/burger-item";
+import { TBurgerItem } from "../../../types/burger-item";
 
 interface IBurgerConstructorItem {
   midItem: TBurgerItem;

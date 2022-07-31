@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const store = configureStore({ ingredientsStore: { ingredients: [] } });
+const store = configureStore();
 
 root.render(
   <BrowserRouter>

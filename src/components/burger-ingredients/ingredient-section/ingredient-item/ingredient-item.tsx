@@ -9,7 +9,7 @@ import { setCurrentIngredient } from "../../../../services/current-ingredient/ac
 import { allItemsSelector } from "../../../../services/burger-constructor/selectors";
 import { useDrag } from "react-dnd";
 import { useHistory } from "react-router-dom";
-import { TBurgerItem } from "../../../../prop-types/burger-item";
+import { TBurgerItem } from "../../../../types/burger-item";
 
 interface IIngredientItem {
   item: TBurgerItem;
@@ -25,7 +25,7 @@ const IngredientItem: React.FC<IIngredientItem> = ({ item }) => {
   const allItems = useSelector(allItemsSelector);
   const history = useHistory();
 
-  const count = allItems.filter((x) => x._id === item._id).length;
+  const count = allItems.filter((x: TBurgerItem) => x._id === item._id).length;
 
   return (
     <section

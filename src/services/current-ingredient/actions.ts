@@ -1,9 +1,14 @@
 import { Dispatch } from "redux";
-import { TBurgerItem } from "../../prop-types/burger-item";
+import { TBurgerItem } from "../../types/burger-item";
 
 export const SET_CURRENT = "SET_CURRENT";
 
-const setCurrentAction = (payload: TBurgerItem | null) => {
+export type TSetCurrentAction = {
+  type: typeof SET_CURRENT;
+  payload: TBurgerItem | null;
+};
+
+const setCurrentAction = (payload: TBurgerItem | null): TSetCurrentAction => {
   return {
     type: SET_CURRENT,
     payload: payload,
