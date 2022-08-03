@@ -39,3 +39,10 @@ prettier --write .
 реконект, можно еще добавить попытку обновить токен
 useMemo
 useEffect return () => {} // destructor
+
+
+## sprint 6
+
+```bash
+yarn test
+```
