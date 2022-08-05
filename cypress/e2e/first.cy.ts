@@ -1,7 +1,4 @@
 describe('service is available', () => {
-  beforeEach(() => {
-    cy.viewport(1280, 720)
-  })
   it('should be available on localhost:3000', () => {
     cy.visit('http://localhost:3000');
     cy.get('h1').contains('Соберите бургер').click();
