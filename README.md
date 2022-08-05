@@ -46,6 +46,8 @@ useEffect return () => {} // destructor
 
 ```bash
 yarn test
+yarn test a
+yarn cy
 ```
 
 ```
