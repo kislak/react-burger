@@ -46,3 +46,49 @@ useEffect return () => {} // destructor
 ```bash
 yarn test
 ```
+
+```
+yarn add cypress --dev
+yarn cypress open
+
+#pakcage.json  -> script -> "cy": "./node_modules/.bin/cypress open"
+
+yarn cy
+```
+
+При первом запуске тестового окружения библиотека создаёт в приложении директорию
+cypress с такой архитектурой:
+
+```
+cypress
+├── fixtures
+├── integration
+│   └── examples
+├── plugins
+└── support
+```
+
+
+```
+yarn add eslint-plugin-cypress --dev
+/cypress/.eslintrc.json
+{
+    "plugins": [
+    "cypress"
+    ],
+    "extends": [
+    "plugin:cypress/recommended"
+    ]
+}
+```
+
+
+first spec
+```
+describe('service is available', function() {
+  it('should be available on localhost:3000', function() {
+    cy.visit('http://localhost:3000');
+  });
+});
+```
+
