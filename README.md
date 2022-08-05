@@ -55,8 +55,7 @@ yarn cypress open
 yarn cy
 ```
 
-При первом запуске тестового окружения библиотека создаёт в приложении директорию
-cypress с такой архитектурой:
+#### При первом запуске тестового окружения библиотека создаёт в приложении директорию cypress с такой архитектурой:
 
 ```
 cypress
@@ -80,7 +79,7 @@ yarn add eslint-plugin-cypress --dev
 }
 ```
 
-first spec
+#### first spec
 
 ```
 describe('service is available', function() {
@@ -89,3 +88,22 @@ describe('service is available', function() {
   });
 });
 ```
+
+
+#### gh-pages
+```
+npm install gh-pages --save-dev 
+
+scripts: {
+...
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build"
+} 
+
+package.json
+  "homepage": "./", 
+
+```
+
+#### Couldn't find remote ref refs/heads/gh-pages
+```gh-pages-clean```
