@@ -70,7 +70,11 @@ const BurgerConstructor: React.FC = () => {
   };
 
   return (
-    <section className={`${styles.constructor} mt-15`} ref={dropRef}>
+    <section
+        className={`${styles.constructor} mt-15`}
+        ref={dropRef}
+        data-cy="burgerConstructor"
+    >
       <div className={`${styles.constructor} ml-6`}>
         <ConstructorElement
           type="top"

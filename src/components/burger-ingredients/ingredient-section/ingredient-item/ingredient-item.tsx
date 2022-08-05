@@ -30,6 +30,7 @@ const IngredientItem: React.FC<IIngredientItem> = ({ item }) => {
   return (
     <section
       className={styles.item}
+      data-cy="ingredientItem"
       onClick={() =>
         dispatch(
           setCurrentIngredient(item, () => {
