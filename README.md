@@ -40,7 +40,6 @@ prettier --write .
 useMemo
 useEffect return () => {} // destructor
 
-
 ## sprint 6
 
 ```bash
@@ -68,7 +67,6 @@ cypress
 └── support
 ```
 
-
 ```
 yarn add eslint-plugin-cypress --dev
 /cypress/.eslintrc.json
@@ -82,8 +80,8 @@ yarn add eslint-plugin-cypress --dev
 }
 ```
 
-
 first spec
+
 ```
 describe('service is available', function() {
   it('should be available on localhost:3000', function() {
@@ -91,4 +89,3 @@ describe('service is available', function() {
   });
 });
 ```
-
