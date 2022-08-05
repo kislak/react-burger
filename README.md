@@ -89,21 +89,22 @@ describe('service is available', function() {
 });
 ```
 
-
 #### gh-pages
+
 ```
-npm install gh-pages --save-dev 
+npm install gh-pages --save-dev
 
 scripts: {
 ...
 "predeploy": "npm run build",
 "deploy": "gh-pages -d build"
-} 
+}
 
 package.json
-  "homepage": "./", 
+  "homepage": "./",
 
 ```
 
 #### Couldn't find remote ref refs/heads/gh-pages
-```gh-pages-clean```
+
+`gh-pages-clean`

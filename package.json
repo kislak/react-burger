@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pt": "prettier --write .",
-    "cy": "./node_modules/.bin/cypress open",
+    "cy": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": [
