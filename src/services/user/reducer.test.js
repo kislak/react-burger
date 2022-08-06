@@ -6,7 +6,7 @@ import {
 } from "./actions";
 
 describe("user reducer", () => {
-  let initialState = {
+  const initialState = {
     name: "",
     email: "",
     accessToken: null,

@@ -2,7 +2,7 @@ import { reducer } from "./reducer";
 import { INGREDIENTS_GET_SUCCESS } from "./actions";
 
 describe("ingredient reducer", () => {
-  let initialState = {
+  const initialState = {
     ingredients: [],
   };
 

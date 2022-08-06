@@ -2,7 +2,7 @@ import { reducer } from "./reducer";
 import { wsOpen, wsClose, wsMessage, wsError, wsConnecting } from "./actions";
 
 describe("all-orders reducer", () => {
-  let initialState = {
+  const initialState = {
     connectionError: "",
     orders: [],
     status: "OFFLINE",
@@ -16,65 +16,42 @@ describe("all-orders reducer", () => {
 
   it("dispatches wsConnecting", () => {
     expect(reducer(initialState, wsConnecting)).toEqual({
-      connectionError: "",
-      orders: [],
+      ...initialState,
       status: "CONNECTING...",
-      total: 0,
-      totalToday: 0,
     });
   });
 
   it("dispatches wsOpen", () => {
     expect(reducer(initialState, wsOpen)).toEqual({
-      connectionError: "",
-      orders: [],
+      ...initialState,
       status: "ONLINE",
-      total: 0,
-      totalToday: 0,
-    });
-  });
-
-  it("dispatches wsOpen", () => {
-    expect(reducer(initialState, wsOpen)).toEqual({
-      connectionError: "",
-      orders: [],
-      status: "ONLINE",
-      total: 0,
-      totalToday: 0,
     });
   });
 
   it("dispatches wsClose", () => {
     expect(reducer(initialState, wsClose)).toEqual({
-      connectionError: "",
-      orders: [],
+      ...initialState,
       status: "OFFLINE",
-      total: 0,
-      totalToday: 0,
     });
   });
 
   it("dispatches wsError", () => {
     expect(reducer(initialState, wsError("oops"))).toEqual({
+      ...initialState,
       connectionError: "oops",
-      orders: [],
-      status: "OFFLINE",
-      total: 0,
-      totalToday: 0,
     });
   });
 
   it("dispatches wsMessage", () => {
-    let playload = {
+    const playload = {
       orders: [{ test: true }],
       total: 100,
       totalToday: 1,
     };
 
     expect(reducer(initialState, wsMessage(playload))).toEqual({
-      connectionError: "",
+      ...initialState,
       orders: [{ test: true }],
-      status: "OFFLINE",
       total: 100,
       totalToday: 1,
     });

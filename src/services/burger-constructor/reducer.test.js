@@ -9,7 +9,7 @@ import {
 } from "./actions";
 
 describe("burger-constructor reducer", () => {
-  let initialState = {
+  const initialState = {
     topItem: null,
     midItems: [],
   };
@@ -25,8 +25,8 @@ describe("burger-constructor reducer", () => {
         payload: { test: "top" },
       })
     ).toEqual({
+      ...initialState,
       topItem: { test: "top" },
-      midItems: [],
     });
   });
 
@@ -37,13 +37,13 @@ describe("burger-constructor reducer", () => {
         payload: { test: "mid" },
       })
     ).toEqual({
-      topItem: null,
+      ...initialState,
       midItems: [{ test: "mid" }],
     });
   });
 
   it("dispatches DELETE_MIDDLE_ITEM", () => {
-    let initialState = {
+    const initialState = {
       topItem: null,
       midItems: [{ test: "mid" }],
     };
@@ -54,13 +54,13 @@ describe("burger-constructor reducer", () => {
         payload: { test: "mid" },
       })
     ).toEqual({
-      topItem: null,
+      ...initialState,
       midItems: [],
     });
   });
 
   it("dispatches INSERT_BEFORE", () => {
-    let initialState = {
+    const initialState = {
       topItem: null,
       midItems: [{ uuid: "1" }, { uuid: "2" }, { uuid: "3" }],
     };
@@ -71,13 +71,13 @@ describe("burger-constructor reducer", () => {
         payload: { uuid: "3", insertBeforeUuid: "1" },
       })
     ).toEqual({
-      topItem: null,
+      ...initialState,
       midItems: [{ uuid: "3" }, { uuid: "1" }, { uuid: "2" }],
     });
   });
 
   it("dispatches INSERT_AFTER", () => {
-    let initialState = {
+    const initialState = {
       topItem: null,
       midItems: [{ uuid: "1" }, { uuid: "2" }, { uuid: "3" }],
     };
@@ -88,13 +88,13 @@ describe("burger-constructor reducer", () => {
         payload: { uuid: "1", insertAfterUuid: "3" },
       })
     ).toEqual({
-      topItem: null,
+      ...initialState,
       midItems: [{ uuid: "2" }, { uuid: "3" }, { uuid: "1" }],
     });
   });
 
   it("dispatches RESET_CONSTRUCTOR", () => {
-    let initialState = {
+    const initialState = {
       topItem: { uuid: "10" },
       midItems: [{ uuid: "1" }, { uuid: "2" }, { uuid: "3" }],
     };

@@ -2,7 +2,7 @@ import { reducer } from "./reducer";
 import { wsOpen, wsClose, wsMessage, wsError, wsConnecting } from "./actions";
 
 describe("profile-orders reducer", () => {
-  let initialState = {
+  const initialState = {
     status: "OFFLINE",
     connectionError: "",
     orders: [],
@@ -14,41 +14,29 @@ describe("profile-orders reducer", () => {
 
   it("dispatches wsConnecting", () => {
     expect(reducer(initialState, wsConnecting)).toEqual({
-      connectionError: "",
-      orders: [],
+      ...initialState,
       status: "CONNECTING...",
     });
   });
 
   it("dispatches wsOpen", () => {
     expect(reducer(initialState, wsOpen)).toEqual({
-      connectionError: "",
-      orders: [],
-      status: "ONLINE",
-    });
-  });
-
-  it("dispatches wsOpen", () => {
-    expect(reducer(initialState, wsOpen)).toEqual({
-      connectionError: "",
-      orders: [],
+      ...initialState,
       status: "ONLINE",
     });
   });
 
   it("dispatches wsClose", () => {
     expect(reducer(initialState, wsClose)).toEqual({
-      connectionError: "",
-      orders: [],
+      ...initialState,
       status: "OFFLINE",
     });
   });
 
   it("dispatches wsError", () => {
     expect(reducer(initialState, wsError("oops"))).toEqual({
+      ...initialState,
       connectionError: "oops",
-      orders: [],
-      status: "OFFLINE",
     });
   });
 
@@ -58,9 +46,8 @@ describe("profile-orders reducer", () => {
     };
 
     expect(reducer(initialState, wsMessage(playload))).toEqual({
-      connectionError: "",
+      ...initialState,
       orders: [{ test: true }],
-      status: "OFFLINE",
     });
   });
 });

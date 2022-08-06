@@ -2,7 +2,7 @@ import { reducer } from "./reducer";
 import { SET_CURRENT } from "./actions";
 
 describe("current-ingredient reducer", () => {
-  let initialState = {
+  const initialState = {
     currentIngredient: null,
   };
 

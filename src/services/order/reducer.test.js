@@ -2,7 +2,7 @@ import { reducer } from "./reducer";
 import { SUBMIT_ORDER, OPEN_ORDER_DETAILS, SHOW_LOADER } from "./actions";
 
 describe("order reducer", () => {
-  let initialState = {
+  const initialState = {
     orderNumber: null,
     orderDetailsOpen: false,
     showLoader: false,
@@ -19,9 +19,8 @@ describe("order reducer", () => {
         payload: 1,
       })
     ).toEqual({
+      ...initialState,
       orderNumber: 1,
-      orderDetailsOpen: false,
-      showLoader: false,
     });
   });
 
@@ -32,9 +31,8 @@ describe("order reducer", () => {
         payload: true,
       })
     ).toEqual({
-      orderNumber: null,
+      ...initialState,
       orderDetailsOpen: true,
-      showLoader: false,
     });
   });
 
@@ -45,8 +43,7 @@ describe("order reducer", () => {
         payload: true,
       })
     ).toEqual({
-      orderNumber: null,
-      orderDetailsOpen: false,
+      ...initialState,
       showLoader: true,
     });
   });
