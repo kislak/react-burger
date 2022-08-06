@@ -65,8 +65,8 @@ const setTopItemAction = (payload: TBurgerItem): TSetTopItemAction => {
   };
 };
 
-const addMiddleItemAction = (playload: TBurgerItem): TAddMiddleItemAction => {
-  const midItem = Object.assign({}, playload);
+const addMiddleItemAction = (payload: TBurgerItem): TAddMiddleItemAction => {
+  const midItem = Object.assign({}, payload);
   midItem.uuid = uuidv4();
 
   return {

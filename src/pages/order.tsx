@@ -20,7 +20,7 @@ const Order: React.FC = () => {
 
   useEffect(() => {
     if (token) {
-      let t = token.replace("Bearer ", "");
+      const t = token.replace("Bearer ", "");
       dispatch(profileOrders.wsConnect(`?token=${t}`));
     }
   }, [dispatch, token]);

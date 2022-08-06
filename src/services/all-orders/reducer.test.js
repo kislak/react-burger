@@ -43,13 +43,13 @@ describe("all-orders reducer", () => {
   });
 
   it("dispatches wsMessage", () => {
-    const playload = {
+    const payload = {
       orders: [{ test: true }],
       total: 100,
       totalToday: 1,
     };
 
-    expect(reducer(initialState, wsMessage(playload))).toEqual({
+    expect(reducer(initialState, wsMessage(payload))).toEqual({
       ...initialState,
       orders: [{ test: true }],
       total: 100,

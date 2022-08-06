@@ -41,11 +41,11 @@ describe("profile-orders reducer", () => {
   });
 
   it("dispatches wsMessage", () => {
-    let playload = {
+    const payload = {
       orders: [{ test: true }],
     };
 
-    expect(reducer(initialState, wsMessage(playload))).toEqual({
+    expect(reducer(initialState, wsMessage(payload))).toEqual({
       ...initialState,
       orders: [{ test: true }],
     });

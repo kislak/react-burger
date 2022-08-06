@@ -25,7 +25,7 @@ const FeedProfile: React.FC = () => {
 
   useEffect(() => {
     if (token) {
-      let t = token.replace("Bearer ", "");
+      const t = token.replace("Bearer ", "");
       dispatch(wsConnect(`?token=${t}`));
     }
     return () => {
