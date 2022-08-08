@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import {TOrder} from "../../types/order";
+import { TOrder } from "../../types/order";
 
 export const wsConnect = createAction<string, "ALL_ORDERS_CONNECT">(
   "ALL_ORDERS_CONNECT"
@@ -13,10 +13,10 @@ export const wsError = createAction<string, "ALL_ORDERS_WS_ERROR">(
 );
 
 export type TOrderMessage = {
-  orders: Array<TOrder>,
-  total: number,
-  totalToday: number
-}
+  orders: Array<TOrder>;
+  total: number;
+  totalToday: number;
+};
 
 export const wsMessage = createAction<TOrderMessage, "ALL_ORDERS_WS_MESSAGE">(
   "ALL_ORDERS_WS_MESSAGE"

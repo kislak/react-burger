@@ -5,7 +5,7 @@ import {
   MiddlewareAPI,
 } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../store";
-import {TOrderMessage} from "../all-orders/actions";
+import { TOrderMessage } from "../all-orders/actions";
 
 export type TWsActions = {
   wsConnect: ActionCreatorWithPayload<string>;

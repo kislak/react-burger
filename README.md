@@ -112,3 +112,10 @@ package.json
 #### Couldn't find remote ref refs/heads/gh-pages
 
 `gh-pages-clean`
+
+see also
+
+https://redux.js.org
+https://redux.js.org/usage/usage-with-typescript
+https://redux.js.org/usage/usage-with-typescript#define-root-state-and-dispatch-types
+https://redux.js.org/usage/usage-with-typescript#type-checking-redux-thunks

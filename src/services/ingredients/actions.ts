@@ -1,7 +1,9 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/error-handler";
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
 import { TBurgerItem } from "../../types/burger-item";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../store";
 export const INGREDIENTS_GET_SUCCESS = "INGREDIENTS_GET_SUCCESS";
 
 export type TIngredientsGetSuccessAction = {
@@ -18,13 +20,15 @@ export const ingredientsGetSuccessAction = (
   };
 };
 
-export const getIngredients = (): any => (dispatch: Dispatch) => {
-  api
-    .getIngredients()
-    .then((response) => {
-      dispatch(ingredientsGetSuccessAction(response.data));
-    })
-    .catch((error) => {
-      dispatch(addErrorAction(error));
-    });
-};
+export const getIngredients =
+  (): ThunkAction<void, RootState, unknown, AnyAction> =>
+  (dispatch: Dispatch) => {
+    api
+      .getIngredients()
+      .then((response) => {
+        dispatch(ingredientsGetSuccessAction(response.data));
+      })
+      .catch((error) => {
+        dispatch(addErrorAction(error));
+      });
+  };
