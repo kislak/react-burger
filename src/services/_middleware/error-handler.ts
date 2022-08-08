@@ -1,4 +1,5 @@
 import { AnyAction } from "redux";
+import {Middleware} from "@reduxjs/toolkit";
 export const API_ERROR = "API_ERROR";
 
 export function addErrorAction(payload: Error) {
@@ -8,8 +9,7 @@ export function addErrorAction(payload: Error) {
   };
 }
 
-export const errorHandler =
-  (): any =>
+export const errorHandler = (): Middleware =>
   (store: any): any =>
   (next: any): any =>
   (action: AnyAction): any => {
