@@ -16,7 +16,7 @@ type TInsertAfterPayload = {
   insertAfterUuid: string;
 };
 
-export const setTopItemAction = createAction<any, "SET_TOP_ITEM">(
+export const setTopItemAction = createAction<TBurgerItem, "SET_TOP_ITEM">(
   "SET_TOP_ITEM"
 );
 export const addMiddleItemAction = createAction<TBurgerItem, "ADD_MIDDLE_ITEM">(

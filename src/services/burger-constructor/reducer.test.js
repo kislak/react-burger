@@ -1,11 +1,11 @@
 import { reducer } from "./reducer";
 import {
-  SET_TOP_ITEM,
-  ADD_MIDDLE_ITEM,
-  DELETE_MIDDLE_ITEM,
-  INSERT_BEFORE,
-  INSERT_AFTER,
-  RESET_CONSTRUCTOR,
+  setTopItemAction,
+  addMiddleItemAction,
+  deleteMiddleItemAction,
+  insertBeforeAction,
+  insertAfterAction,
+  resetOrderConstructorAction,
 } from "./actions";
 
 describe("burger-constructor reducer", () => {
@@ -18,10 +18,10 @@ describe("burger-constructor reducer", () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
 
-  it("dispatches SET_TOP_ITEM", () => {
+  it("dispatches setTopItemAction", () => {
     expect(
       reducer(initialState, {
-        type: SET_TOP_ITEM,
+        type: setTopItemAction,
         payload: { test: "top" },
       })
     ).toEqual({
@@ -30,10 +30,10 @@ describe("burger-constructor reducer", () => {
     });
   });
 
-  it("dispatches ADD_MIDDLE_ITEM", () => {
+  it("dispatches addMiddleItemAction", () => {
     expect(
       reducer(initialState, {
-        type: ADD_MIDDLE_ITEM,
+        type: addMiddleItemAction,
         payload: { test: "mid" },
       })
     ).toEqual({
@@ -42,7 +42,7 @@ describe("burger-constructor reducer", () => {
     });
   });
 
-  it("dispatches DELETE_MIDDLE_ITEM", () => {
+  it("dispatches deleteMiddleItemAction", () => {
     const initialState = {
       topItem: null,
       midItems: [{ test: "mid" }],
@@ -50,7 +50,7 @@ describe("burger-constructor reducer", () => {
 
     expect(
       reducer(initialState, {
-        type: DELETE_MIDDLE_ITEM,
+        type: deleteMiddleItemAction,
         payload: { test: "mid" },
       })
     ).toEqual({
@@ -59,7 +59,7 @@ describe("burger-constructor reducer", () => {
     });
   });
 
-  it("dispatches INSERT_BEFORE", () => {
+  it("dispatches insertBeforeAction", () => {
     const initialState = {
       topItem: null,
       midItems: [{ uuid: "1" }, { uuid: "2" }, { uuid: "3" }],
@@ -67,7 +67,7 @@ describe("burger-constructor reducer", () => {
 
     expect(
       reducer(initialState, {
-        type: INSERT_BEFORE,
+        type: insertBeforeAction,
         payload: { uuid: "3", insertBeforeUuid: "1" },
       })
     ).toEqual({
@@ -76,7 +76,7 @@ describe("burger-constructor reducer", () => {
     });
   });
 
-  it("dispatches INSERT_AFTER", () => {
+  it("dispatches insertAfterAction", () => {
     const initialState = {
       topItem: null,
       midItems: [{ uuid: "1" }, { uuid: "2" }, { uuid: "3" }],
@@ -84,7 +84,7 @@ describe("burger-constructor reducer", () => {
 
     expect(
       reducer(initialState, {
-        type: INSERT_AFTER,
+        type: insertAfterAction,
         payload: { uuid: "1", insertAfterUuid: "3" },
       })
     ).toEqual({
@@ -93,7 +93,7 @@ describe("burger-constructor reducer", () => {
     });
   });
 
-  it("dispatches RESET_CONSTRUCTOR", () => {
+  it("dispatches resetOrderConstructorAction", () => {
     const initialState = {
       topItem: { uuid: "10" },
       midItems: [{ uuid: "1" }, { uuid: "2" }, { uuid: "3" }],
@@ -101,7 +101,7 @@ describe("burger-constructor reducer", () => {
 
     expect(
       reducer(initialState, {
-        type: RESET_CONSTRUCTOR,
+        type: resetOrderConstructorAction,
       })
     ).toEqual({
       topItem: null,

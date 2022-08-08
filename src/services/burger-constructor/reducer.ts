@@ -29,7 +29,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.midItems = [...state.midItems, action.payload];
     })
     .addCase(deleteMiddleItemAction, (state, action) => {
-      state.midItems = state.midItems.splice(action.payload, 1);
+      state.midItems.splice(action.payload, 1);
     })
     .addCase(insertBeforeAction, (state, action) => {
       const index = state.midItems.findIndex(
@@ -39,11 +39,7 @@ export const reducer = createReducer(initialState, (builder) => {
         (item: TBurgerItem) => item.uuid === action.payload.insertBeforeUuid
       );
       const itemToInsertBefore = state.midItems.splice(index, 1)[0];
-      state.midItems = state.midItems.splice(
-        indexToInsertBefore,
-        0,
-        itemToInsertBefore
-      );
+      state.midItems.splice(indexToInsertBefore, 0, itemToInsertBefore);
     })
     .addCase(insertAfterAction, (state, action) => {
       const currentIndex = state.midItems.findIndex(
@@ -53,11 +49,7 @@ export const reducer = createReducer(initialState, (builder) => {
         (item: TBurgerItem) => item.uuid === action.payload.insertAfterUuid
       );
       const itemToInsertAfter = state.midItems.splice(currentIndex, 1)[0];
-      state.midItems = state.midItems.splice(
-        indexToInsertAfter,
-        0,
-        itemToInsertAfter
-      );
+      state.midItems.splice(indexToInsertAfter, 0, itemToInsertAfter);
     })
     .addCase(resetOrderConstructorAction, (state) => {
       state.topItem = null;
