@@ -23,10 +23,7 @@ const OrderDetails: React.FC = () => {
   const profileOrders = useAppSelector(profileOrdersSelector);
   const ingredients = useAppSelector(ingredientsSelector);
 
-  let order = orders.find((i) => i.number === orderNumber);
-  if (!order) {
-    order = profileOrders.find((i) => i.number === orderNumber);
-  }
+  const order = orders.find((i) => i.number === orderNumber) || profileOrders.find((i) => i.number === orderNumber);
   const orderIngredients =
     order &&
     order.ingredients.map((value, index, array) => {
@@ -86,8 +83,8 @@ const OrderDetails: React.FC = () => {
           <div className="text text_type_main-medium mt-5 mb-5">Состав:</div>
           <div className={`${styles.list} custom-scroll`}>
             {Object.keys(orderIngredientsUniq).map((k) => {
-              let value: TBurgerItem = orderIngredientsUniq[k][0];
-              let l: number = orderIngredientsUniq[k].length;
+              const value: TBurgerItem = orderIngredientsUniq[k][0];
+              const l: number = orderIngredientsUniq[k].length;
 
               return (
                 <div className={styles.listItem} key={k}>
