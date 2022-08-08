@@ -23,7 +23,9 @@ const OrderDetails: React.FC = () => {
   const profileOrders = useAppSelector(profileOrdersSelector);
   const ingredients = useAppSelector(ingredientsSelector);
 
-  const order = orders.find((i) => i.number === orderNumber) || profileOrders.find((i) => i.number === orderNumber);
+  const order =
+    orders.find((i) => i.number === orderNumber) ||
+    profileOrders.find((i) => i.number === orderNumber);
   const orderIngredients =
     order &&
     order.ingredients.map((value, index, array) => {
