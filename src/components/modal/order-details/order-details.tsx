@@ -3,7 +3,7 @@ import check from "../../../images/check.svg";
 import loader from "../../../images/loader.gif";
 
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../hooks/hooks";
 import {
   orderNumberSelector,
   showLoader,
@@ -17,11 +17,11 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import { TBurgerItem } from "../../../types/burger-item";
 
 const OrderDetails: React.FC = () => {
-  const orderNumber = useSelector(orderNumberSelector);
-  const loading = useSelector(showLoader);
-  const orders = useSelector(ordersSelector);
-  const profileOrders = useSelector(profileOrdersSelector);
-  const ingredients = useSelector(ingredientsSelector);
+  const orderNumber = useAppSelector(orderNumberSelector);
+  const loading = useAppSelector(showLoader);
+  const orders = useAppSelector(ordersSelector);
+  const profileOrders = useAppSelector(profileOrdersSelector);
+  const ingredients = useAppSelector(ingredientsSelector);
 
   let order = orders.find((i) => i.number === orderNumber);
   if (!order) {

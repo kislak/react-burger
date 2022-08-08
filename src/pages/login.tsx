@@ -4,14 +4,14 @@ import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { loginUser } from "../services/user/actions";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../hooks/hooks";
 import { Location } from "history";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const location: any = useLocation<Location>();
 

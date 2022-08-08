@@ -4,14 +4,14 @@ import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { createUser } from "../services/user/actions";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../hooks/hooks";
 
 const Register: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
 
   const submitHandler = (e: React.FormEvent) => {

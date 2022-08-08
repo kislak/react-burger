@@ -13,7 +13,7 @@ import Ingredient from "../../pages/ingredinent";
 import { Route, Switch, withRouter } from "react-router-dom";
 import ProfileFeed from "../../pages/feed-profile";
 import { refreshToken } from "../../services/user/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useEffect } from "react";
 import React from "react";
 import { useLocation } from "react-router-dom";
@@ -29,8 +29,8 @@ declare module "react" {
 }
 
 const App: React.FC = () => {
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector(isLoggedIn);
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(isLoggedIn);
   const location = useLocation();
 
   useEffect(() => {

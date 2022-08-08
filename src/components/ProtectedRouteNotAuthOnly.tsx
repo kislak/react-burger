@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../hooks/hooks";
 import { isLoggedIn } from "../services/user/selectors";
 import { Location } from "history";
 
@@ -21,7 +21,7 @@ const ProtectedRouteNotAuthOnly: React.FC<IProtectedRouteNotAuthOnly> = ({
 }) => {
   const history: any = useHistory<History>();
   const location: any = useLocation<Location>();
-  const isAuthenticated = useSelector(isLoggedIn);
+  const isAuthenticated = useAppSelector(isLoggedIn);
 
   if (prevPath && prevPath !== history.location?.state?.fromPath) {
     return <Redirect to={prevPath} />;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { wsConnect, wsClose } from "../services/profile-orders/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { profileOrdersSelector } from "../services/profile-orders/selectors";
 import { accessTokenSelector } from "../services/user/selectors";
 import styles from "./pages.module.css";
@@ -13,10 +13,10 @@ import { orderDetailsOpenSelector } from "../services/order/selectors";
 import { useHistory, useParams } from "react-router-dom";
 
 const FeedProfile: React.FC = () => {
-  const dispatch = useDispatch();
-  const token = useSelector(accessTokenSelector);
-  const orders = useSelector(profileOrdersSelector);
-  const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(accessTokenSelector);
+  const orders = useAppSelector(profileOrdersSelector);
+  const isOrderDetailsOpen = useAppSelector(orderDetailsOpenSelector);
   const history = useHistory();
 
   const { id } = useParams() as {

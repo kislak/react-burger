@@ -10,7 +10,7 @@ import {
 } from "../../../services/burger-constructor/actions";
 import React from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../hooks/hooks";
 import mergeRefs from "react-merge-refs";
 import { TBurgerItem } from "../../../types/burger-item";
 
@@ -22,7 +22,7 @@ const BurgerConstructorItem: React.FC<IBurgerConstructorItem> = ({
   midItem,
   index,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [{ isDragging }, dragSortRef] = useDrag(
     () => ({

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { wsConnect, wsClose } from "../services/all-orders/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import {
   ordersSelector,
   totalSelector,
@@ -16,11 +16,11 @@ import { useHistory, useParams } from "react-router-dom";
 import styles from "./pages.module.css";
 
 const Feed: React.FC = () => {
-  const dispatch = useDispatch();
-  const total = useSelector(totalSelector);
-  const totalToday = useSelector(totalTodaySelector);
-  const orders = useSelector(ordersSelector);
-  const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
+  const dispatch = useAppDispatch();
+  const total = useAppSelector(totalSelector);
+  const totalToday = useAppSelector(totalTodaySelector);
+  const orders = useAppSelector(ordersSelector);
+  const isOrderDetailsOpen = useAppSelector(orderDetailsOpenSelector);
   const history = useHistory();
 
   useEffect(() => {
