@@ -1,4 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
+import {TOrderMessage} from "../all-orders/actions";
 
 export const wsConnect = createAction<string, "PROFILE_ORDERS_CONNECT">(
   "PROFILE_ORDERS_CONNECT"
@@ -10,7 +11,7 @@ export const wsClose = createAction("PROFILE_ORDERS_WS_CLOSE");
 export const wsError = createAction<string, "PROFILE_ORDERS_WS_ERROR">(
   "PROFILE_ORDERS_WS_ERROR"
 );
-export const wsMessage = createAction<any, "PROFILE_ORDERS_WS_MESSAGE">(
+export const wsMessage = createAction<TOrderMessage, "PROFILE_ORDERS_WS_MESSAGE">(
   "PROFILE_ORDERS_WS_MESSAGE"
 );
 

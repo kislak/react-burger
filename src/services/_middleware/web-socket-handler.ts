@@ -5,6 +5,7 @@ import {
   MiddlewareAPI,
 } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../store";
+import {TOrderMessage} from "../all-orders/actions";
 
 export type TWsActions = {
   wsConnect: ActionCreatorWithPayload<string>;
@@ -13,7 +14,7 @@ export type TWsActions = {
   wsOpen: ActionCreatorWithoutPayload;
   wsClose: ActionCreatorWithoutPayload;
   wsError: ActionCreatorWithPayload<string>;
-  wsMessage: ActionCreatorWithPayload<string>;
+  wsMessage: ActionCreatorWithPayload<TOrderMessage>;
 };
 
 export const webSocketHandler = (
