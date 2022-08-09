@@ -1,10 +1,10 @@
 import styles from "./ingredient-details.module.css";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../hooks/hooks";
 import { currentIngredientSelector } from "../../../services/current-ingredient/selectors";
 import React from "react";
 
 const IngredientDetails: React.FC = () => {
-  const currentIngredient = useSelector(currentIngredientSelector);
+  const currentIngredient = useAppSelector(currentIngredientSelector);
   return (
     currentIngredient && (
       <section className={styles.details}>

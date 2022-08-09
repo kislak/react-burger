@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../hooks/hooks";
 import { isLoggedIn } from "../services/user/selectors";
 
 const DEFAULT_ROUTE = "/login";
@@ -16,7 +16,7 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({
   ...restOfProps
 }) => {
   const location = useLocation();
-  const isAuthenticated = useSelector(isLoggedIn);
+  const isAuthenticated = useAppSelector(isLoggedIn);
 
   return (
     <Route {...restOfProps}>

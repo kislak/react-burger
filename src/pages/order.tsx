@@ -1,6 +1,6 @@
 import styles from "./pages.module.css";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useParams } from "react-router-dom";
 import OrderDetails from "../components/modal/order-details/order-details";
 import { submitOrderAction } from "../services/order/actions";
@@ -9,10 +9,10 @@ import * as profileOrders from "../services/profile-orders/actions";
 import { accessTokenSelector } from "../services/user/selectors";
 
 const Order: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { id } = useParams() as { id: string };
   const orderNumber = Number(id);
-  const token = useSelector(accessTokenSelector);
+  const token = useAppSelector(accessTokenSelector);
 
   useEffect(() => {
     dispatch(allOrders.wsConnect);
@@ -20,7 +20,7 @@ const Order: React.FC = () => {
 
   useEffect(() => {
     if (token) {
-      let t = token.replace("Bearer ", "");
+      const t = token.replace("Bearer ", "");
       dispatch(profileOrders.wsConnect(`?token=${t}`));
     }
   }, [dispatch, token]);

@@ -1,6 +1,8 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/error-handler";
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../store";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_ACCESS_TOKEN = "SET_USER_ACCESS_TOKEN";
@@ -47,7 +49,12 @@ const setUserAccessTokenAction = (payload: string | null) => {
 };
 
 export const createUser =
-  (email: string, password: string, name: string, callback: () => void): any =>
+  (
+    email: string,
+    password: string,
+    name: string,
+    callback: () => void
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     api
       .register(email, password, name)
@@ -64,7 +71,11 @@ export const createUser =
   };
 
 export const loginUser =
-  (email: string, password: string, callback: () => void): any =>
+  (
+    email: string,
+    password: string,
+    callback: () => void
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     api
       .login(email, password)
@@ -80,24 +91,29 @@ export const loginUser =
       });
   };
 
-export const refreshToken = (): any => (dispatch: Dispatch) => {
-  if (!localStorage.hasOwnProperty("refreshToken")) {
-    return;
-  }
-  api
-    .refreshToken()
-    .then((response) => {
-      dispatch(setUserAccessTokenAction(response.accessToken));
-      localStorage.setItem("refreshToken", response.refreshToken);
-    })
-    .catch((error) => {
-      localStorage.removeItem("refreshToken");
-      dispatch(addErrorAction(error));
-    });
-};
+export const refreshToken =
+  (): ThunkAction<void, RootState, unknown, AnyAction> =>
+  (dispatch: Dispatch) => {
+    if (!localStorage.hasOwnProperty("refreshToken")) {
+      return;
+    }
+    api
+      .refreshToken()
+      .then((response) => {
+        dispatch(setUserAccessTokenAction(response.accessToken));
+        localStorage.setItem("refreshToken", response.refreshToken);
+      })
+      .catch((error) => {
+        localStorage.removeItem("refreshToken");
+        dispatch(addErrorAction(error));
+      });
+  };
 
 export const logout =
-  (token: string, callback: () => void): any =>
+  (
+    token: string,
+    callback: () => void
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     api
       .logout(token)
@@ -114,7 +130,7 @@ export const logout =
   };
 
 export const getUser =
-  (token: string): any =>
+  (token: string): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     api
       .getUser(token)
@@ -128,7 +144,11 @@ export const getUser =
   };
 
 export const updateUser =
-  (token: string, email: string, name: string): any =>
+  (
+    token: string,
+    email: string,
+    name: string
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     api
       .updateUser(token, email, name)

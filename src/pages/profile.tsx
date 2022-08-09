@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./pages.module.css";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { accessTokenSelector, userSelector } from "../services/user/selectors";
 import { getUser, updateUser } from "../services/user/actions";
 import ProfileNav from "../components/profile-nav/profile-nav";
@@ -13,9 +13,9 @@ const Profile: React.FC = () => {
   const [nameEditable, setNameEditable] = useState(false);
   const [emailEditable, setEmailEditable] = useState(false);
   const [passwordEditable, setPasswordEditable] = useState(false);
-  const user = useSelector(userSelector);
-  const token = useSelector(accessTokenSelector);
-  const dispatch = useDispatch();
+  const user = useAppSelector(userSelector);
+  const token = useAppSelector(accessTokenSelector);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     token && dispatch(getUser(token));

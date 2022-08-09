@@ -2,7 +2,7 @@ import React, { UIEvent } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientSection from "./ingredient-section/ingredient-section";
 import styles from "./burger-ingredients.module.css";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/hooks";
 import {
   ingredientsBun,
   ingredientsMain,
@@ -47,9 +47,9 @@ const BurgerIngredients: React.FC = () => {
     setCurrent("main");
   };
 
-  const bun = useSelector(ingredientsBun);
-  const sauce = useSelector(ingredientsSauce);
-  const main = useSelector(ingredientsMain);
+  const bun = useAppSelector(ingredientsBun);
+  const sauce = useAppSelector(ingredientsSauce);
+  const main = useAppSelector(ingredientsMain);
 
   return (
     <section className={styles.ingredients}>

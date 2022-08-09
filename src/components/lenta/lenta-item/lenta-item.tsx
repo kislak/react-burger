@@ -2,7 +2,7 @@ import React from "react";
 import { TOrder } from "../../../types/order";
 import styles from "./lenta-item.module.css";
 import { ingredientsSelector } from "../../../services/ingredients/selectors";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import {
   submitOrderAction,
@@ -35,9 +35,9 @@ export const formatDate = (date: Date) => {
 
 const LentaItem: React.FC<ILenta> = ({ order, showStatus }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const showItems = 4;
-  const ingredients = useSelector(ingredientsSelector);
+  const ingredients = useAppSelector(ingredientsSelector);
   const orderIngredients = order.ingredients.map((value, index, array) => {
     return ingredients.find((item) => item._id === value);
   });

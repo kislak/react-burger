@@ -4,7 +4,7 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./ingredient-item.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
 import { setCurrentIngredient } from "../../../../services/current-ingredient/actions";
 import { allItemsSelector } from "../../../../services/burger-constructor/selectors";
 import { useDrag } from "react-dnd";
@@ -21,8 +21,8 @@ const IngredientItem: React.FC<IIngredientItem> = ({ item }) => {
     item: item,
   });
 
-  const dispatch = useDispatch();
-  const allItems = useSelector(allItemsSelector);
+  const dispatch = useAppDispatch();
+  const allItems = useAppSelector(allItemsSelector);
   const history = useHistory();
 
   const count = allItems.filter((x: TBurgerItem) => x._id === item._id).length;
@@ -30,6 +30,7 @@ const IngredientItem: React.FC<IIngredientItem> = ({ item }) => {
   return (
     <section
       className={styles.item}
+      data-cy="ingredientItem"
       onClick={() =>
         dispatch(
           setCurrentIngredient(item, () => {

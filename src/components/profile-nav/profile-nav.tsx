@@ -2,13 +2,13 @@ import styles from "../../pages/pages.module.css";
 import { NavLink, Route, useHistory } from "react-router-dom";
 import React, { MouseEvent } from "react";
 import { logout } from "../../services/user/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { accessTokenSelector } from "../../services/user/selectors";
 
 const ProfileNav: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
-  const token = useSelector(accessTokenSelector);
+  const token = useAppSelector(accessTokenSelector);
 
   const logoutHandler = (e: MouseEvent) => {
     e.preventDefault();

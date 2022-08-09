@@ -6,7 +6,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import styles from "./burger-constructor.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   allItemsSelector,
   midItemsSelector,
@@ -26,12 +26,12 @@ import check from "../../images/check.svg";
 
 const BurgerConstructor: React.FC = () => {
   const [total, setTotal] = useState(0);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const topItem: TBurgerItem | null = useSelector(topItemSelector);
-  const midItems: Array<TBurgerItem> = useSelector(midItemsSelector);
-  const allItems: Array<TBurgerItem> = useSelector(allItemsSelector);
-  const token = useSelector(accessTokenSelector);
+  const topItem: TBurgerItem | null = useAppSelector(topItemSelector);
+  const midItems: Array<TBurgerItem> = useAppSelector(midItemsSelector);
+  const allItems: Array<TBurgerItem> = useAppSelector(allItemsSelector);
+  const token = useAppSelector(accessTokenSelector);
   const history = useHistory();
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const BurgerConstructor: React.FC = () => {
     },
   });
 
-  const isAuthenticated = useSelector(isLoggedIn);
+  const isAuthenticated = useAppSelector(isLoggedIn);
 
   const submitHandler = () => {
     if (isAuthenticated) {
@@ -70,7 +70,11 @@ const BurgerConstructor: React.FC = () => {
   };
 
   return (
-    <section className={`${styles.constructor} mt-15`} ref={dropRef}>
+    <section
+      className={`${styles.constructor} mt-15`}
+      ref={dropRef}
+      data-cy="burgerConstructor"
+    >
       <div className={`${styles.constructor} ml-6`}>
         <ConstructorElement
           type="top"

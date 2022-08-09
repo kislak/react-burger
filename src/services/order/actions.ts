@@ -2,7 +2,9 @@ import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/error-handler";
 import { resetOrderConstructorAction } from "../burger-constructor/actions";
 import { TBurgerItem } from "../../types/burger-item";
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../store";
 export const SUBMIT_ORDER = "SUBMIT_ORDER_SUCCESS";
 export const OPEN_ORDER_DETAILS = "OPEN_ORDER_DETAILS";
 export const SHOW_LOADER = "SHOW_LOADER";
@@ -51,7 +53,10 @@ const openOrderDetailsAction = (payload: boolean): TOpenOrderDetailsAction => {
 };
 
 export const openOrderDetails =
-  (order: number | null, callback: () => void): any =>
+  (
+    order: number | null,
+    callback: () => void
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     dispatch(submitOrderAction(order));
     dispatch(openOrderDetailsAction(order ? true : false));
@@ -59,7 +64,11 @@ export const openOrderDetails =
   };
 
 export const submitOrder =
-  (topItem: TBurgerItem, midItems: Array<TBurgerItem>, token: string): any =>
+  (
+    topItem: TBurgerItem,
+    midItems: Array<TBurgerItem>,
+    token: string
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     const ingredients = [topItem._id].concat(
       midItems

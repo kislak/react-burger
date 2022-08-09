@@ -1,9 +1,14 @@
 import api from "../../utils/api";
 import { addErrorAction } from "../_middleware/error-handler";
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../store";
 
 export const sendPasswordResetEmail =
-  (email: string, callback: () => void): any =>
+  (
+    email: string,
+    callback: () => void
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     api
       .passwordReset(email)
@@ -16,7 +21,11 @@ export const sendPasswordResetEmail =
   };
 
 export const passwordResetSubmit =
-  (email: string, token: string, callback: () => void): any =>
+  (
+    email: string,
+    token: string,
+    callback: () => void
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     api
       .passwordResetSubmit(email, token)

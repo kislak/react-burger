@@ -1,5 +1,7 @@
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
 import { TBurgerItem } from "../../types/burger-item";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../store";
 
 export const SET_CURRENT = "SET_CURRENT";
 
@@ -16,7 +18,10 @@ const setCurrentAction = (payload: TBurgerItem | null): TSetCurrentAction => {
 };
 
 export const setCurrentIngredient =
-  (item: TBurgerItem | null, callback: () => void): any =>
+  (
+    item: TBurgerItem | null,
+    callback: () => void
+  ): ThunkAction<void, RootState, unknown, AnyAction> =>
   (dispatch: Dispatch) => {
     dispatch(setCurrentAction(item));
     callback();

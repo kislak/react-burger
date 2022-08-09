@@ -3,7 +3,7 @@ import BurgerConstructor from "../components/burger-constructor/burger-construct
 import BurgerIngredients from "../components/burger-ingredients/burger-ingredients";
 import IngredientDetails from "../components/modal/ingredient-details/ingredient-details";
 import OrderDetails from "../components/modal/order-details/order-details";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 import Modal from "../components/modal/modal/modal";
 import { ingredientsSelector } from "../services/ingredients/selectors";
@@ -17,12 +17,12 @@ import { useHistory, useParams } from "react-router-dom";
 import { TBurgerItem } from "../types/burger-item";
 
 const Main: React.FC = () => {
-  const dispatch = useDispatch();
-  const data = useSelector(ingredientsSelector);
-  const currentIngredient = useSelector(currentIngredientSelector);
-  const isOrderDetailsOpen = useSelector(orderDetailsOpenSelector);
+  const dispatch = useAppDispatch();
+  const data = useAppSelector(ingredientsSelector);
+  const currentIngredient = useAppSelector(currentIngredientSelector);
+  const isOrderDetailsOpen = useAppSelector(orderDetailsOpenSelector);
   const history = useHistory();
-  const items = useSelector(ingredientsSelector);
+  const items = useAppSelector(ingredientsSelector);
   const { id } = useParams() as {
     id: string;
   };
